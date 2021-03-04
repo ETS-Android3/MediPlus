@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    package="com.example.mediplus">
+
+    <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+    <uses-permission android:name="android.permission.RECEIVE_SMS" />
+    <uses-permission android:name="android.permission.READ_SMS" />
+
+    <application
+        android:allowBackup="true"
+        android:icon="@mipmap/ic_launcher"
+        android:label="@string/app_name"
+        android:roundIcon="@mipmap/ic_launcher_round"
+        android:supportsRtl="true"
+        android:theme="@style/Theme.MediPlus"
+        tools:node="merge">
+        <activity android:name=".Patient.Directory"></activity>
+        <activity android:name=".Patient.HomeService" />
+        <activity android:name=".Patient.ContactUs" />
+        <activity android:name=".Doctor.Prescription" />
+        <activity android:name=".Doctor.DoctorDashboard" />
+        <activity android:name=".Patient.PatientAppointment" />
+        <activity android:name=".Doctor.Doctor_signup2" />
+        <activity android:name=".Patient.PatientDash" />
+        <activity android:name=".Patient.patient_signup2" />
+        <activity android:name=".Patient.Patient_signup" />
+        <activity android:name=".Doctor.Doctor_signup" />
+        <activity android:name=".Doctor.Doctor_login" />
+        <activity android:name=".Patient.Patient_login" />
+        <activity android:name=".DocPat" />
+        <activity android:name=".MainActivity">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+
+        <meta-data
+            android:name="preloaded_fonts"
+            android:resource="@array/preloaded_fonts" />
+    </application>
+
+</manifest>

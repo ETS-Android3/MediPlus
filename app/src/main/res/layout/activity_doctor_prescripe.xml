@@ -1,0 +1,112 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:padding="15dp"
+    android:background="@color/dark_turquoise"
+    tools:context=".Doctor.Prescription">
+
+    <Button
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@drawable/round_corners"
+        android:onClick="sendPrescribe"
+        android:padding="5dp"
+        android:text="Send"
+        android:textColor="#000000"
+        android:textSize="20sp" />
+
+    <TextView
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:text="" />
+
+    <EditText
+        android:id="@+id/sub"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:textColor="@color/white_smoke"
+        android:textColorHint="@color/white_smoke"
+        android:hint="Subject"/>
+
+    <com.example.mediplus.Doctor.CustomAutoCompleteView
+        android:id="@+id/myautocomplete"
+        android:textColor="@color/white"
+        android:textColorHint="@color/white_smoke"
+        android:hint="Medicine name"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:completionThreshold="1" >
+    </com.example.mediplus.Doctor.CustomAutoCompleteView>
+
+    <RadioGroup
+        android:id="@+id/comment"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content">
+
+        <RadioButton
+            android:id="@+id/a"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="20dp"
+            android:layout_marginTop="10dp"
+            android:checked="true"
+            android:text="Morning + Afternoon + Night"
+            android:textColor="@color/white_smoke"
+            android:textSize="20sp"
+            android:textStyle="bold" />
+
+        <RadioButton
+            android:id="@+id/b"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="20dp"
+            android:layout_marginTop="10dp"
+            android:checked="false"
+            android:text="Morning + Night"
+            android:textColor="@color/white_smoke"
+            android:textSize="20sp"
+            android:textStyle="bold" />
+
+        <RadioButton
+            android:id="@+id/c"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="20dp"
+            android:layout_marginTop="10dp"
+            android:checked="false"
+            android:text="Night"
+            android:textColor="@color/white"
+            android:textSize="20sp"
+            android:textStyle="bold" />
+
+
+
+
+    </RadioGroup>
+
+    <Button
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@drawable/round_corners"
+        android:onClick="addMedicine"
+        android:padding="5dp"
+        android:text="Add"
+        android:textColor="#000000"
+        android:textSize="20sp" />
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/medicine_list"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="15dp">
+
+
+    </androidx.recyclerview.widget.RecyclerView>
+
+
+
+</LinearLayout>

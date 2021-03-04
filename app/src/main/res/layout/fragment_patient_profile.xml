@@ -1,0 +1,198 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    tools:context=".Patient.PatientProfileFragment"
+    android:background="@color/white_smoke"
+    android:orientation="vertical">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="300dp"
+        android:background="@color/dark_salmon"
+        android:padding="20dp">
+
+        <ImageView
+            android:id="@+id/profile_image"
+            android:layout_width="100dp"
+            android:layout_height="100dp"
+            android:layout_centerVertical="true"
+            android:src="@drawable/dp" />
+
+        <TextView
+            android:id="@+id/fullname_field"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:layout_marginLeft="10dp"
+            android:layout_toRightOf="@+id/profile_image"
+            android:fontFamily="@font/muli"
+            android:includeFontPadding="false"
+            android:text="Midhun"
+            android:textColor="#FFFFFF"
+            android:textSize="20sp" />
+
+        <TextView
+            android:id="@+id/username_field"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/fullname_field"
+            android:layout_marginLeft="10dp"
+            android:layout_toRightOf="@+id/profile_image"
+            android:includeFontPadding="false"
+            android:text="midhun@gmail.com"
+            android:textColor="#FFFFFF"
+            android:textSize="14sp" />
+    </RelativeLayout>
+
+    <LinearLayout
+        android:layout_height="wrap_content"
+        android:layout_marginTop="-100dp"
+        android:layout_width="match_parent"
+        android:padding="20dp">
+
+        <com.google.android.material.card.MaterialCardView
+            android:layout_height="125dp"
+            android:layout_margin="10dp"
+            android:layout_weight="1"
+            android:layout_width="0dp"
+            app:cardBackgroundColor="@color/white"
+            app:cardElevation="10dp">
+
+            <RelativeLayout
+                android:layout_height="match_parent"
+                android:layout_width="match_parent"
+                android:padding="5dp">
+
+                <ImageView
+                    android:layout_centerHorizontal="true"
+                    android:layout_height="30dp"
+                    android:layout_width="30dp"
+                    android:src="@drawable/money" />
+
+                <TextView
+                    android:id="@+id/payment_labe"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerInParent="true"
+                    android:fontFamily="@font/muli"
+                    android:includeFontPadding="false"
+                    android:text="$123"
+                    android:textSize="20sp" />
+
+                <TextView
+                    android:id="@+id/payment_des"
+                    android:includeFontPadding="false"
+                    android:layout_below="@id/payment_labe"
+                    android:layout_centerHorizontal="true"
+                    android:layout_height="wrap_content"
+                    android:layout_width="wrap_content"
+                    android:text="Balance"
+                    android:textSize="20sp" />
+
+            </RelativeLayout>
+
+        </com.google.android.material.card.MaterialCardView>
+        <com.google.android.material.card.MaterialCardView
+            android:layout_height="125dp"
+            android:layout_margin="10dp"
+            android:layout_weight="1"
+            android:layout_width="0dp"
+            app:cardBackgroundColor="@color/white"
+            app:cardElevation="10dp">
+
+            <RelativeLayout
+                android:layout_height="match_parent"
+                android:layout_width="match_parent"
+                android:padding="5dp">
+
+                <ImageView
+                    android:layout_centerHorizontal="true"
+                    android:layout_height="30dp"
+                    android:layout_width="30dp"
+                    android:src="@drawable/money" />
+
+                <TextView
+                    android:id="@+id/payment_label"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerInParent="true"
+                    android:fontFamily="@font/muli"
+                    android:includeFontPadding="false"
+                    android:text="$123"
+                    android:textSize="20sp" />
+
+                <TextView
+                    android:id="@+id/payment_desc"
+                    android:includeFontPadding="false"
+                    android:layout_below="@id/payment_label"
+                    android:layout_centerHorizontal="true"
+                    android:layout_height="wrap_content"
+                    android:layout_width="wrap_content"
+                    android:text="Balance"
+                    android:textSize="20sp" />
+
+            </RelativeLayout>
+
+        </com.google.android.material.card.MaterialCardView>
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_height="wrap_content"
+        android:layout_width="match_parent"
+        android:orientation="vertical"
+        android:padding="20dp">
+
+        <com.google.android.material.textfield.TextInputLayout
+            android:hint="Full Name"
+            android:id="@+id/full_name_profile"
+            android:layout_height="wrap_content"
+            android:layout_width="match_parent">
+
+            <com.google.android.material.textfield.TextInputEditText
+                android:drawableLeft="@drawable/user_ic"
+                android:drawablePadding="10dp"
+                android:layout_height="wrap_content"
+                android:layout_width="match_parent" />
+
+        </com.google.android.material.textfield.TextInputLayout>
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_height="wrap_content"
+        android:layout_width="match_parent"
+        android:orientation="vertical"
+        android:padding="20dp">
+
+        <com.google.android.material.textfield.TextInputLayout
+            android:hint="PhoneNumber"
+            android:id="@+id/number"
+            android:layout_height="wrap_content"
+            android:layout_width="match_parent">
+
+            <com.google.android.material.textfield.TextInputEditText
+                android:drawableLeft="@drawable/call"
+                android:drawablePadding="10dp"
+                android:layout_height="wrap_content"
+                android:layout_width="match_parent" />
+
+        </com.google.android.material.textfield.TextInputLayout>
+
+    </LinearLayout>
+
+    <Button
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="30dp"
+        android:background="@color/dark_slate_gray"
+        android:fontFamily="@font/muli_black"
+        android:text="UPDATE"
+        android:textColor="#FFFFFF" />
+
+
+
+</LinearLayout>

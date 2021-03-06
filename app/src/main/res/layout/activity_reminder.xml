@@ -19,10 +19,11 @@
             android:id="@+id/toolbarReminder"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:background="#FFFFFF"
+            android:background="@color/white_smoke"
             android:minHeight="?attr/actionBarSize"
             android:theme="?attr/actionBarTheme"
             app:navigationIcon="@drawable/home_icon" />
+
 
         <RelativeLayout
             android:id="@+id/fragment_container"

@@ -15,15 +15,32 @@
         android:layout_height="wrap_content"
         android:orientation="vertical">
 
-        <androidx.appcompat.widget.Toolbar
-            android:id="@+id/toolbarReminder"
+
+        <RelativeLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:background="#FFFFFF"
-            android:minHeight="?attr/actionBarSize"
-            android:theme="?attr/actionBarTheme"
-            app:navigationIcon="@drawable/home_icon" />
+            android:padding="20dp"
+            android:background="@color/teal_700">
 
+
+            <ImageView
+                android:layout_alignParentRight="true"
+                android:layout_centerVertical="true"
+                android:layout_height="40dp"
+                android:layout_width="40dp"
+                android:padding="5dp"
+                android:src="@drawable/medical_service" />
+
+            <TextView
+                android:id="@+id/app_name2"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/muli_black"
+                android:text="@string/logo_name"
+                android:textColor="@color/black"
+                android:textSize="28sp" />
+
+        </RelativeLayout>
         <RelativeLayout
             android:id="@+id/fragment_container"
             android:layout_width="match_parent"
@@ -34,7 +51,7 @@
       <com.ismaeldivita.chipnavigation.ChipNavigationBar
         android:id="@+id/bottom_nav_menu"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="40dp"
         app:cnb_menuResource="@menu/bottom_nav_menu"
         android:layout_alignParentBottom="true"
         android:background="@drawable/round_corners"
@@ -50,3 +67,5 @@
     </LinearLayout>
 
 </androidx.drawerlayout.widget.DrawerLayout>
+
+

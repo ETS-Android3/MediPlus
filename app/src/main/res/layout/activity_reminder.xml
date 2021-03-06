@@ -30,23 +30,19 @@
             android:layout_height="match_parent"
             android:clipChildren="false">
 
-
-      <com.ismaeldivita.chipnavigation.ChipNavigationBar
-        android:id="@+id/bottom_nav_menu"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        app:cnb_menuResource="@menu/bottom_nav_menu"
-        android:layout_alignParentBottom="true"
-        android:background="@drawable/round_corners"
-        app:cnb_unselectedColor="@color/black"
-        app:cnb_radius="8dp"
-        app:cnb_orientationMode="horizontal"
-        android:layout_margin="30dp"
-        android:elevation="8dp"
-        />
-
-   </RelativeLayout>
-
+            <com.ismaeldivita.chipnavigation.ChipNavigationBar
+                android:id="@+id/bottom_reminder_nav"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_alignParentBottom="true"
+                android:layout_margin="30dp"
+                android:background="@drawable/card_recyclerview_bg"
+                android:elevation="8dp"
+                app:cnb_menuResource="@menu/bottom_nav_reminder"
+                app:cnb_orientationMode="horizontal"
+                app:cnb_radius="8dp"
+                app:cnb_unselectedColor="#000000" />
+        </RelativeLayout>
     </LinearLayout>
 
 </androidx.drawerlayout.widget.DrawerLayout>

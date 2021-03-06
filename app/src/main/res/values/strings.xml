@@ -22,6 +22,17 @@
         <item>O</item>
         <item>AB-</item>
     </string-array>
+
+    <array name="medication_types">
+        <item>Pill</item>
+        <item>Liquid</item>
+        <item>Tablet</item>
+        <item>Capsule</item>
+        <item>Inhaler</item>
+        <item>Injection</item>
+        <item>Other</item>
+    </array>
+
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
     <string name="logo_name">MediPlus</string>
@@ -29,5 +40,7 @@
     <string name="enter_otp_here">ENTER OTP HERE</string>
     <string name="Callback">Callback Request</string>
     <string name="find_doctor">Find Doctor</string>
+    <string name="navigation_drawer_open">Open the Navigation Drawer</string>
+    <string name="navigation_drawer_close">Open the Navigation Drawer</string>
 
 </resources>

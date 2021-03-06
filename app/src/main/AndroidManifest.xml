@@ -3,10 +3,15 @@
     xmlns:tools="http://schemas.android.com/tools"
     package="com.example.mediplus">
 
+    <uses-permission android:name="android.permission.RECEIVE_BOOT_COMPLETED" />
+    <uses-permission android:name="android.permission.WAKE_LOCK" />
+
     <uses-permission android:name="android.permission.INTERNET" />
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
     <uses-permission android:name="android.permission.RECEIVE_SMS" />
     <uses-permission android:name="android.permission.READ_SMS" />
+
+
 
     <application
         android:allowBackup="true"
@@ -16,6 +21,11 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.MediPlus"
         tools:node="merge">
+
+
+
+
+        <activity android:name="com.example.mediplus.Patient.Reminder" />
         <activity android:name=".Patient.Directory"></activity>
         <activity android:name=".Patient.HomeService" />
         <activity android:name=".Patient.ContactUs" />
@@ -31,12 +41,23 @@
         <activity android:name=".Patient.Patient_login" />
         <activity android:name=".DocPat" />
         <activity android:name=".MainActivity">
+
+
+
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+
+        <receiver android:name="com.allyants.notifyme.NotificationPublisher" />
+        <receiver android:name="com.allyants.notifyme.BootNotifyMe">
+            <intent-filter>
+                <action android:name="android.intent.action.BOOT_COMPLETED" />
+                <category android:name="android.intent.category.HOME" />
+            </intent-filter>
+        </receiver>
 
         <meta-data
             android:name="preloaded_fonts"

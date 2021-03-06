@@ -2,13 +2,12 @@ package com.example.mediplus.Patient;
 
 import android.content.Intent;
 import android.os.Bundle;
-
-import androidx.fragment.app.Fragment;
-
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
+
+import androidx.fragment.app.Fragment;
 
 import com.example.mediplus.R;
 
@@ -27,7 +26,7 @@ public class PatientDashboardFragment extends Fragment {
         appointment.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent = new Intent(getActivity(), PatientAppointment.class);
+                Intent intent = new Intent(getActivity(), Reminder.class);
                 startActivity(intent);
             }
         });

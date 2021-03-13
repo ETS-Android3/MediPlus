@@ -3,13 +3,13 @@ package com.example.mediplus.Database;
 public class PatientHelperclass {
 
 
-        String fullName, username, email, phoneNo, password, date, gender;
+        String fullName, address, email, phoneNo, password, date, gender;
 
         public PatientHelperclass() {}
 
-        public PatientHelperclass(String fullName, String username, String email, String phoneNo, String password, String date, String gender) {
+        public PatientHelperclass(String fullName, String address, String email, String phoneNo, String password, String date, String gender) {
             this.fullName = fullName;
-            this.username = username;
+            this.address = address;
             this.email = email;
             this.phoneNo = phoneNo;
             this.password = password;
@@ -26,11 +26,11 @@ public class PatientHelperclass {
         }
 
         public String getUsername() {
-            return username;
+            return address;
         }
 
         public void setUsername(String username) {
-            this.username = username;
+            this.address = address;
         }
 
         public String getEmail() {
@@ -72,5 +72,7 @@ public class PatientHelperclass {
         public void setGender(String gender) {
             this.gender = gender;
         }
+
+
     }
 

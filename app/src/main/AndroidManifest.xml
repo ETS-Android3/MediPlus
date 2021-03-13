@@ -10,6 +10,8 @@
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
     <uses-permission android:name="android.permission.RECEIVE_SMS" />
     <uses-permission android:name="android.permission.READ_SMS" />
+    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
+    <uses-permission android:name="android.permission.CALL_PHONE" />
 
 
 
@@ -38,9 +40,25 @@
         <activity android:name=".Patient.Patient_signup" />
         <activity android:name=".Doctor.Doctor_signup" />
         <activity android:name=".Doctor.Doctor_login" />
+        <activity android:name=".appointment.AppointmentsActivity"/>
+        <activity android:name=".appointment.SearchDoctorSpecialityActivity"/>
+        <activity android:name=".appointment.SearchDoctorActivity"/>
+
+        <activity android:name=".appointment.ScheduleAppointmentActivity" />
+        <activity android:name=".appointment.DoctorUI.DoctorMenuActivity" />
+        <activity android:name=".appointment.EditProfileActivity" />
+        <activity android:name=".appointment.PatientProfileInformations" />
+        <activity android:name=".appointment.DisplayDoctorInfo" />
+        <activity android:name=".appointment.DisplayItemDataActivity" />
+        <activity android:name=".appointment.DoctorUI.DoctorAppointments" />
+
+
+
+
         <activity android:name=".Patient.Patient_login" />
         <activity android:name=".DocPat" />
         <activity android:name=".MainActivity">
+
 
 
 

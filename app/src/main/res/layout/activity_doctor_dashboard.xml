@@ -3,7 +3,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".Patient.PatientDashboardFragment"
+    tools:context=".Doctor.DoctorDashboard"
     android:orientation="vertical"
     android:background="@color/white">
 
@@ -39,23 +39,30 @@
             android:layout_width="match_parent">
 
 
-            <TextView
-                android:fontFamily="@font/muli_black"
-                android:id="@+id/app_name"
-                android:layout_centerHorizontal="true"
-                android:layout_height="wrap_content"
-                android:layout_width="wrap_content"
-                android:text="@string/logo_name"
-                android:textColor="@color/black"
-                android:textSize="28sp" />
-
             <ImageView
                 android:layout_width="match_parent"
-                android:layout_height="225dp"
+                android:layout_height="234dp"
                 android:layout_alignParentRight="true"
-                android:layout_marginRight="-3dp"
+                android:layout_marginTop="0dp"
+                android:layout_marginRight="-6dp"
                 android:padding="0dp"
                 android:src="@drawable/doctorimage" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentTop="true"
+                android:layout_alignParentEnd="true"
+                android:layout_marginTop="191dp"
+                android:layout_marginEnd="183dp"
+                android:alpha="20"
+                android:fontFamily="sans-serif-black"
+                android:text="WELCOME BACK DOCTOR"
+                android:textAlignment="textEnd"
+                android:textSize="50px"
+                android:textStyle="bold">
+
+            </TextView>
 
 
         </RelativeLayout>
@@ -67,18 +74,19 @@
         android:layout_width="match_parent">
 
 
+        <TextView
+            android:id="@+id/top"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentEnd="true"
+            android:layout_marginEnd="161dp"
+            android:fontFamily="sans-serif-medium"
+            android:padding="5dp"
+            android:text="Top Services "
 
-    <TextView
-        android:fontFamily="@font/muli_black"
-        android:id="@+id/top"
-        android:layout_centerHorizontal="false"
-        android:padding="5dp"
-        android:layout_height="wrap_content"
-        android:layout_width="wrap_content"
-        android:text="Top Services >"
-        android:textColor="@color/black"
-        android:textSize="28sp" />
-</RelativeLayout>
+            android:textColor="@color/black"
+            android:textSize="18sp" />
+    </RelativeLayout>
     <HorizontalScrollView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -132,7 +140,7 @@
                     android:elevation="8dp">
 
                     <ImageView
-                        android:id="@+id/appointment"
+                        android:id="@+id/docappointment"
                         android:layout_width="50dp"
                         android:layout_height="50dp"
                         android:layout_centerInParent="true"
@@ -145,6 +153,7 @@
                     android:layout_height="wrap_content"
                     android:gravity="center_horizontal"
                     android:text="Appointment"
+                    android:onClick="DocAppointment"
                     android:textAlignment="center" />
 
             </LinearLayout>
@@ -202,167 +211,17 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:gravity="center_horizontal"
-                    android:text=""
+                    android:text="Directory"
                     android:textAlignment="center" />
 
             </LinearLayout>
 
-            <LinearLayout
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:orientation="vertical">
 
-                <RelativeLayout
-                    android:layout_width="80dp"
-                    android:layout_height="80dp"
-                    android:layout_margin="10dp"
-                    android:background="@drawable/card_1"
-                    android:elevation="8dp">
-
-                    <ImageView
-                        android:layout_width="50dp"
-                        android:layout_height="50dp"
-                        android:layout_centerInParent="true"
-                        android:src="@drawable/covidcare" />
-
-                </RelativeLayout>
-
-                <TextView
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:gravity="center_horizontal"
-                    android:text="Covid Care"
-                    android:textAlignment="center" />
-
-            </LinearLayout>
 
         </LinearLayout>
 
     </HorizontalScrollView>
 
-    <LinearLayout
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_gravity="center"
-        android:orientation="horizontal">
-
-        <LinearLayout
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:orientation="vertical">
-
-            <RelativeLayout
-                android:background="@drawable/card_1"
-                android:elevation="8dp"
-                android:layout_height="60dp"
-                android:layout_margin="10dp"
-                android:layout_width="60dp">
-
-                <ImageView
-                    android:layout_centerInParent="true"
-                    android:layout_height="30dp"
-                    android:layout_width="30dp"
-                    android:src="@drawable/home_ser" />
-
-            </RelativeLayout>
-
-            <TextView
-                android:gravity="center_horizontal"
-                android:layout_height="wrap_content"
-                android:layout_width="match_parent"
-                android:text="@string/homeservice"
-                android:textAlignment="center" />
-
-        </LinearLayout>
-
-        <LinearLayout
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:orientation="vertical">
-
-            <RelativeLayout
-                android:background="@drawable/card_1"
-                android:elevation="8dp"
-                android:layout_height="60dp"
-                android:layout_margin="10dp"
-                android:layout_width="60dp">
-
-                <ImageView
-                    android:layout_centerInParent="true"
-                    android:layout_height="30dp"
-                    android:layout_width="30dp"
-                    android:src="@drawable/home_ser" />
-
-            </RelativeLayout>
-
-            <TextView
-                android:gravity="center_horizontal"
-                android:layout_height="wrap_content"
-                android:layout_width="match_parent"
-                android:text="@string/homeservice"
-                android:textAlignment="center" />
-
-        </LinearLayout>
-
-        <LinearLayout
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:orientation="vertical">
-
-            <RelativeLayout
-                android:background="@drawable/card_1"
-                android:elevation="8dp"
-                android:layout_height="60dp"
-                android:layout_margin="10dp"
-                android:layout_width="60dp">
-
-                <ImageView
-                    android:layout_centerInParent="true"
-                    android:layout_height="30dp"
-                    android:layout_width="30dp"
-                    android:src="@drawable/home_ser" />
-
-            </RelativeLayout>
-
-            <TextView
-                android:gravity="center_horizontal"
-                android:layout_height="wrap_content"
-                android:layout_width="match_parent"
-                android:text="@string/homeservice"
-                android:textAlignment="center" />
-
-        </LinearLayout>
-
-        <LinearLayout
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:orientation="vertical">
-
-            <RelativeLayout
-                android:background="@drawable/card_1"
-                android:elevation="8dp"
-                android:layout_height="60dp"
-                android:layout_margin="10dp"
-                android:layout_width="60dp">
-
-                <ImageView
-                    android:layout_centerInParent="true"
-                    android:layout_height="30dp"
-                    android:layout_width="30dp"
-                    android:src="@drawable/home_ser" />
-
-            </RelativeLayout>
-
-            <TextView
-                android:gravity="center_horizontal"
-                android:layout_height="wrap_content"
-                android:layout_width="match_parent"
-                android:text="@string/homeservice"
-                android:textAlignment="center" />
-
-        </LinearLayout>
-
-    </LinearLayout>
 
 
 

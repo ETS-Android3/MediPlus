@@ -1,8 +1,5 @@
 package com.example.mediplus.Patient;
 
-import androidx.annotation.NonNull;
-import androidx.appcompat.app.AppCompatActivity;
-
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
@@ -11,11 +8,15 @@ import android.widget.Button;
 import android.widget.CheckBox;
 import android.widget.Toast;
 
+import androidx.annotation.NonNull;
+import androidx.appcompat.app.AppCompatActivity;
+
 import com.example.mediplus.Database.SessionManager;
-import com.example.mediplus.Patient.Patient_signup;
 import com.example.mediplus.R;
 import com.google.android.material.textfield.TextInputEditText;
 import com.google.android.material.textfield.TextInputLayout;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.FirebaseDatabase;
@@ -79,10 +80,9 @@ public class Patient_login extends AppCompatActivity {
             SessionManager sessionManager =new SessionManager(Patient_login.this,SessionManager.SESSION_REMEMBER_ME);
             sessionManager.createRememberMeSession(_PhoneNumber,_password);
         }*/
-
-
-
-        Query checkUser= FirebaseDatabase.getInstance().getReference("Patients").orderByChild("phoneNo").equalTo(_phoneNo);
+        FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
+        String uid = user.getUid();
+        Query checkUser = FirebaseDatabase.getInstance().getReference("Patients").orderByChild("phoneNo").equalTo(_phoneNo);
 
         checkUser.addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
@@ -91,33 +91,33 @@ public class Patient_login extends AppCompatActivity {
                     phoneNumber.setError(null);
                     phoneNumber.setErrorEnabled(false);
 
-                    String systemPassword = dataSnapshot.child(_phoneNo).child("password").getValue(String.class);
+
+                    String systemPassword = dataSnapshot.child(uid).child("password").getValue(String.class);
                     if (systemPassword.equals(_password)) {
                         password.setError(null);
                         password.setErrorEnabled(false);
 
                         //retrieving data
 
-                        String _fullname=dataSnapshot.child(_phoneNo).child("fulName").getValue(String.class);
-                        String _address=dataSnapshot.child(_phoneNo).child("address").getValue(String.class);
-                        String _email=dataSnapshot.child(_phoneNo).child("email").getValue(String.class);
-                        String _phoneNumber=dataSnapshot.child(_phoneNo).child("phoneNo").getValue(String.class);
-                        String _password=dataSnapshot.child(_phoneNo).child("fulName").getValue(String.class);
-                        String _dob=dataSnapshot.child(_phoneNo).child("date").getValue(String.class);
-                        String _gender=dataSnapshot.child(_phoneNo).child("gender").getValue(String.class);
+                        String _fullname = dataSnapshot.child(uid).child("fullName").getValue(String.class);
+                        String _address = dataSnapshot.child(uid).child("address").getValue(String.class);
+                        String _email = dataSnapshot.child(uid).child("email").getValue(String.class);
+                        String _phoneNumber = dataSnapshot.child(uid).child("phoneNo").getValue(String.class);
+                        String _password = dataSnapshot.child(uid).child("password").getValue(String.class);
+                        String _dob = dataSnapshot.child(uid).child("date").getValue(String.class);
+                        String _gender = dataSnapshot.child(uid).child("gender").getValue(String.class);
 
                         //session
 
-                        SessionManager sessionManager= new SessionManager(Patient_login.this, SessionManager.SESSION_USERSESSION);
-                        sessionManager.createLoginSession(_fullname, _address , _email, _phoneNumber, _dob,_gender,_password);
+                        SessionManager sessionManager = new SessionManager(Patient_login.this, SessionManager.SESSION_USERSESSION);
+                        sessionManager.createLoginSession(_fullname, _address, _email, _phoneNumber, _dob, _gender, _password);
 
                         startActivity(new Intent(getApplicationContext(), PatientDash.class));
 
                     } else {
                         Toast.makeText(Patient_login.this, "password doesn't match", Toast.LENGTH_SHORT).show();
                     }
-                }
-                else {
+                } else {
                     Toast.makeText(Patient_login.this, "User not Found", Toast.LENGTH_SHORT).show();
                 }
 
@@ -126,11 +126,10 @@ public class Patient_login extends AppCompatActivity {
 
             @Override
             public void onCancelled(@NonNull DatabaseError error) {
-              Toast.makeText(Patient_login.this, "error",Toast.LENGTH_SHORT).show();
+                Toast.makeText(Patient_login.this, "error", Toast.LENGTH_SHORT).show();
 
             }
         });
-
 
 
 }

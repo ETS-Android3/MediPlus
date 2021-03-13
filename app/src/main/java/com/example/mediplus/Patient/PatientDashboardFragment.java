@@ -10,11 +10,16 @@ import android.widget.ImageView;
 import androidx.fragment.app.Fragment;
 
 import com.example.mediplus.R;
+import com.example.mediplus.appointment.AppointmentsActivity;
+import com.example.mediplus.appointment.SearchDoctorSpecialityActivity;
 
 
 public class PatientDashboardFragment extends Fragment {
 
-   ImageView appointment;
+   ImageView appointment,findDoc;
+
+
+
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
@@ -22,11 +27,22 @@ public class PatientDashboardFragment extends Fragment {
         View v = inflater.inflate(R.layout.fragment_patient_dashboard, container, false);
 
         appointment = v.findViewById(R.id.appointment);
+        findDoc=v.findViewById(R.id.findDoctor);
 
         appointment.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent = new Intent(getActivity(), Reminder.class);
+                Intent intent = new Intent(getActivity(), AppointmentsActivity.class);
+                startActivity(intent);
+            }
+        });
+
+
+
+        findDoc.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(getActivity(), SearchDoctorSpecialityActivity.class);
                 startActivity(intent);
             }
         });

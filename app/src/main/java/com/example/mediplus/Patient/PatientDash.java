@@ -1,21 +1,34 @@
 package com.example.mediplus.Patient;
 
-import androidx.appcompat.app.AppCompatActivity;
-
 import android.os.Bundle;
-
-import com.example.mediplus.Database.SessionManager;
-import com.example.mediplus.R;
 import android.view.WindowManager;
-import androidx.fragment.app.Fragment;
-import com.ismaeldivita.chipnavigation.ChipNavigationBar;
+import android.widget.Toast;
 
-import java.util.HashMap;
+import androidx.annotation.NonNull;
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.fragment.app.Fragment;
+
+import com.example.mediplus.R;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
+import com.ismaeldivita.chipnavigation.ChipNavigationBar;
 
 
 public class PatientDash extends AppCompatActivity {
 
     ChipNavigationBar chipNavigationBar;
+    FirebaseUser user;
+    String uid,phoneno;
+    String patientFullName;
+    DatabaseReference databaseReference;
+  //  ImageView profilePicture;
+   // TextView fullName,cin;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -28,9 +41,54 @@ public class PatientDash extends AppCompatActivity {
         getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container,new PatientDashboardFragment()).commit();
         bottomMenu();
 
+
+
+
+      //  fullName = findViewById(R.id.fullName);
+     //   cin = findViewById(R.id.cin);
+      //  profilePicture = findViewById(R.id.profile_image);
+
         //SessionManager sessionManager=new SessionManager(this);
         //HashMap<String, String> userDetails =sessionManager.getUserDetailFromSession();
+
+
+        user = FirebaseAuth.getInstance().getCurrentUser();
+        uid = user.getUid();
+       // Toast.makeText(PatientDash.this, uid, Toast.LENGTH_SHORT).show();
+
+
+
+
+        databaseReference = FirebaseDatabase.getInstance().getReference("Patients");
+        databaseReference.addListenerForSingleValueEvent(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                patientFullName = dataSnapshot.child(uid).child("fullName").getValue(String.class);
+                phoneno = dataSnapshot.child(uid).child("phoneNo").getValue(String.class);
+
+                Toast.makeText(PatientDash.this, patientFullName, Toast.LENGTH_LONG).show();
+
+              /*  StorageReference storageReference = FirebaseStorage.getInstance().getReference();
+                StorageReference profileRef = storageReference.child("Profile pictures").child(FirebaseAuth.getInstance().getCurrentUser().getEmail() + ".jpg");
+                profileRef.getDownloadUrl().addOnSuccessListener(new OnSuccessListener<Uri>() {
+                    @Override
+                    public void onSuccess(Uri uri) {
+                        Picasso.get().load(uri).into(profilePicture);
+                    }
+                });*/
+
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError databaseError) {
+
+            }
+        });
     }
+
+
+
+
 
     private void bottomMenu() {
 

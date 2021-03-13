@@ -1,8 +1,5 @@
 package com.example.mediplus.Patient;
 
-import androidx.annotation.NonNull;
-import androidx.appcompat.app.AppCompatActivity;
-
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
@@ -13,26 +10,23 @@ import android.widget.DatePicker;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
 import android.widget.Spinner;
-import android.widget.TextView;
 import android.widget.Toast;
+
+import androidx.annotation.NonNull;
+import androidx.appcompat.app.AppCompatActivity;
 
 import com.chaos.view.PinView;
 import com.example.mediplus.Database.PatientHelperclass;
 import com.example.mediplus.R;
-import com.google.android.gms.tasks.OnCompleteListener;
-import com.google.android.gms.tasks.Task;
-import com.google.android.gms.tasks.TaskExecutors;
 import com.google.firebase.FirebaseException;
-
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseAuthInvalidCredentialsException;
+import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.auth.PhoneAuthCredential;
 import com.google.firebase.auth.PhoneAuthOptions;
 import com.google.firebase.auth.PhoneAuthProvider;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
-
-import android.app.Activity;
 
 import java.util.concurrent.TimeUnit;
 
@@ -167,9 +161,13 @@ public class patient_signup2 extends AppCompatActivity  implements AdapterView.O
         FirebaseDatabase rootNode = FirebaseDatabase.getInstance();
         DatabaseReference reference = rootNode.getReference("Patients");
 
+        FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
+        String uid = user.getUid();
+
         //Create helperclass reference and store data using firebase
+
         PatientHelperclass addNewUser = new PatientHelperclass(fullName, address , email, phoneNo, password, date, gender);
-        reference.child(phoneNo).setValue(addNewUser);
+        reference.child(uid).setValue(addNewUser);
 
         //We will also create a Session here in next videos to keep the user logged In
 

@@ -1,26 +1,21 @@
 package com.example.mediplus.Doctor;
 
-import androidx.annotation.NonNull;
-import androidx.appcompat.app.AppCompatActivity;
-
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
-import android.widget.AdapterView;
-import android.widget.DatePicker;
-import android.widget.RadioButton;
-import android.widget.RadioGroup;
 import android.widget.Toast;
+
+import androidx.annotation.NonNull;
+import androidx.appcompat.app.AppCompatActivity;
 
 import com.chaos.view.PinView;
 import com.example.mediplus.Database.DoctorHelperClass;
-import com.example.mediplus.Database.PatientHelperclass;
 import com.example.mediplus.Patient.Patient_login;
-import com.example.mediplus.Patient.patient_signup2;
 import com.example.mediplus.R;
 import com.google.firebase.FirebaseException;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseAuthInvalidCredentialsException;
+import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.auth.PhoneAuthCredential;
 import com.google.firebase.auth.PhoneAuthOptions;
 import com.google.firebase.auth.PhoneAuthProvider;
@@ -34,7 +29,7 @@ public class Doctor_signup2 extends AppCompatActivity {
     String codeBySystem;
     PinView pinFromUser;
     //TextView otpDescriptionText;
-    String fullName, phoneNo, email, password, whatToDO;
+    String fullName, phoneNo, email, password, whatToDO ,speciality;
 
 
     @Override
@@ -52,7 +47,7 @@ public class Doctor_signup2 extends AppCompatActivity {
         password = getIntent().getStringExtra("password");
         phoneNo = getIntent().getStringExtra("phoneNo");
         whatToDO = getIntent().getStringExtra("whatToDO");
-
+        speciality="Dentist";
 
 
         //otpDescriptionText.setText("Enter One Time Password Sent Onn"+phoneNo);
@@ -138,9 +133,12 @@ public class Doctor_signup2 extends AppCompatActivity {
         FirebaseDatabase rootNode = FirebaseDatabase.getInstance();
         DatabaseReference reference = rootNode.getReference("Doctors");
 
+        FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
+        String uid = user.getUid();
+
         //Create helperclass reference and store data using firebase
-       DoctorHelperClass addNewUser = new DoctorHelperClass(fullName, email, phoneNo, password);
-        reference.child(phoneNo).setValue(addNewUser);
+        DoctorHelperClass addNewUser = new DoctorHelperClass(fullName, email, phoneNo, password,speciality);
+        reference.child(uid).setValue(addNewUser);
 
         //We will also create a Session here in next videos to keep the user logged In
 

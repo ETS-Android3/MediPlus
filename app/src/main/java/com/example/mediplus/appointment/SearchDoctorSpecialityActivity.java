@@ -40,7 +40,7 @@ public class SearchDoctorSpecialityActivity extends AppCompatActivity {
                 }
                 if(i==0) {
                     if (TextUtils.isEmpty(s)) {
-                        FragmentOne.getAdapter().filter("");
+                        FragmentOne.getAdapter().filter(" ");
                         FragmentOne.getListView().clearTextFilter();
                     } else {
                         FragmentOne.getAdapter().filter(s);

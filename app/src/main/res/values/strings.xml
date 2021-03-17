@@ -15,8 +15,6 @@
     <string name="Verify">VERIFY AND SIGNUP</string>
 
 
-
-
     <string name="title_activity_search_doctor_speciality">SearchDoctorSpecialityActivity</string>
     <string name="tab_text_1">Doctors</string>
     <string name="tab_text_2">Speciality</string>
@@ -30,7 +28,6 @@
     <string name="title_activity_doctor_localisation">Map</string>
     <string name="title_activity_doctor_appointments">DoctorAppointments</string>
     <string name="title_activity_my_patient_medical_folder">MyPatientMedicalFolderActivity</string>
-
 
 
     <string-array name="doctorSpeciality">
@@ -67,7 +64,34 @@
     <string name="enter_otp_here">ENTER OTP HERE</string>
     <string name="Callback">Callback Request</string>
     <string name="find_doctor">Find Doctor</string>
-    <string name="navigation_drawer_open">Open the Navigation Drawer</string>
-    <string name="navigation_drawer_close">Open the Navigation Drawer</string>
+
+
+    //covid
+
+    <string name="title_activity_main_news">MainNews</string>
+    <string name="navigation_drawer_open">Open navigation drawer</string>
+    <string name="navigation_drawer_close">Close navigation drawer</string>
+    <string name="nav_header_title">Android Studio</string>
+    <string name="nav_header_subtitle">android.studio@android.com</string>
+    <string name="nav_header_desc">Navigation header</string>
+    <string name="action_settings">Settings</string>
+
+    <string name="menu_home">Home</string>
+    <string name="menu_gallery">Gallery</string>
+    <string name="menu_slideshow">Slideshow</string>
+    <string name="menu_signout">Sign out</string>
+
+
+    <string name="home_second">Home Second</string>
+    <string name="title_activity_first_page">FirstPage</string>
+
+    <string name="menu_profile">Account Settings</string>
+    <string name="menu_news">News</string>
+    <string name="menu_state">COVID-19 Test</string>
+    <string name="menu_map">Map</string>
+    <string name="menu_talkto">Talk to Doctor</string>
+    <string name="menu_statistics">Statistics</string>
+
+    <string name="action_logout">Logout</string>
 
 </resources>

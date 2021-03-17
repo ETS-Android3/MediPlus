@@ -18,9 +18,11 @@ import androidx.appcompat.app.AppCompatActivity;
 import com.chaos.view.PinView;
 import com.example.mediplus.Database.PatientHelperclass;
 import com.example.mediplus.R;
+import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.Task;
 import com.google.firebase.FirebaseException;
+import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
-import com.google.firebase.auth.FirebaseAuthInvalidCredentialsException;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.auth.PhoneAuthCredential;
 import com.google.firebase.auth.PhoneAuthOptions;
@@ -39,6 +41,7 @@ public class patient_signup2 extends AppCompatActivity  implements AdapterView.O
     RadioGroup group;
     RadioButton selectedgender;
     DatePicker datePicker;
+    private FirebaseAuth fbAuth;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -73,6 +76,8 @@ public class patient_signup2 extends AppCompatActivity  implements AdapterView.O
         //otpDescriptionText.setText("Enter One Time Password Sent Onn"+phoneNo);
 
         sendVerificationCodeToUser(phoneNo);
+
+        fbAuth = FirebaseAuth.getInstance();
 
 
     }
@@ -125,10 +130,9 @@ public class patient_signup2 extends AppCompatActivity  implements AdapterView.O
 
     private void verifyCode(String code) {
         PhoneAuthCredential credential = PhoneAuthProvider.getCredential(codeBySystem, code);
-        signInWithPhoneAuthCredential(credential);
-    }
 
-    private void signInWithPhoneAuthCredential(PhoneAuthCredential credential) {
+
+    /*private void signInWithPhoneAuthCredential(PhoneAuthCredential credential) {
 
         FirebaseAuth firebaseAuth = FirebaseAuth.getInstance();
 
@@ -151,6 +155,37 @@ public class patient_signup2 extends AppCompatActivity  implements AdapterView.O
                         }
                     }
                 });
+    }
+
+
+     */
+
+        fbAuth.createUserWithEmailAndPassword(email, password).addOnCompleteListener(new OnCompleteListener<AuthResult>() {
+            @Override
+            public void onComplete(@NonNull Task<AuthResult> task) {
+                if (task.isSuccessful()) {
+                    PatientHelperclass addNewUser = new PatientHelperclass(fullName, address, email, phoneNo, password, date, gender);
+                    FirebaseDatabase.getInstance().getReference("Patients")
+                            .child(FirebaseAuth.getInstance().getCurrentUser().getUid())
+                            .setValue(addNewUser).addOnCompleteListener(new OnCompleteListener<Void>() {
+                        @Override
+                        public void onComplete(@NonNull Task<Void> task) {
+                            if (task.isSuccessful()) {
+                                Toast.makeText(patient_signup2.this, "User created successfully", Toast.LENGTH_LONG).show();
+                                // ld.dismissDialog();
+                            } else {
+                                Toast.makeText(patient_signup2.this, "User creation failed", Toast.LENGTH_LONG).show();
+                                // ld.dismissDialog();
+                            }
+                        }
+                    });
+                } else {
+                    // ld.dismissDialog();
+                    Toast.makeText(patient_signup2.this, task.getException().getMessage(), Toast.LENGTH_LONG).show();
+                }
+            }
+        });
+
     }
 
     private void updateOldUsersData() {
@@ -201,6 +236,8 @@ public class patient_signup2 extends AppCompatActivity  implements AdapterView.O
         if(!code.isEmpty()){
             verifyCode(code);
         }
+
+
 
     }
 }

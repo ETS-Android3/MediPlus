@@ -8,6 +8,7 @@ import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.Fragment;
 
+import com.example.mediplus.Covid.user.news.News;
 import com.example.mediplus.R;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
@@ -104,7 +105,7 @@ public class PatientDash extends AppCompatActivity {
                         fragment = new PatientMenuFragment();
                         break;
                     case R.id.bottom_nav_profile:
-                        fragment = new PatientProfileFragment();
+                        fragment = new News();
                         break;
                 }
                 getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container,fragment).commit();

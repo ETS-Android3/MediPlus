@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/mobile_navigation"
+    app:startDestination="@+id/nav_statistics">
+
+    <fragment
+        android:id="@+id/nav_statistics"
+        android:name="com.example.mediplus.Covid.user.statistics.Statistics"
+        android:label="@string/menu_statistics"
+        tools:layout="@layout/fragment_statistics"/>
+
+    <fragment
+        android:id="@+id/nav_quiz"
+        android:name="com.example.mediplus.Covid.user.quiz.QuizFragment"
+        android:label="@string/menu_state"
+        tools:layout="@layout/fragment_quiz" />
+
+    <fragment
+        android:id="@+id/nav_news"
+        android:name="com.example.mediplus.Covid.user.news.News"
+        android:label="@string/menu_news"
+        tools:layout="@layout/fragment_news">
+        <action
+            android:id="@+id/action_nav_news_self"
+            app:destination="@id/nav_news" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/nav_talkto"
+        android:name="com.example.mediplus.Covid.user.talkto.Message"
+        android:label="@string/menu_talkto"
+        tools:layout="@layout/fragment_home" />
+
+    <fragment
+        android:id="@+id/nav_profile"
+        android:name="com.example.mediplus.Covid.user.profile.Profile"
+        android:label="@string/menu_profile"
+        tools:layout="@layout/fragment_profile" />
+
+    <fragment
+        android:id="@+id/nav_home"
+        android:name="com.example.mediplus.Covid.doctor.doctorchat.DoctorChatsFragment"
+        android:label="@string/menu_profile"
+        tools:layout="@layout/fragment_doctor_chats" />
+
+</navigation>

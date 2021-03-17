@@ -1,6 +1,6 @@
 package com.example.mediplus.Database;
 
-public class DoctorHelperClass implements Comparable<DoctorHelperClass> {
+public class DoctorHelperClass implements Comparable<DoctorHelperClass>  {
 
 
     String fullName, email, phoneNo, password,speciality;
@@ -58,8 +58,7 @@ public class DoctorHelperClass implements Comparable<DoctorHelperClass> {
         this.speciality = speciality;
     }
 
-
-    @Override
+  @Override
     public int compareTo(DoctorHelperClass o) {
         return this.getFullName().compareTo(o.getFullName());
     }

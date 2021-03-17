@@ -1,7 +1,10 @@
 package com.example.mediplus.Doctor;
 
 import android.content.Intent;
+import android.content.SharedPreferences;
+import android.graphics.Color;
 import android.os.Bundle;
+import android.text.TextUtils;
 import android.view.View;
 import android.view.WindowManager;
 import android.widget.Button;
@@ -11,17 +14,22 @@ import android.widget.Toast;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
+import com.example.mediplus.Patient.PatientDash;
 import com.example.mediplus.R;
+import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.Task;
 import com.google.android.material.textfield.TextInputEditText;
 import com.google.android.material.textfield.TextInputLayout;
+import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
-import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
-import com.google.firebase.database.Query;
 import com.google.firebase.database.ValueEventListener;
 import com.hbb20.CountryCodePicker;
+
+import cn.pedant.SweetAlert.SweetAlertDialog;
 
 public class Doctor_login extends AppCompatActivity {
 
@@ -29,8 +37,10 @@ public class Doctor_login extends AppCompatActivity {
     TextInputLayout password,phoneNumber;
     CountryCodePicker countryCodePicker;
     CheckBox rememberMe;
-    private FirebaseAuth fAuth;
+    private FirebaseAuth mAuth;
     TextInputEditText phoneNumberEditText, passEditText;
+    SharedPreferences sp;
+    DatabaseReference ref;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -44,7 +54,7 @@ public class Doctor_login extends AppCompatActivity {
         phoneNumber=findViewById(R.id.login_phone_number);
         countryCodePicker=findViewById(R.id.login_country_code);
 
-        fAuth = FirebaseAuth.getInstance();
+        mAuth = FirebaseAuth.getInstance();
         b2.setOnClickListener(view -> {
             Intent intent = new Intent(getApplicationContext(), Doctor_signup.class);
             startActivity(intent);
@@ -56,7 +66,70 @@ public class Doctor_login extends AppCompatActivity {
 
     public void DoctorLogIn(View view) {
 
-        String _password = password.getEditText().getText().toString().trim();
+        String tempLogin = phoneNumber.getEditText().getText().toString().trim();
+        String tempPassword = password.getEditText().getText().toString().trim();
+        if (
+                TextUtils.isEmpty(tempLogin)
+                        || TextUtils.isEmpty(tempPassword)
+        ) {
+            Toast.makeText(Doctor_login.this, "Login or Password are empty", Toast.LENGTH_SHORT).show();
+        } else {
+            final SweetAlertDialog pDialog = new SweetAlertDialog(this, SweetAlertDialog.PROGRESS_TYPE);
+            pDialog.getProgressHelper().setBarColor(Color.parseColor("#da0384"));
+            pDialog.setTitleText("Loading");
+            pDialog.setCancelable(false);
+            pDialog.show();
+            mAuth.signInWithEmailAndPassword(tempLogin, tempPassword).addOnCompleteListener(Doctor_login.this, new OnCompleteListener<AuthResult>() {
+                @Override
+                public void onComplete(@NonNull Task<AuthResult> task) {
+                    if (task.isSuccessful()) {
+                        ref = FirebaseDatabase.getInstance().getReference("Doctors");
+                        ref.addValueEventListener(new ValueEventListener() {
+                            @Override
+                            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                                String email = dataSnapshot.child(FirebaseAuth.getInstance().getCurrentUser().getUid()).child("email").getValue(String.class);
+                                if (email == null) {
+                                    pDialog.hide();
+                                    /*if (rememberMe.isChecked()) {
+                                        sp.edit().putBoolean("loggedPatient", true).apply();
+                                    } else
+                                        sp.edit().putBoolean("loggedPatient", false).apply();*/
+                                    Intent intent = new Intent(Doctor_login.this, PatientDash.class);
+                                    Doctor_login.this.startActivity(intent);
+                                } else {
+                                    pDialog.hide();
+                                   /* if (rememberMe.isChecked()) {
+                                        sp.edit().putBoolean("loggedDoctor", true).apply();
+                                    } else
+                                        sp.edit().putBoolean("loggedDoctor", false).apply();*/
+                                    Intent intent = new Intent(Doctor_login.this, DoctorDashboard.class);
+                                    Doctor_login.this.startActivity(intent);
+                                }
+                            }
+                            @Override
+                            public void onCancelled(@NonNull DatabaseError databaseError) {
+
+                            }
+                        });
+
+                    } else {
+                       // errorMessage.setVisibility(View.VISIBLE);
+                        pDialog.hide();
+                    }
+                }
+            });
+        }
+    }
+
+
+
+
+
+
+
+
+
+      /*  String _password = password.getEditText().getText().toString().trim();
         String _PhoneNumber = phoneNumber.getEditText().getText().toString().trim();
 
         if (_PhoneNumber.charAt(0) == '0') {
@@ -64,17 +137,11 @@ public class Doctor_login extends AppCompatActivity {
         }
         String _phoneNo = "+" + countryCodePicker.getSelectedCountryCode() + _PhoneNumber;
 
-      /*  if(rememberMe.isChecked()) {
+        if(rememberMe.isChecked()) {
 
             SessionManager sessionManager =new SessionManager(Patient_login.this,SessionManager.SESSION_REMEMBER_ME);
             sessionManager.createRememberMeSession(_PhoneNumber,_password);
-        }*/
-
-
-
-
-
-       // FirebaseUser currentUser = fAuth.getCurrentUser();
+        }FirebaseUser currentUser = fAuth.getCurrentUser();
 
 
         Query checkUser= FirebaseDatabase.getInstance().getReference("Doctors").orderByChild("phoneNo").equalTo(_phoneNo);
@@ -87,6 +154,7 @@ public class Doctor_login extends AppCompatActivity {
 
 
                     FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
+                    assert user != null;
                     String uid = user.getUid();
 
                     String systemPassword = dataSnapshot.child(uid).child("password").getValue(String.class);
@@ -94,7 +162,7 @@ public class Doctor_login extends AppCompatActivity {
                         password.setError(null);
                         password.setErrorEnabled(false);
 
-                        //retrieving data
+                        //retrieving data*/
 
                        /* String _fullname=dataSnapshot.child(_phoneNo).child("fulName").getValue(String.class);
                         String _address=dataSnapshot.child(_phoneNo).child("address").getValue(String.class);
@@ -109,7 +177,7 @@ public class Doctor_login extends AppCompatActivity {
                        // SessionManager sessionManager= new SessionManager(Doctor_login.this, SessionManager.SESSION_USERSESSION);
                        // sessionManager.createLoginSession(_fullname, _address , _email, _phoneNumber, _dob,_gender,_password);
 
-                        startActivity(new Intent(getApplicationContext(), DoctorDashboard.class));
+                   /*     startActivity(new Intent(getApplicationContext(), DoctorDashboard.class));
 
                     } else {
                         Toast.makeText(Doctor_login.this, "password doesn't match", Toast.LENGTH_SHORT).show();
@@ -128,7 +196,7 @@ public class Doctor_login extends AppCompatActivity {
 
             }
         });
-    }
+    }*/
 
     public void callForgetPassword(View view) {
 

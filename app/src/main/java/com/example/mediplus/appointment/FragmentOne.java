@@ -56,7 +56,6 @@ public class FragmentOne extends Fragment {
                 }
             }
 
-
             @Override
             public void onCancelled(@NonNull DatabaseError databaseError) {
                 System.out.println("The read failed: " + databaseError.getCode());

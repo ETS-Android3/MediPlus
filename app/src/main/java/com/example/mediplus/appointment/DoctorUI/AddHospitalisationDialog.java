@@ -52,14 +52,14 @@ public class AddHospitalisationDialog extends AppCompatDialogFragment {
                     Toast.makeText(getActivity(), "A field is empty", Toast.LENGTH_SHORT).show();
                 } else {
                     Hospitalisation hospitalisation = new Hospitalisation(hospitalName.getText().toString(), patientEmail, date.getText().toString(),
-                     disease.getText().toString(), price.getText().toString()+" DH");
+                     disease.getText().toString(), price.getText().toString()+" Rs");
                     DatabaseReference ref = FirebaseDatabase.getInstance().getReference("Hospitalisations");
                     ref.push().setValue(hospitalisation).addOnCompleteListener(new OnCompleteListener<Void>() {
                         @Override
                         public void onComplete(@NonNull Task<Void> task) {
                             if(task.isSuccessful())
                             {
-                                SweetAlertDialog alertDialog = new SweetAlertDialog(getContext(),SweetAlertDialog.SUCCESS_TYPE);
+                                SweetAlertDialog alertDialog = new SweetAlertDialog(getContext(), SweetAlertDialog.SUCCESS_TYPE);
                                 alertDialog.setTitleText("Add hospitalisation");
                                 alertDialog.setContentText("Hospitalisation added successfully !");
                                 alertDialog.setConfirmClickListener(new SweetAlertDialog.OnSweetClickListener() {

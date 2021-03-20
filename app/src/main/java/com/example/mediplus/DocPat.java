@@ -1,16 +1,15 @@
 package com.example.mediplus;
 
 import android.content.Intent;
-import androidx.appcompat.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
 import android.view.WindowManager;
 import android.widget.Button;
-import android.widget.Switch;
 
-import com.example.mediplus.Doctor.Doctor_login;
-import com.example.mediplus.Doctor.Prescription;
-import com.example.mediplus.Patient.Patient_login;
+import androidx.appcompat.app.AppCompatActivity;
+
+import com.example.mediplus.Doctor.Doctor_signup;
+import com.example.mediplus.Patient.Patient_signup;
 
 public class DocPat extends AppCompatActivity {
 
@@ -27,7 +26,7 @@ public class DocPat extends AppCompatActivity {
 
             @Override
             public void onClick(View view) {
-                Intent intent = new Intent(getApplicationContext(), Doctor_login.class);
+                Intent intent = new Intent(getApplicationContext(), Doctor_signup.class);
                 startActivity(intent);
                 finish();
             }
@@ -36,7 +35,7 @@ public class DocPat extends AppCompatActivity {
         patb.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent = new Intent(getApplicationContext(), Patient_login.class);
+                Intent intent = new Intent(getApplicationContext(), Patient_signup.class);
                 startActivity(intent);
                 finish();
             }

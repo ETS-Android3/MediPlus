@@ -1,7 +1,5 @@
 package com.example.mediplus;
 
-import androidx.appcompat.app.AppCompatActivity;
-
 import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
@@ -10,7 +8,9 @@ import android.view.animation.Animation;
 import android.view.animation.AnimationUtils;
 import android.widget.ImageView;
 
-import com.example.mediplus.Patient.Patient_login;
+import androidx.appcompat.app.AppCompatActivity;
+
+import com.example.mediplus.Doctor.Doctor_login;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -40,7 +40,7 @@ public class MainActivity extends AppCompatActivity {
         new Handler().postDelayed(new Runnable() {
             @Override
             public void run() {
-                Intent intent = new Intent(getApplicationContext(),DocPat.class);
+                Intent intent = new Intent(getApplicationContext(), Doctor_login.class);
                 startActivity(intent);
                 finish();
             }

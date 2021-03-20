@@ -80,7 +80,7 @@ public class DoctorOnHoldAppointmentAdapter extends BaseAdapter {
         Button declineButton = convertView.findViewById(R.id.declineButton);
 
         final Appointment appointment = appointmentList.get(position);
-        appointmentId = "";
+        appointmentId = null;
         DatabaseReference ref = FirebaseDatabase.getInstance().getReference("Appointments");
         ref.addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
@@ -88,7 +88,7 @@ public class DoctorOnHoldAppointmentAdapter extends BaseAdapter {
                 for(DataSnapshot data : dataSnapshot.getChildren())
                 {
                     Appointment appt = data.getValue(Appointment.class);
-                    if(appt.getDate().equals(appointment.getDate()) && appt.getTime().equals(appointment.getTime())) {
+                    if(appt.getStatus().equals(appointment.getStatus()) && appt.getDate().equals(appointment.getDate()) && appt.getTime().equals(appointment.getTime()) && appt.getEmailPatient().equals(appointment.getEmailPatient()) && appt.getEmailDoctor().equals(appointment.getEmailDoctor())) {
                         appointmentId = data.getKey();
                     }
                 }
@@ -103,20 +103,24 @@ public class DoctorOnHoldAppointmentAdapter extends BaseAdapter {
         acceptButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                DatabaseReference databaseReference = FirebaseDatabase.getInstance().getReference("Appointments").child(appointmentId);
-                databaseReference.child("status").setValue("Accepted");
-                notifyDataSetChanged();
+                if(appointmentId!=null){
+                    DatabaseReference databaseReference = FirebaseDatabase.getInstance().getReference("Appointments").child(appointmentId);
+                    databaseReference.child("status").setValue("Accepted");
+                    notifyDataSetChanged();
+                }
             }
         });
 
         declineButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                ReasonDeclineDialog reasonDeclineDialog = new ReasonDeclineDialog(appointmentId, DoctorOnHoldAppointmentAdapter.this);
-                reasonDeclineDialog.show(((FragmentActivity)mContext).getSupportFragmentManager(), "reason of refusal");
+                if(appointmentId!=null){
+                    ReasonDeclineDialog reasonDeclineDialog = new ReasonDeclineDialog(appointmentId, DoctorOnHoldAppointmentAdapter.this);
+                    reasonDeclineDialog.show(((FragmentActivity)mContext).getSupportFragmentManager(), "reason of refusal");
+                }
             }
         });
-        emailPatient = appointment.getEmailDoctor();
+        emailPatient = appointment.getEmailPatient();
         DatabaseReference reference = FirebaseDatabase.getInstance().getReference("Patients");
         reference.addValueEventListener(new ValueEventListener() {
             @Override
@@ -138,16 +142,16 @@ public class DoctorOnHoldAppointmentAdapter extends BaseAdapter {
         });
 
         StorageReference storageReference = FirebaseStorage.getInstance().getReference();
-        final StorageReference profileRef = storageReference.child("Profile pictures").child(emailPatient + ".jpg");
-        profileRef.getDownloadUrl().addOnSuccessListener(new OnSuccessListener<Uri>() {
-            @Override
-            public void onSuccess(Uri uri) {
-                Glide.with(mContext).load(uri).into(patientPicture);
+        final StorageReference profileRef = storageReference.child("Profile_pictures").child(emailPatient + ".jpg");
+        if(profileRef!=null){
+            profileRef.getDownloadUrl().addOnSuccessListener(new OnSuccessListener<Uri>() {
+                @Override
+                public void onSuccess(Uri uri) {
+                    Glide.with(mContext).load(uri).into(patientPicture);
 
-            }
-        });
+                }
+            });
+        }
         return convertView;
     }
-
-
 }

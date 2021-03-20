@@ -6,9 +6,8 @@ import android.widget.ImageView;
 
 import androidx.appcompat.app.AppCompatActivity;
 
-import com.example.mediplus.Covid.doctor.MainActivityDoctor;
 import com.example.mediplus.R;
-
+import com.example.mediplus.appointment.DoctorUI.DoctorMenuActivity;
 
 
 public class DoctorDashboard extends AppCompatActivity {
@@ -21,7 +20,7 @@ public class DoctorDashboard extends AppCompatActivity {
         setContentView(R.layout.activity_doctor_dashboard);
         img1=findViewById(R.id.docappointment);
         img1.setOnClickListener(view -> {
-            Intent intent = new Intent(DoctorDashboard.this, MainActivityDoctor.class);
+            Intent intent = new Intent(DoctorDashboard.this, DoctorMenuActivity.class);
             startActivity(intent);
             finish();
         });

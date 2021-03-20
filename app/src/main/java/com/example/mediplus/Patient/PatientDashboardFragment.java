@@ -12,7 +12,7 @@ import androidx.fragment.app.Fragment;
 import com.example.mediplus.Covid.FirstPage;
 import com.example.mediplus.R;
 import com.example.mediplus.appointment.AppointmentsActivity;
-import com.example.mediplus.appointment.SearchDoctorSpecialityActivity;
+import com.example.mediplus.appointment.MenuActivity;
 
 
 public class PatientDashboardFragment extends Fragment {
@@ -54,7 +54,7 @@ public class PatientDashboardFragment extends Fragment {
         findDoc.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent = new Intent(getActivity(), SearchDoctorSpecialityActivity.class);
+                Intent intent = new Intent(getActivity(), MenuActivity.class);
                 startActivity(intent);
             }
         });

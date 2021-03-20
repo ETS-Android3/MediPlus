@@ -4,15 +4,18 @@ import android.content.Intent;
 import android.graphics.Color;
 import android.net.Uri;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
-import com.example.mediplus.Database.DoctorHelperClass;
 import com.example.mediplus.R;
+import com.example.mediplus.appointment.models.Doctor;
+import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
@@ -29,13 +32,16 @@ import de.hdodenhof.circleimageview.CircleImageView;
 public class ConsultationInfoActivity extends AppCompatActivity {
     CircleImageView profilePicture;
     TextView fullName, speciality, date, price, disease;
+    ImageView imageView;
     String receivedPrescription;
+    String temp=null;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_consultation_info);
         profilePicture = findViewById(R.id.profile_image);
+        imageView=findViewById(R.id.imageView3);
         fullName = findViewById(R.id.fullName);
         speciality = findViewById(R.id.speciality);
         date = findViewById(R.id.date);
@@ -47,10 +53,13 @@ public class ConsultationInfoActivity extends AppCompatActivity {
         String receivedDate = intent.getStringExtra("date");
         String receivedPrice = intent.getStringExtra("price");
         String receivedDisease = intent.getStringExtra("disease");
+        String patientemail=intent.getStringExtra("patientEmail");
+        String received_prescription_image_name=intent.getStringExtra("prescription_image_name");
         receivedPrescription = intent.getStringExtra("prescription");
 
+
         StorageReference storageReference = FirebaseStorage.getInstance().getReference();
-        StorageReference profileRef = storageReference.child("Profile pictures").child(receivedDoctorEmail + ".jpg");
+        StorageReference profileRef = storageReference.child("Profile_pictures").child(receivedDoctorEmail + ".jpg");
         profileRef.getDownloadUrl().addOnSuccessListener(new OnSuccessListener<Uri>() {
             @Override
             public void onSuccess(Uri uri) {
@@ -58,6 +67,31 @@ public class ConsultationInfoActivity extends AppCompatActivity {
             }
         });
 
+        temp=received_prescription_image_name;
+        if(temp!=null){
+            StorageReference storageReference1 = FirebaseStorage.getInstance().getReference();
+            StorageReference prescriptionref = storageReference1.child("Prescription_uploads").child(temp);
+            if(prescriptionref==null){
+                Log.d("prescriptionref:","is null");
+            }
+            if(prescriptionref!=null){
+                Log.d("temp:",temp);
+                Log.d("prescriptionref:","is not null");
+                prescriptionref.getDownloadUrl().addOnSuccessListener(new OnSuccessListener<Uri>() {
+                    @Override
+                    public void onSuccess(Uri uri) {
+                        Picasso.get().load(uri).into(imageView);
+                        //imageView.setImageBitmap(bitmap);
+                        Log.d("Test"," Success!");
+                    }
+                }).addOnFailureListener(new OnFailureListener() {
+                    @Override
+                    public void onFailure(@NonNull Exception exception) {
+                        Log.d("Test"," Failed!");
+                    }
+                });
+            }
+        }
         fullName.setText(receivedFullName);
         date.setText(receivedDate);
         price.setText(receivedPrice);
@@ -68,7 +102,7 @@ public class ConsultationInfoActivity extends AppCompatActivity {
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
                 for(DataSnapshot data : dataSnapshot.getChildren())
                 {
-                    DoctorHelperClass doctor = data.getValue(DoctorHelperClass.class);
+                    Doctor doctor = data.getValue(Doctor.class);
                     if(doctor.getEmail().equals(receivedDoctorEmail)) {
                         speciality.setText(doctor.getSpeciality());
                         break;
@@ -89,7 +123,23 @@ public class ConsultationInfoActivity extends AppCompatActivity {
         sweetAlertDialog.setContentText(receivedPrescription);
         sweetAlertDialog.show();
         Button button = sweetAlertDialog.getButton(SweetAlertDialog.BUTTON_CONFIRM);
-        button.setBackgroundColor(Color.parseColor("#33aeb6"));
-
+        button.setBackgroundColor(Color.parseColor("#da0384"));
     }
+
+    public void display_prescription_photo(View view){
+        if(temp==null){
+            SweetAlertDialog sweetAlertDialog = new SweetAlertDialog(this);
+            sweetAlertDialog.setTitleText("No Prescription photo");
+            sweetAlertDialog.setContentText("Sorry!");
+            sweetAlertDialog.show();
+            Button button = sweetAlertDialog.getButton(SweetAlertDialog.BUTTON_CONFIRM);
+            button.setBackgroundColor(Color.parseColor("#da0384"));
+        }
+        else{
+            Intent intent = new Intent(this, DisplayPrescriptionPhoto.class);
+            intent.putExtra("temp",temp);
+            startActivity(intent);
+        }
+    }
+
 }

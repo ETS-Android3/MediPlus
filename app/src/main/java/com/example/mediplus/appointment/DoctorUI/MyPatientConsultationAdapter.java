@@ -15,9 +15,9 @@ import androidx.annotation.RequiresApi;
 import androidx.fragment.app.FragmentActivity;
 
 import com.bumptech.glide.Glide;
-import com.example.mediplus.Database.DoctorHelperClass;
 import com.example.mediplus.R;
 import com.example.mediplus.appointment.models.Consultation;
+import com.example.mediplus.appointment.models.Doctor;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DataSnapshot;
@@ -118,7 +118,7 @@ public class MyPatientConsultationAdapter extends BaseAdapter {
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
                 for(final DataSnapshot data : dataSnapshot.getChildren())
                 {
-                    DoctorHelperClass doctor = data.getValue(DoctorHelperClass.class);
+                    Doctor doctor = data.getValue(Doctor.class);
                     if(doctor.getEmail().equals(emailDoctor))
                     {
                         if(doctor.getEmail().equals(FirebaseAuth.getInstance().getCurrentUser().getEmail()))
@@ -166,7 +166,7 @@ public class MyPatientConsultationAdapter extends BaseAdapter {
 
 
         StorageReference storageReference = FirebaseStorage.getInstance().getReference();
-        final StorageReference profileRef = storageReference.child("Profile pictures").child(emailDoctor+".jpg");
+        final StorageReference profileRef = storageReference.child("Profile_pictures").child(emailDoctor+".jpg");
         profileRef.getDownloadUrl().addOnSuccessListener(new OnSuccessListener<Uri>() {
             @Override
             public void onSuccess(Uri uri) {

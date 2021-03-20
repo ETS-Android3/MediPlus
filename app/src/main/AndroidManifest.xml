@@ -62,6 +62,7 @@
         <activity android:name=".appointment.EditProfileActivity" />
         <activity android:name=".appointment.PatientProfileInformations" />
         <activity android:name=".appointment.DisplayDoctorInfo" />
+        <activity android:name=".appointment.MenuActivity" />
         <activity android:name=".appointment.DisplayItemDataActivity" />
         <activity android:name=".appointment.DoctorUI.DoctorAppointments" />
         <activity android:name=".Patient.Patient_login" />

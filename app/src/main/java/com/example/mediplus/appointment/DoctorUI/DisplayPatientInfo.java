@@ -1,4 +1,5 @@
 package com.example.mediplus.appointment.DoctorUI;
+
 import android.Manifest;
 import android.content.Intent;
 import android.content.pm.PackageManager;
@@ -46,10 +47,10 @@ public class DisplayPatientInfo extends AppCompatActivity {
     private static int REQUEST_CALL = 1;
     FrameLayout frameLayout;
     CircleImageView circleImageView;
-    TextView fullName, birthDate;
+    TextView fullName, birthDate, bloodgroup, pasthistory;
     ProgressBar progressBar;
     FloatingActionButton fab;
-    String receivedFullName, receivedEmail, receivedBirthDate, receivedPhoneNumber, receivedCin, receivedMaritalStatus;
+    String receivedFullName, receivedEmail, receivedBirthDate, receivedPhoneNumber, receivedCin, receivedMaritalStatus,gender, address;
     DatabaseReference databaseReference;
 
 
@@ -59,6 +60,8 @@ public class DisplayPatientInfo extends AppCompatActivity {
         setContentView(R.layout.activity_display_patient_info);
         fullName = findViewById(R.id.fullName);
         birthDate = findViewById(R.id.birthDate);
+       // bloodgroup=findViewById(R.id.bloodGroup);
+       // pasthistory=findViewById(R.id.pastHistory);
         frameLayout = findViewById(R.id.myFrameLayout);
         circleImageView = findViewById(R.id.profile_image);
         progressBar = findViewById(R.id.myProgressBar);
@@ -71,15 +74,19 @@ public class DisplayPatientInfo extends AppCompatActivity {
         Intent intent = getIntent();
         receivedFullName = intent.getStringExtra("fullName");
         receivedEmail = intent.getStringExtra("email");
-        receivedBirthDate = intent.getStringExtra("birthDate");
-        receivedPhoneNumber = intent.getStringExtra("phoneNumber");
-        receivedCin = intent.getStringExtra("cin");
+        receivedBirthDate = intent.getStringExtra("date");
+        receivedPhoneNumber = intent.getStringExtra("phoneNo");
+        receivedCin = intent.getStringExtra("password");
+        address= intent.getStringExtra("address");
+        gender= intent.getStringExtra("gender");
+
         receivedMaritalStatus = intent.getStringExtra("maritalStatus");
 
+
         fullName.setText(receivedFullName);
-        birthDate.setText(receivedBirthDate);
+        birthDate.setText("dob: "+receivedBirthDate);
         StorageReference storageReference = FirebaseStorage.getInstance().getReference();
-        StorageReference profileRef = storageReference.child("Profile pictures").child(receivedEmail + ".jpg");
+        StorageReference profileRef = storageReference.child("Profile_pictures").child(receivedEmail + ".jpg");
         profileRef.getDownloadUrl().addOnSuccessListener(new OnSuccessListener<Uri>() {
             @Override
             public void onSuccess(Uri uri) {
@@ -96,11 +103,11 @@ public class DisplayPatientInfo extends AppCompatActivity {
                     Relationship relationship = data.getValue(Relationship.class);
                     if (relationship.getEmailPatient().equals(receivedEmail) && relationship.getEmailDoctor().equals(FirebaseAuth.getInstance().getCurrentUser().getEmail())) {
                         fab.setVisibility(View.GONE);
-                        SweetAlertDialog alertDialog = new SweetAlertDialog(DisplayPatientInfo.this,SweetAlertDialog.WARNING_TYPE);
+                        SweetAlertDialog alertDialog = new SweetAlertDialog(DisplayPatientInfo.this, SweetAlertDialog.WARNING_TYPE);
                         alertDialog.setContentText(receivedFullName+" is one of your patients !");
                         alertDialog.show();
                         Button btn = alertDialog.findViewById(R.id.confirm_button);
-                        btn.setBackgroundColor(Color.parseColor("#33aeb6"));
+                        btn.setBackgroundColor(Color.parseColor("#da0384"));
                     }
                 }
             }

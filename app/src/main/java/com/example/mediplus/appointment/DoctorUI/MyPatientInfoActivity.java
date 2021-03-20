@@ -68,7 +68,7 @@ public class MyPatientInfoActivity extends AppCompatActivity {
         fullName.setText(receivedFullName);
         birthDate.setText(receivedBirthDate);
         StorageReference storageReference = FirebaseStorage.getInstance().getReference();
-        StorageReference profileRef = storageReference.child("Profile pictures").child(receivedEmail + ".jpg");
+        StorageReference profileRef = storageReference.child("Profile_pictures").child(receivedEmail + ".jpg");
         profileRef.getDownloadUrl().addOnSuccessListener(new OnSuccessListener<Uri>() {
             @Override
             public void onSuccess(Uri uri) {

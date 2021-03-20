@@ -61,7 +61,7 @@ class MyPatientsAdapter extends BaseAdapter {
 
         patientFullName.setText(patient.getFullName());
         StorageReference storageReference = FirebaseStorage.getInstance().getReference();
-        final StorageReference profileRef = storageReference.child("Profile pictures").child(emailPatient+".jpg");
+        final StorageReference profileRef = storageReference.child("Profile_pictures").child(emailPatient+".jpg");
         profileRef.getDownloadUrl().addOnSuccessListener(new OnSuccessListener<Uri>() {
             @Override
             public void onSuccess(Uri uri) {

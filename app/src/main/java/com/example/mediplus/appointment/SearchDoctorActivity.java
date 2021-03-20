@@ -9,9 +9,8 @@ import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
-
-import com.example.mediplus.Database.DoctorHelperClass;
 import com.example.mediplus.R;
+import com.example.mediplus.appointment.models.Doctor;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
@@ -23,7 +22,7 @@ import java.util.List;
 
 public class SearchDoctorActivity extends AppCompatActivity {
     RecyclerView recyclerView;
-    List<DoctorHelperClass> myDoctors;
+    List<Doctor> myDoctors;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -33,14 +32,13 @@ public class SearchDoctorActivity extends AppCompatActivity {
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
         myDoctors = new ArrayList<>();
         recyclerView.setAdapter(new doctorAdapters(myDoctors));
-
         DatabaseReference reference = FirebaseDatabase.getInstance().getReference("Doctors");
         reference.addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
                 for(DataSnapshot data : dataSnapshot.getChildren())
                 {
-                    DoctorHelperClass doctor = data.getValue(DoctorHelperClass.class);
+                    Doctor doctor = data.getValue(Doctor.class);
                     myDoctors.add(doctor);
                 }
             }
@@ -52,8 +50,8 @@ public class SearchDoctorActivity extends AppCompatActivity {
         });
     }
     class doctorAdapters extends RecyclerView.Adapter<DoctorViewHolder>{
-        List<DoctorHelperClass> myDoctors;
-        public doctorAdapters(List<DoctorHelperClass> myDoctors) {
+        List<Doctor> myDoctors;
+        public doctorAdapters(List<Doctor> myDoctors) {
             super();
             this.myDoctors=myDoctors;
         }
@@ -83,7 +81,7 @@ public class SearchDoctorActivity extends AppCompatActivity {
             fullName=(TextView)itemView.findViewById(R.id.fullName);
             emailAddress=(TextView)itemView.findViewById(R.id.emailAddress);
         }
-        public void bind(DoctorHelperClass doctor)
+        public void bind(Doctor doctor)
         {
             fullName.setText(doctor.getFullName());
             emailAddress.setText(doctor.getEmail());

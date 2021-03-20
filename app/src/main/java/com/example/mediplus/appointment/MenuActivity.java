@@ -1,4 +1,4 @@
-package com.example.mediplus.appointment.DoctorUI;
+package com.example.mediplus.appointment;
 
 import android.app.Notification;
 import android.app.NotificationChannel;
@@ -10,15 +10,15 @@ import android.content.SharedPreferences;
 import android.graphics.Color;
 import android.net.Uri;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.View;
+import android.widget.Button;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.app.NotificationCompat;
 
-import com.example.mediplus.MainActivity;
+import com.example.mediplus.Doctor.Doctor_login;
 import com.example.mediplus.R;
 import com.example.mediplus.appointment.models.Appointment;
 import com.google.android.gms.tasks.OnSuccessListener;
@@ -39,17 +39,18 @@ import java.util.Calendar;
 import cn.pedant.SweetAlert.SweetAlertDialog;
 import de.hdodenhof.circleimageview.CircleImageView;
 
-public class DoctorMenuActivity extends AppCompatActivity {
-    TextView fullName, speciality;
+public class MenuActivity extends AppCompatActivity {
+    TextView fullName;
     CircleImageView profilePicture;
+    SharedPreferences sp;
     DatabaseReference databaseReference;
     FirebaseUser user;
-    SharedPreferences sp;
-    String uid, todaysDate;
-    int numberOfAppointments;
-    String[] numbers = {"one","two","three","four","five","six","seven","eight","nine","ten"};
+    String uid;
     NotificationCompat.Builder builder;
+    String patientFullName, patientCin, todaysDate;
+    int numberOfAppointments;
     static int token = 0;
+    String[] numbers = {"one", "two", "three", "four", "five", "six", "seven", "eight", "nine", "ten"};
 
     public static void setToken(int number)
     {
@@ -59,34 +60,32 @@ public class DoctorMenuActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_doctor_menu);
+        setContentView(R.layout.activity_menu);
         numberOfAppointments = 0;
-        Calendar c = Calendar.getInstance();
-        todaysDate = DateFormat.getDateInstance(DateFormat.SHORT).format(c.getTime());
+        sp = getSharedPreferences("login", MODE_PRIVATE);
         user = FirebaseAuth.getInstance().getCurrentUser();
-        sp = getSharedPreferences("login",MODE_PRIVATE);
-        fullName = findViewById(R.id.fullName);
-        speciality = findViewById(R.id.speciality);
+        fullName = findViewById(R.id.fullName1);
         profilePicture = findViewById(R.id.profile_image);
         uid = user.getUid();
+        Calendar c = Calendar.getInstance();
+        todaysDate = DateFormat.getDateInstance(DateFormat.SHORT).format(c.getTime());
+
+
         DatabaseReference ref = FirebaseDatabase.getInstance().getReference("Appointments");
         ref.addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-                for(DataSnapshot data : dataSnapshot.getChildren())
-                {
-                    Log.d("debug"," Here!!");
+                for (DataSnapshot data : dataSnapshot.getChildren()) {
                     Appointment appointment = data.getValue(Appointment.class);
-                    Log.d("debug1"," Here I am bro post appointment!!");
                     if(appointment!=null && appointment.getEmailPatient()!=null && FirebaseAuth.getInstance().getCurrentUser().getEmail()!=null){
-                    if(appointment.getEmailPatient().equals(FirebaseAuth.getInstance().getCurrentUser().getEmail()) &&
-                            appointment.getStatus().equals("Accepted") &&
-                            appointment.getDate().equals(todaysDate)
-                    ){
-                            numberOfAppointments++;}
+                        if(appointment.getEmailPatient().equals(FirebaseAuth.getInstance().getCurrentUser().getEmail()) &&
+                                appointment.getStatus().equals("Accepted") &&
+                                appointment.getDate().equals(todaysDate)
+                        ){
+                            numberOfAppointments++;
+                        }
                     }
                 }
-                Log.d("debug2"," Here I am, past the for loop!!");
 
                 NotificationManager mNotificationManager =
                         (NotificationManager) getSystemService(Context.NOTIFICATION_SERVICE);
@@ -98,8 +97,9 @@ public class DoctorMenuActivity extends AppCompatActivity {
                     mNotificationManager.createNotificationChannel(channel);
                 }
 
+
                 if (numberOfAppointments == 1) {
-                    builder = new NotificationCompat.Builder(DoctorMenuActivity.this, "YOUR_CHANNEL_ID")
+                    builder = new NotificationCompat.Builder(MenuActivity.this,"YOUR_CHANNEL_ID")
                             .setSmallIcon(R.drawable.ic_heart_beats)
                             .setContentTitle("Daily appointments")
                             .setContentText("You have one appointment today")
@@ -109,7 +109,7 @@ public class DoctorMenuActivity extends AppCompatActivity {
                             .setPriority(NotificationCompat.PRIORITY_HIGH);
                 }
                 if (numberOfAppointments > 1) {
-                    builder = new NotificationCompat.Builder(DoctorMenuActivity.this, "YOUR_CHANNEL_ID")
+                    builder = new NotificationCompat.Builder(MenuActivity.this, "YOUR_CHANNEL_ID")
                             .setSmallIcon(R.drawable.ic_heart_beats)
                             .setContentTitle("Daily appointments")
                             .setContentText("You have " + numbers[numberOfAppointments - 1] + " appointments today")
@@ -120,7 +120,7 @@ public class DoctorMenuActivity extends AppCompatActivity {
 
                 }
                 if (numberOfAppointments == 0) {
-                    builder = new NotificationCompat.Builder(DoctorMenuActivity.this, "YOUR_CHANNEL_ID")
+                    builder = new NotificationCompat.Builder(MenuActivity.this, "YOUR_CHANNEL_ID")
                             .setSmallIcon(R.drawable.ic_heart_beats)
                             .setContentTitle("Daily appointments")
                             .setContentText("You have no appointments today")
@@ -131,16 +131,15 @@ public class DoctorMenuActivity extends AppCompatActivity {
 
                 }
                 if(token == 0) {
-                    Intent intent = new Intent(DoctorMenuActivity.this, DoctorAppointments.class);
+                    Intent intent = new Intent(MenuActivity.this, AppointmentsActivity.class);
                     intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
-                    PendingIntent pendingIntent = PendingIntent.getActivity(DoctorMenuActivity.this, 0, intent, PendingIntent.FLAG_UPDATE_CURRENT);
+                    PendingIntent pendingIntent = PendingIntent.getActivity(MenuActivity.this, 0, intent, PendingIntent.FLAG_UPDATE_CURRENT);
 
                     builder.setContentIntent(pendingIntent);
 
                     NotificationManager notificationManager = (NotificationManager) getSystemService(
                             Context.NOTIFICATION_SERVICE
                     );
-
                     notificationManager.notify(0, builder.build());
                 }
             }
@@ -151,12 +150,14 @@ public class DoctorMenuActivity extends AppCompatActivity {
             }
         });
 
-        databaseReference = FirebaseDatabase.getInstance().getReference("Doctors");
+
+        databaseReference = FirebaseDatabase.getInstance().getReference("Patients");
         databaseReference.addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-                fullName.setText(dataSnapshot.child(uid).child("fullName").getValue(String.class));
-                speciality.setText(dataSnapshot.child(uid).child("speciality").getValue(String.class));
+                patientFullName = dataSnapshot.child(uid).child("fullName").getValue(String.class) ;
+                fullName.setText(patientFullName);
+               // cin.setText(patientCin);
                 StorageReference storageReference = FirebaseStorage.getInstance().getReference();
                 StorageReference profileRef = storageReference.child("Profile_pictures").child(FirebaseAuth.getInstance().getCurrentUser().getEmail() + ".jpg");
                 profileRef.getDownloadUrl().addOnSuccessListener(new OnSuccessListener<Uri>() {
@@ -173,8 +174,56 @@ public class DoctorMenuActivity extends AppCompatActivity {
 
             }
         });
+    }
+
+    public void searchDoctor(View view) {
+        Intent intent = new Intent(MenuActivity.this, SearchDoctorSpecialityActivity.class);
+        startActivity(intent);
+    }
+
+    private void goToUrl (String url) {
+        Uri uriUrl = Uri.parse(url);
+        Intent launchBrowser = new Intent(Intent.ACTION_VIEW, uriUrl);
+        startActivity(launchBrowser);
+    }
+
+    public void goToSo (View view) {
+        goToUrl ( "http://silvercityhospital.com");
+    }
+
+    public void Appointments(View view) {
+        Intent intent = new Intent(MenuActivity.this, AppointmentsActivity.class);
+        startActivity(intent);
+    }
+
+    public void profileInfo(View view) {
+        Intent intent = new Intent(MenuActivity.this, PatientProfileInformations.class);
+        startActivity(intent);
+    }
+
+
+    public void Feedback(View view){
+        SweetAlertDialog sweetAlertDialog = new SweetAlertDialog(this);
+        sweetAlertDialog.setTitleText("Will be available soon");
+        sweetAlertDialog.setContentText("We are constantly developing,this feature will develop soon. Thank you!");
+        sweetAlertDialog.show();
+        Button button = sweetAlertDialog.getButton(SweetAlertDialog.BUTTON_CONFIRM);
+        button.setBackgroundColor(Color.parseColor("#da0384"));
+    }
+
+    public void openMedicalFolder(View view) {
+        Intent intent = new Intent(MenuActivity.this, MedicalFolderActivity.class);
+        startActivity(intent);
+    }
+
+    public void logOut(View view) {
+        sp.edit().putBoolean("loggedPatient", false).apply();
+        FirebaseAuth.getInstance().signOut();
+        finish();
+        startActivity(new Intent(MenuActivity.this, Doctor_login.class));
 
     }
+
     @Override
     public void onBackPressed() {
 
@@ -196,34 +245,13 @@ public class DoctorMenuActivity extends AppCompatActivity {
                 sweetAlertDialog.cancel();
             }
         });
+
         dialog.show();
     }
 
-    public void searchDoctor(View view) {
-        Intent intent = new Intent(DoctorMenuActivity.this, SearchPatientActivity.class);
+    public void myDoctors(View view) {
+        Intent intent = new Intent(MenuActivity.this, MyDoctorsActivity.class);
         startActivity(intent);
     }
-
-    public void myPatients(View view) {
-        Intent intent = new Intent(DoctorMenuActivity.this, MyPatientsActivity.class);
-        startActivity(intent);
-    }
-
-    public void profileInfo(View view) {
-        Intent intent = new Intent(DoctorMenuActivity.this, DisplayDoctorProfileInfo.class);
-        startActivity(intent);
-    }
-
-    public void myAppointments(View view) {
-        Intent intent = new Intent(DoctorMenuActivity.this, DoctorAppointments.class);
-        startActivity(intent);
-    }
-    public void logOut(View view) {
-        sp.edit().putBoolean("loggedDoctor",false).apply();
-        FirebaseAuth.getInstance().signOut();
-        finish();
-        startActivity(new Intent(DoctorMenuActivity.this, MainActivity.class));
-
-    }
-
 }
+

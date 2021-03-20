@@ -43,7 +43,7 @@ public class DisplayDoctorProfileInfo extends AppCompatActivity {
         speciality = findViewById(R.id.speciality);
         email = findViewById(R.id.email);
         phoneNumber = findViewById(R.id.phoneNumber);
-        address = findViewById(R.id.fullAddress);
+        //address = findViewById(R.id.fullAddress);
         circleImageView = findViewById(R.id.profile_image);
 
         user = FirebaseAuth.getInstance().getCurrentUser();
@@ -59,16 +59,14 @@ public class DisplayDoctorProfileInfo extends AppCompatActivity {
                 speciality.setText(specialityRetrieved);
                 emailRetrieved = dataSnapshot.child(uid).child("email").getValue(String.class);
                 email.setText(emailRetrieved);
-                phoneNumberRetrieved = dataSnapshot.child(uid).child("phoneNumber").getValue(String.class);
+                phoneNumberRetrieved = dataSnapshot.child(uid).child("phoneNuo").getValue(String.class);
                 phoneNumber.setText(phoneNumberRetrieved);
-                addressRetrieved = dataSnapshot.child(uid).child("address").getValue(String.class);
-                cityRetrieved = dataSnapshot.child(uid).child("city").getValue(String.class);
-                address.setText(addressRetrieved+", "+cityRetrieved);
 
-                codeRetrieved = dataSnapshot.child(uid).child("code").getValue(String.class);
+
+                codeRetrieved = dataSnapshot.child(uid).child("password").getValue(String.class);
 
                 StorageReference storageReference = FirebaseStorage.getInstance().getReference();
-                StorageReference profileRef = storageReference.child("Profile pictures").child(emailRetrieved + ".jpg");
+                StorageReference profileRef = storageReference.child("Profile_pictures").child(emailRetrieved + ".jpg");
                 profileRef.getDownloadUrl().addOnSuccessListener(new OnSuccessListener<android.net.Uri>() {
                     @Override
                     public void onSuccess(Uri uri) {
@@ -99,10 +97,8 @@ public class DisplayDoctorProfileInfo extends AppCompatActivity {
         intent.putExtra("fullName", fullNameRetrieved);
         intent.putExtra("speciality", specialityRetrieved);
         intent.putExtra("email", emailRetrieved);
-        intent.putExtra("phoneNumber", phoneNumberRetrieved);
-        intent.putExtra("address", addressRetrieved);
-        intent.putExtra("city", cityRetrieved);
-        intent.putExtra("code", codeRetrieved);
+        intent.putExtra("phoneNor", phoneNumberRetrieved);
+        intent.putExtra("password", codeRetrieved);
         intent.putExtra("imageUri", Uri);
 
         //just start the activity as an shared transition, but set the options bundle to null
@@ -118,6 +114,7 @@ public class DisplayDoctorProfileInfo extends AppCompatActivity {
 
     @Override
     public void onBackPressed() {
-
+        Intent intent = new Intent(DisplayDoctorProfileInfo.this, DoctorMenuActivity.class);
+        startActivity(intent);
     }
 }

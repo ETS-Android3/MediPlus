@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/color_white"
-    tools:context="com.example.scutapp.user.statistics.Statistics">
+    tools:context="com.example.mediplus.Covid.user.statistics.Statistics">
 
     <androidx.cardview.widget.CardView
         android:layout_width="match_parent"
@@ -462,7 +462,7 @@
         android:layout_alignParentBottom="true"
         android:layout_margin="20dp"
         android:background="@drawable/btn_rounded_blue"
-        android:text="Track countries"
+        android:text="Country Wise Stat"
         android:textColor="@android:color/white"
         android:textSize="18sp"
         android:padding="5dp"

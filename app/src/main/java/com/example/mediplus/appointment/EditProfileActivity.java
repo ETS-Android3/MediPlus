@@ -13,9 +13,8 @@ import android.widget.Toast;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
-
-import com.example.mediplus.appointment.models.Patient;
 import com.example.mediplus.R;
+import com.example.mediplus.appointment.models.Patient;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
@@ -36,12 +35,13 @@ public class EditProfileActivity extends AppCompatActivity {
     RevealAnimation mRevealAnimation;
     CircleImageView circleImageView;
     private Uri mImageUri;
-    EditText fullName, cin, email, phoneNumber, birthDate, maritalStatus;
-    String receivedFullName, receivedCin, receivedEmail, receivedPhoneNumber, receivedBirthDate, receivedMaritalStatus;
+    EditText fullName, password, email, phoneNumber, birthDate, maritalStatus,bloodgroup,pasthistory;
+    String receivedFullName, receivedCin, receivedEmail, receivedPhoneNumber, receivedBirthDate, receivedMaritalStatus,receivedbloodgroup,receivedpasthistory;
     String receivedImageUri;
     StorageReference mStorageReference;
     FirebaseDatabase database;
     FirebaseUser user;
+    //FirebaseAuth mAuth;
 
 
     @Override
@@ -50,34 +50,48 @@ public class EditProfileActivity extends AppCompatActivity {
         setContentView(R.layout.activity_edit_profile);
 
         fullName = findViewById(R.id.fullName);
-        cin = findViewById(R.id.cin);
+        password = findViewById(R.id.cin);
         email = findViewById(R.id.email);
         phoneNumber = findViewById(R.id.phoneNumber);
         birthDate = findViewById(R.id.birthDate);
         maritalStatus = findViewById(R.id.maritalStatus);
+        //bloodgroup=findViewById(R.id.bloodgroup);
+     //   pasthistory=findViewById(R.id.pasthistory);
         circleImageView = findViewById(R.id.profile_image);
 
-        mStorageReference = FirebaseStorage.getInstance().getReference("Profile pictures");
+        mStorageReference = FirebaseStorage.getInstance().getReference("Profile_pictures");
 
         Intent intent = this.getIntent();   //get the intent to recieve the x and y coords, that you passed before
 
         receivedFullName = intent.getStringExtra("fullName");
-        receivedCin = intent.getStringExtra("cin");
+        receivedCin = intent.getStringExtra("password");
         receivedEmail = intent.getStringExtra("email");
-        receivedPhoneNumber = intent.getStringExtra("phoneNumber");
-        receivedBirthDate = intent.getStringExtra("birthDate");
-        receivedMaritalStatus = intent.getStringExtra("maritalStatus");
+        receivedPhoneNumber = intent.getStringExtra("phoneNo");
+        receivedBirthDate = intent.getStringExtra("date");
+       receivedMaritalStatus = intent.getStringExtra("gender");
+        //receivedbloodgroup=intent.getStringExtra("bloodgroup");
+        /*if(receivedbloodgroup==null){
+            receivedbloodgroup="unspecified";
+        }
+        receivedpasthistory=intent.getStringExtra("pasthistory");
+        if(receivedpasthistory==null){
+            receivedpasthistory="None";
+        }*/
         receivedImageUri = intent.getStringExtra("imageUri");
-        Uri uri = Uri.parse(receivedImageUri);
-
+        Uri uri=null;
+        if(receivedImageUri!=null){
+            uri = Uri.parse(receivedImageUri);
+        }
         fullName.setText(receivedFullName);
-        cin.setText(receivedCin);
+        password.setText(receivedCin);
         email.setText(receivedEmail);
         phoneNumber.setText(receivedPhoneNumber);
         birthDate.setText(receivedBirthDate);
         maritalStatus.setText(receivedMaritalStatus);
-        Picasso.get().load(uri).into(circleImageView);
 
+        if(uri!=null){
+            Picasso.get().load(uri).into(circleImageView);
+        }
         FrameLayout rootLayout = findViewById(R.id.root); //there you have to get the root layout of your second activity
         mRevealAnimation = new RevealAnimation(rootLayout, intent, this);
     }
@@ -122,8 +136,6 @@ public class EditProfileActivity extends AppCompatActivity {
                 Toast.makeText(EditProfileActivity.this, "Image uploaded successfully", Toast.LENGTH_SHORT).show();
             }
         });
-
-
     }
 
     public void update(View view) {
@@ -133,7 +145,7 @@ public class EditProfileActivity extends AppCompatActivity {
         DatabaseReference dbRef = database.getReference("Patients");
         String[] fn = fullName.getText().toString().split(" ");
         final Patient patient = new Patient(fn[0],fn[1],birthDate.getText().toString(),phoneNumber.getText().toString(),email.getText().toString()
-                ,cin.getText().toString(),maritalStatus.getText().toString());
+                ,password.getText().toString(),pasthistory.getText().toString());
         dbRef.child(userUid).addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {

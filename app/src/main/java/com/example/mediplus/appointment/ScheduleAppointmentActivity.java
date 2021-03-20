@@ -4,6 +4,7 @@ import android.app.DatePickerDialog;
 import android.content.Intent;
 import android.os.Bundle;
 import android.text.TextUtils;
+import android.util.Log;
 import android.view.View;
 import android.widget.DatePicker;
 import android.widget.TextView;
@@ -11,8 +12,6 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.DialogFragment;
-
-import com.example.mediplus.Patient.PatientDash;
 import com.example.mediplus.R;
 import com.example.mediplus.appointment.models.Appointment;
 import com.google.android.gms.tasks.OnFailureListener;
@@ -38,9 +37,10 @@ public class ScheduleAppointmentActivity extends AppCompatActivity implements Da
     Intent intent;
     DatabaseReference databaseReference;
     FirebaseUser user;
-    List<Appointment> appointments;
+    List <Appointment> appointments;
     String emailPatient, emailDoctor;
     String timeOfAppointment;
+    public int num_of_patients_at_same_time=3;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -78,7 +78,7 @@ public class ScheduleAppointmentActivity extends AppCompatActivity implements Da
         }
         final String currentDateString = DateFormat.getDateInstance(DateFormat.SHORT).format(c.getTime());
         DatabaseReference reference = FirebaseDatabase.getInstance().getReference("Appointments");
-        reference.addListenerForSingleValueEvent(new ValueEventListener() {
+        reference.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
                 appointments.clear();
@@ -98,7 +98,7 @@ public class ScheduleAppointmentActivity extends AppCompatActivity implements Da
                         appointments.add(appointment);
                     }
                 }
-                if(appointments.size() == 14)
+                if(appointments.size() >= 42)
                 {
                     new SweetAlertDialog(ScheduleAppointmentActivity.this)
                             .setTitleText("Scheduling an appointment!")
@@ -108,10 +108,14 @@ public class ScheduleAppointmentActivity extends AppCompatActivity implements Da
                 }
                 else
                 {
-                    double timeFull = (double)(appointments.size()*30)/60;
+                    int x=((int)appointments.size())/(int)num_of_patients_at_same_time;
+                    Log.d("debug: ","x: "+x+", app.size:"+appointments.size()+" num: "+num_of_patients_at_same_time);
+                    double timeFull = (double)(x*30)/60;
                     int hour = 9 + (int)timeFull;
                     double minutes = timeFull - (int)timeFull;
-                    System.out.println(minutes);
+                    Log.d("debug","timeFull: "+timeFull);
+                    Log.d("debug","hour: "+hour);
+                    Log.d("debug","minutes: "+minutes);
                     if(minutes >= 0.5) {
                         timeOfAppointment = hour+":30";
                     }
@@ -163,7 +167,7 @@ public class ScheduleAppointmentActivity extends AppCompatActivity implements Da
                                 .setConfirmClickListener(new SweetAlertDialog.OnSweetClickListener() {
                                     @Override
                                     public void onClick(SweetAlertDialog sweetAlertDialog) {
-                                        Intent intent = new Intent(ScheduleAppointmentActivity.this, PatientDash.class);
+                                        Intent intent = new Intent(ScheduleAppointmentActivity.this, MenuActivity.class);
                                         startActivity(intent);
                                     }
                                 })
@@ -194,3 +198,4 @@ public class ScheduleAppointmentActivity extends AppCompatActivity implements Da
         finish();
     }
 }
+//tattiiiiiiiiii

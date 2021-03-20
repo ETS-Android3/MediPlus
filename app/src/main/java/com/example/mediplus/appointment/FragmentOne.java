@@ -11,9 +11,9 @@ import android.widget.ListView;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
-
-import com.example.mediplus.Database.DoctorHelperClass;
 import com.example.mediplus.R;
+
+import com.example.mediplus.appointment.models.Doctor;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
@@ -27,7 +27,7 @@ import java.util.List;
 public class FragmentOne extends Fragment {
     static ListView listView;
     static ListViewAdapter adapter;
-    List<DoctorHelperClass> myDoctors;
+    List<Doctor> myDoctors;
 
     public static  ListViewAdapter getAdapter() {
         return adapter;
@@ -48,7 +48,7 @@ public class FragmentOne extends Fragment {
                 myDoctors.clear();
                 for(DataSnapshot data : dataSnapshot.getChildren())
                 {
-                    DoctorHelperClass doctor = data.getValue(DoctorHelperClass.class);
+                    Doctor doctor = data.getValue(Doctor.class);
                     myDoctors.add(doctor);
                     Collections.sort(myDoctors);
                     adapter = new ListViewAdapter(getContext(), myDoctors);
@@ -69,6 +69,7 @@ public class FragmentOne extends Fragment {
                 intent.putExtra("email",myDoctors.get(position).getEmail());
                 intent.putExtra("speciality",myDoctors.get(position).getSpeciality());
                 intent.putExtra("phoneNo",myDoctors.get(position).getPhoneNo());
+
                 startActivity(intent);
             }
         });

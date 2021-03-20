@@ -10,8 +10,8 @@ import android.widget.TextView;
 
 import androidx.annotation.RequiresApi;
 
-import com.example.mediplus.Database.DoctorHelperClass;
 import com.example.mediplus.R;
+import com.example.mediplus.appointment.models.Doctor;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -19,16 +19,16 @@ import java.util.Locale;
 
 public class ListViewAdapter extends BaseAdapter {
     int i=0;
-    Context mContext;
+    Context mContext ;
     LayoutInflater inflater;
-    List<DoctorHelperClass> doctorList;
-    ArrayList<DoctorHelperClass> arrayList;
+    List<Doctor> doctorList;
+    ArrayList<Doctor> arrayList;
 
-    public ListViewAdapter(Context context, List<DoctorHelperClass> doctorList) {
+    public ListViewAdapter(Context context, List<Doctor> doctorList) {
         mContext = context;
         this.doctorList = doctorList;
         inflater = LayoutInflater.from(mContext);
-        this.arrayList = new ArrayList<DoctorHelperClass>();
+        this.arrayList = new ArrayList<Doctor>();
         this.arrayList.addAll(doctorList);
     }
 
@@ -55,10 +55,10 @@ public class ListViewAdapter extends BaseAdapter {
         TextView circleText = convertView.findViewById(R.id.circle_text);
         TextView fullName = convertView.findViewById(R.id.doctorFullName);
 
-        DoctorHelperClass doctor = doctorList.get(position);
+        Doctor doctor = doctorList.get(position);
 
         fullName.setText(doctor.getFullName().trim());
-        circleText.setText((doctor.getFullName().charAt(0)+"").toUpperCase());
+        //circleText.setText((doctor.getFullName().charAt(0)+"").toUpperCase());
         return convertView;
     }
 
@@ -69,8 +69,8 @@ public class ListViewAdapter extends BaseAdapter {
             doctorList.addAll(arrayList);
         }
         else {
-            for (DoctorHelperClass d : arrayList){
-                if (d.getFullName().toLowerCase(Locale.getDefault()).contains(charText.trim()) ){
+            for (Doctor d : arrayList){
+                if (d.getFullName().toLowerCase(Locale.getDefault()).contains(charText.trim())){
                     doctorList.add(d);
                 }
             }

@@ -9,9 +9,9 @@ import android.widget.ListView;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
-import com.example.mediplus.Database.DoctorHelperClass;
-import com.example.mediplus.appointment.models.Relationship;
 import com.example.mediplus.R;
+import com.example.mediplus.appointment.models.Doctor;
+import com.example.mediplus.appointment.models.Relationship;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
@@ -24,8 +24,8 @@ import java.util.List;
 
 public class MyDoctorsActivity extends AppCompatActivity {
     ListView myDoctorsListView;
-    List<DoctorHelperClass> Doctors;
-    List<DoctorHelperClass>  myDoctors;
+    List<Doctor> Doctors;
+    List<Doctor>  myDoctors;
     MyDoctorsAdapter adapter;
 
     @Override
@@ -42,7 +42,7 @@ public class MyDoctorsActivity extends AppCompatActivity {
                 Doctors.clear();
                 for(DataSnapshot data : dataSnapshot.getChildren())
                 {
-                    DoctorHelperClass doctor = data.getValue(DoctorHelperClass.class);
+                    Doctor doctor = data.getValue(Doctor.class);
                     Doctors.add(doctor);
                 }
             }
@@ -62,7 +62,7 @@ public class MyDoctorsActivity extends AppCompatActivity {
                     Relationship relationship = data.getValue(Relationship.class);
                     for(int i=0; i<Doctors.size(); i++)
                     {
-                        DoctorHelperClass doc = Doctors.get(i);
+                        Doctor doc = Doctors.get(i);
                         if(relationship.getEmailDoctor().equals(doc.getEmail()) && relationship.getEmailPatient().equals(FirebaseAuth.getInstance().getCurrentUser().getEmail()))
                         {
                             myDoctors.add(doc);
@@ -86,8 +86,9 @@ public class MyDoctorsActivity extends AppCompatActivity {
                 intent.putExtra("fullName",myDoctors.get(position).getFullName());
                 intent.putExtra("email",myDoctors.get(position).getEmail());
                 intent.putExtra("speciality",myDoctors.get(position).getSpeciality());
-                intent.putExtra("phoneNo",myDoctors.get(position).getPhoneNo());
-
+                intent.putExtra("phoneNumber",myDoctors.get(position).getPhoneNo());
+              //  intent.putExtra("address", myDoctors.get(position).getAddress());
+              //  intent.putExtra("city", myDoctors.get(position).getCity());
                 startActivity(intent);
             }
         });

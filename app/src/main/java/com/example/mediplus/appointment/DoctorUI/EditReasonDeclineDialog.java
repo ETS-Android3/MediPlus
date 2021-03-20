@@ -60,7 +60,7 @@ public class EditReasonDeclineDialog extends AppCompatDialogFragment {
                         public void onComplete(@NonNull Task<Void> task) {
                             if (task.isSuccessful()) {
                                 adapter.notifyDataSetChanged();
-                                SweetAlertDialog alertDialog = new SweetAlertDialog(getContext(),SweetAlertDialog.SUCCESS_TYPE);
+                                SweetAlertDialog alertDialog = new SweetAlertDialog(getContext(), SweetAlertDialog.SUCCESS_TYPE);
                                 alertDialog.setTitleText("Reason of refusal");
                                 alertDialog.setContentText("Reason edited successfully !");
                                 alertDialog.setConfirmClickListener(new SweetAlertDialog.OnSweetClickListener() {

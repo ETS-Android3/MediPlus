@@ -9,9 +9,9 @@ import android.widget.ListView;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
-import com.example.mediplus.appointment.models.Relationship;
 import com.example.mediplus.R;
 import com.example.mediplus.appointment.models.Patient;
+import com.example.mediplus.appointment.models.Relationship;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
@@ -94,10 +94,9 @@ public class MyPatientsActivity extends AppCompatActivity {
                 Intent intent = new Intent(MyPatientsActivity.this, MyPatientInfoActivity.class);
                 intent.putExtra("fullName",myPatients.get(position).getFullName());
                 intent.putExtra("email",myPatients.get(position).getEmail());
-                intent.putExtra("cin",myPatients.get(position).getCin());
-                intent.putExtra("phoneNumber",myPatients.get(position).getPhoneNumber());
-                intent.putExtra("maritalStatus", myPatients.get(position).getMaritalStatus());
-                intent.putExtra("birthDate", myPatients.get(position).getBirthDate());
+                intent.putExtra("phoneNo",myPatients.get(position).getPhoneNo());
+                intent.putExtra("date", myPatients.get(position).getDate());
+                intent.putExtra("address", myPatients.get(position).getUsername());
                 intent.putExtra("relationshipId", myRelationShips.get(position));
                 startActivity(intent);
             }

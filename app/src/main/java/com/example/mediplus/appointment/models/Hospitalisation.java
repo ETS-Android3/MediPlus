@@ -1,6 +1,6 @@
 package com.example.mediplus.appointment.models;
 
-public class Hospitalisation implements Comparable<Hospitalisation> {
+public class    Hospitalisation implements Comparable<Hospitalisation> {
     String hospitalName;
     String emailPatient;
     String date;

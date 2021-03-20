@@ -11,9 +11,8 @@ import android.widget.ListView;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
-
-import com.example.mediplus.appointment.models.Consultation;
 import com.example.mediplus.R;
+import com.example.mediplus.appointment.models.Consultation;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DataSnapshot;
@@ -48,17 +47,18 @@ public class ConsultationFragment extends Fragment {
                 for(DataSnapshot data : dataSnapshot.getChildren())
                 {
                     Consultation consultation = data.getValue(Consultation.class);
-                    if(consultation.getPatientEmail().equals(emailPatient)) {
-                        myConsultations.add(consultation);
-                        if (getActivity()!=null){
-                            adapter = new ConsultationAdapter(getActivity(), myConsultations);
-                            consultations.setAdapter(adapter);
+                    if(consultation.getPatientEmail()!=null){
+                        if(consultation.getPatientEmail().equals(emailPatient)) {
+                            myConsultations.add(consultation);
+                            if (getActivity()!=null){
+                                adapter = new ConsultationAdapter(getActivity(), myConsultations);
+                                consultations.setAdapter(adapter);
+                            }
                         }
                     }
 
                 }
             }
-
             @Override
             public void onCancelled(@NonNull DatabaseError databaseError) {
                 System.out.println("The read failed: " + databaseError.getCode());
@@ -75,6 +75,8 @@ public class ConsultationFragment extends Fragment {
                 intent.putExtra("price", consultation.getPrice());
                 intent.putExtra("prescription", consultation.getPrescription());
                 intent.putExtra("disease", consultation.getDisease());
+                intent.putExtra("patientEmail",consultation.getPatientEmail());
+                intent.putExtra("prescription_image_name",consultation.get_prescription_image_name());
                 startActivity(intent);
             }
         });

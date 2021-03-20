@@ -10,7 +10,7 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
-import com.example.mediplus.Database.DoctorHelperClass;
+import com.example.mediplus.appointment.models.Doctor;
 import com.example.mediplus.R;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
@@ -26,7 +26,7 @@ import java.util.List;
 public class DoctorsBySpecialityActivity extends AppCompatActivity {
     TextView doctorSpeciality;
     ListView myDoctorsBySpecialityListView;
-    List<DoctorHelperClass>  myDoctors;
+    List<Doctor>  myDoctors;
     ListViewAdapter adapter;
 
     @Override
@@ -46,7 +46,7 @@ public class DoctorsBySpecialityActivity extends AppCompatActivity {
                 myDoctors.clear();
                 for(DataSnapshot data : dataSnapshot.getChildren())
                 {
-                    DoctorHelperClass doctor = data.getValue(DoctorHelperClass.class);
+                    Doctor doctor = data.getValue(Doctor.class);
                     if(doctor.getSpeciality().equals(speciality))
                     {
                         myDoctors.add(doctor);
@@ -70,8 +70,6 @@ public class DoctorsBySpecialityActivity extends AppCompatActivity {
                 intent.putExtra("email",myDoctors.get(position).getEmail());
                 intent.putExtra("speciality",myDoctors.get(position).getSpeciality());
                 intent.putExtra("phoneNo",myDoctors.get(position).getPhoneNo());
-                //intent.putExtra("address", myDoctors.get(position).getAddress());
-                //intent.putExtra("city", myDoctors.get(position).getCity());
                 startActivity(intent);
             }
         });

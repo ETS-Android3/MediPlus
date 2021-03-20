@@ -14,9 +14,9 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 
-import com.example.mediplus.Database.DoctorHelperClass;
 import com.example.mediplus.R;
 import com.example.mediplus.appointment.RevealAnimation;
+import com.example.mediplus.appointment.models.Doctor;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
@@ -32,11 +32,13 @@ import com.squareup.picasso.Picasso;
 
 import de.hdodenhof.circleimageview.CircleImageView;
 
+
+
 public class DoctorEditProfileInfo extends AppCompatActivity {
     private static final int Pick_Image_Request = 1;
     RevealAnimation mRevealAnimation;
     CircleImageView circleImageView;
-    private Uri mImageUri;
+    private Uri mImageUri=null;
     EditText fullName, speciality, email, phoneNumber, address, city;
     String receivedFullName, receivedSpeciality, receivedEmail, receivedPhoneNumber, receivedAddress, receivedCity, receivedCode;
     String receivedImageUri;
@@ -57,28 +59,29 @@ public class DoctorEditProfileInfo extends AppCompatActivity {
         city = findViewById(R.id.city);
         circleImageView = findViewById(R.id.profile_image);
 
-        mStorageReference = FirebaseStorage.getInstance().getReference("Profile pictures");
+        mStorageReference = FirebaseStorage.getInstance().getReference("Profile_pictures");
 
         Intent intent = this.getIntent();   //get the intent to recieve the x and y coords, that you passed before
 
         receivedFullName = intent.getStringExtra("fullName");
         receivedSpeciality = intent.getStringExtra("speciality");
         receivedEmail = intent.getStringExtra("email");
-        receivedPhoneNumber = intent.getStringExtra("phoneNumber");
-        receivedAddress = intent.getStringExtra("address");
-        receivedCity = intent.getStringExtra("city");
+        receivedPhoneNumber = intent.getStringExtra("phoneNo");
         receivedCode = intent.getStringExtra("code");
         receivedImageUri = intent.getStringExtra("imageUri");
-        Uri uri = Uri.parse(receivedImageUri);
-
+        Uri uri=null;
+        if(receivedImageUri!=null){
+            uri = Uri.parse(receivedImageUri);
+        }
         fullName.setText(receivedFullName);
         speciality.setText(receivedSpeciality);
         email.setText(receivedEmail);
         phoneNumber.setText(receivedPhoneNumber);
         address.setText(receivedAddress);
         city.setText(receivedCity);
-        Picasso.get().load(uri).into(circleImageView);
-
+        if(uri!=null){
+            Picasso.get().load(uri).into(circleImageView);
+        }
         FrameLayout rootLayout = findViewById(R.id.root); //there you have to get the root layout of your second activity
         mRevealAnimation = new RevealAnimation(rootLayout, intent, this);
     }
@@ -122,8 +125,6 @@ public class DoctorEditProfileInfo extends AppCompatActivity {
                 Toast.makeText(DoctorEditProfileInfo.this, "Image uploaded successfully", Toast.LENGTH_SHORT).show();
             }
         });
-
-
     }
 
     public void update(View view) {
@@ -131,8 +132,8 @@ public class DoctorEditProfileInfo extends AppCompatActivity {
         user = FirebaseAuth.getInstance().getCurrentUser();
         final String userUid = user.getUid();
         DatabaseReference dbRef = database.getReference("Doctors");
-        final DoctorHelperClass doctor = new DoctorHelperClass(fullName.getText().toString(),receivedCode,phoneNumber.getText().toString()
-                ,email.getText().toString(), receivedSpeciality);
+        final Doctor doctor = new Doctor(fullName.getText().toString(),receivedCode,phoneNumber.getText().toString()
+                ,email.getText().toString(),receivedSpeciality);
         dbRef.child(userUid).addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {

@@ -14,6 +14,7 @@ import android.widget.Toast;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
+import com.example.mediplus.DocPat;
 import com.example.mediplus.Patient.PatientDash;
 import com.example.mediplus.R;
 import com.google.android.gms.tasks.OnCompleteListener;
@@ -56,7 +57,7 @@ public class Doctor_login extends AppCompatActivity {
 
         mAuth = FirebaseAuth.getInstance();
         b2.setOnClickListener(view -> {
-            Intent intent = new Intent(getApplicationContext(), Doctor_signup.class);
+            Intent intent = new Intent(getApplicationContext(), DocPat.class);
             startActivity(intent);
             finish();
         });

@@ -60,13 +60,10 @@ public class DisplayDoctorInfo extends AppCompatActivity {
         receivedEmail = intent.getStringExtra("email");
         String receivedSpeciality = intent.getStringExtra("speciality");
         receivedPhoneNumber = intent.getStringExtra("phoneNo");
-        receivedAddress = intent.getStringExtra("address");
-        receivedCity = intent.getStringExtra("city");
-
         fullName.setText(receivedFullName);
         speciality.setText(receivedSpeciality);
         StorageReference storageReference = FirebaseStorage.getInstance().getReference();
-        StorageReference profileRef = storageReference.child("Profile pictures").child(receivedEmail + ".jpg");
+        StorageReference profileRef = storageReference.child("Profile_pictures").child(receivedEmail + ".jpg");
         profileRef.getDownloadUrl().addOnSuccessListener(new OnSuccessListener<Uri>() {
             @Override
             public void onSuccess(Uri uri) {
@@ -101,10 +98,8 @@ public class DisplayDoctorInfo extends AppCompatActivity {
         MyBounceInterpolator interpolator = new MyBounceInterpolator(0.2, 20);
         animation.setInterpolator(interpolator);
         localisationImage.startAnimation(animation);
-       /*Intent intent = new Intent(DisplayDoctorInfo.this, DoctorLocalisation.class);
-        intent.putExtra("address", receivedAddress);
-        intent.putExtra("city",receivedCity);
-        startActivity(intent);*/
+        Intent intent = new Intent(DisplayDoctorInfo.this, DoctorLocalisation.class);
+        startActivity(intent);
     }
 
     private void sendMail() {

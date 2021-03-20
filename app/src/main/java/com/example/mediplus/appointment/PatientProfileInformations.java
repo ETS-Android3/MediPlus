@@ -26,13 +26,13 @@ import com.squareup.picasso.Picasso;
 import de.hdodenhof.circleimageview.CircleImageView;
 
 public class PatientProfileInformations extends AppCompatActivity {
-    TextView fullName, cin, email, phoneNumber, maritalStatus, birthDate;
+    TextView fullName, cin, email, phoneNumber, maritalStatus, birthDate,address;
     CircleImageView circleImageView;
     FirebaseUser user;
     String uid;
     String Uri;
     DatabaseReference databaseReference;
-    String firstNameRetrieved, lastNameRetrieved, cinRetrieved, emailRetrieved, phoneNumberRetrieved, maritalStatusRetrieved, birthdateRetrieved;
+    String firstNameRetrieved,cinRetrieved, emailRetrieved, phoneNumberRetrieved, maritalStatusRetrieved, birthdateRetrieved, bloodgroupretrieved, addressRetrived ;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -45,6 +45,8 @@ public class PatientProfileInformations extends AppCompatActivity {
         phoneNumber = findViewById(R.id.phoneNumber);
         maritalStatus = findViewById(R.id.maritalStatus);
         birthDate = findViewById(R.id.birthDate);
+      //  bloodgroup=findViewById(R.id.blood_group);
+        address=findViewById(R.id.setaddr);
         circleImageView = findViewById(R.id.profile_image);
 
         user = FirebaseAuth.getInstance().getCurrentUser();
@@ -55,22 +57,24 @@ public class PatientProfileInformations extends AppCompatActivity {
         databaseReference.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-                firstNameRetrieved =  dataSnapshot.child(uid).child("firstName").getValue(String.class);
-                lastNameRetrieved =  dataSnapshot.child(uid).child("lastName").getValue(String.class);
-                fullName.setText(firstNameRetrieved+" "+lastNameRetrieved);
-                cinRetrieved = dataSnapshot.child(uid).child("cin").getValue(String.class);
-                cin.setText(cinRetrieved);
+                firstNameRetrieved =  dataSnapshot.child(uid).child("fullName").getValue(String.class);
+                cinRetrieved = dataSnapshot.child(uid).child("password").getValue(String.class);
                 emailRetrieved = dataSnapshot.child(uid).child("email").getValue(String.class);
-                email.setText(emailRetrieved);
                 phoneNumberRetrieved = dataSnapshot.child(uid).child("phoneNo").getValue(String.class);
+                birthdateRetrieved = dataSnapshot.child(uid).child("date").getValue(String.class);
+                maritalStatusRetrieved = dataSnapshot.child(uid).child("gender").getValue(String.class);
+                addressRetrived = dataSnapshot.child(uid).child("username").getValue(String.class);
+
+                fullName.setText(firstNameRetrieved);
+                cin.setText(cinRetrieved);
+                email.setText(emailRetrieved);
                 phoneNumber.setText(phoneNumberRetrieved);
-                birthdateRetrieved = dataSnapshot.child(uid).child("birthDate").getValue(String.class);
                 birthDate.setText(birthdateRetrieved);
-                maritalStatusRetrieved = dataSnapshot.child(uid).child("maritalStatus").getValue(String.class);
                 maritalStatus.setText(maritalStatusRetrieved);
+                address.setText(addressRetrived);
 
                 StorageReference storageReference = FirebaseStorage.getInstance().getReference();
-                StorageReference profileRef = storageReference.child("Profile pictures").child(emailRetrieved + ".jpg");
+                StorageReference profileRef = storageReference.child("Profile_pictures").child(emailRetrieved + ".jpg");
                 profileRef.getDownloadUrl().addOnSuccessListener(new OnSuccessListener<Uri>() {
                     @Override
                     public void onSuccess(Uri uri) {
@@ -97,12 +101,12 @@ public class PatientProfileInformations extends AppCompatActivity {
         Intent intent = new Intent(this, EditProfileActivity.class);
         intent.putExtra(RevealAnimation.EXTRA_CIRCULAR_REVEAL_X, revealX);
         intent.putExtra(RevealAnimation.EXTRA_CIRCULAR_REVEAL_Y, revealY);
-        intent.putExtra("fullName", firstNameRetrieved+" "+lastNameRetrieved);
-        intent.putExtra("cin", cinRetrieved);
+        intent.putExtra("fullName", firstNameRetrieved);
+        intent.putExtra("password", cinRetrieved);
         intent.putExtra("email", emailRetrieved);
-        intent.putExtra("phoneNumber", phoneNumberRetrieved);
-        intent.putExtra("birthDate", birthdateRetrieved);
-        intent.putExtra("maritalStatus", maritalStatusRetrieved);
+        intent.putExtra("phoneNo", phoneNumberRetrieved);
+        intent.putExtra("date", birthdateRetrieved);
+        intent.putExtra("gender", maritalStatusRetrieved);
         intent.putExtra("imageUri", Uri);
 
         //just start the activity as an shared transition, but set the options bundle to null
@@ -118,6 +122,8 @@ public class PatientProfileInformations extends AppCompatActivity {
 
     @Override
     public void onBackPressed() {
-
+        Intent intent = new Intent(PatientProfileInformations.this, MenuActivity.class);
+        MenuActivity.setToken(1);
+        startActivity(intent);
     }
 }

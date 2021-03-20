@@ -10,8 +10,8 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 
-import com.example.mediplus.appointment.models.Appointment;
 import com.example.mediplus.R;
+import com.example.mediplus.appointment.models.Appointment;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DataSnapshot;
@@ -46,11 +46,13 @@ public class AcceptedFragment extends Fragment {
                 for(DataSnapshot data : dataSnapshot.getChildren())
                 {
                     Appointment appointment = data.getValue(Appointment.class);
+                    if(appointment!=null && appointment.getEmailPatient()!=null && appointment.getStatus()!=null){
                     if(appointment.getEmailPatient().equals(emailPatient) && appointment.getStatus().equals("Accepted")) {
                         myAppointments.add(appointment);
                         if (getActivity()!=null){
                             adapter = new AppointmentAdapter(getActivity(), myAppointments);
                             acceptedAppointments.setAdapter(adapter);
+                            }
                         }
                     }
 

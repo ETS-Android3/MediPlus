@@ -9,8 +9,9 @@ import android.widget.ListView;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
-import com.example.mediplus.appointment.models.Hospitalisation;
 import com.example.mediplus.R;
+
+import com.example.mediplus.appointment.models.Hospitalisation;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DataSnapshot;
@@ -46,12 +47,14 @@ public class HospitalisationFragment extends Fragment {
                 for(DataSnapshot data : dataSnapshot.getChildren())
                 {
                     Hospitalisation hospitalisation = data.getValue(Hospitalisation.class);
+                    if(hospitalisation.getEmailPatient()!=null){
                     if(hospitalisation.getEmailPatient().equals(emailPatient)) {
                         myHospitalisations.add(hospitalisation);
                         Collections.sort(myHospitalisations);
                         if (getActivity()!=null){
                             adapter = new HospitalisationAdapter(getActivity(), myHospitalisations);
                             hospitalisations.setAdapter(adapter);
+                            }
                         }
                     }
 

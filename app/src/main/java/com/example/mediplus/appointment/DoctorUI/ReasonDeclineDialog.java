@@ -59,12 +59,12 @@ public class ReasonDeclineDialog extends AppCompatDialogFragment {
                         public void onComplete(@NonNull Task<Void> task) {
                             if (task.isSuccessful()) {
                                 adapter.notifyDataSetChanged();
-                                SweetAlertDialog alertDialog = new SweetAlertDialog(getContext(),SweetAlertDialog.SUCCESS_TYPE);
+                                SweetAlertDialog alertDialog = new SweetAlertDialog(getContext(), SweetAlertDialog.SUCCESS_TYPE);
                                 alertDialog.setTitleText("Reason of refusal");
                                 alertDialog.setContentText("Reason added successfuly !");
                                 alertDialog.show();
                                 Button btn = alertDialog.findViewById(R.id.confirm_button);
-                                btn.setBackgroundColor(Color.parseColor("#33AEB6"));
+                                btn.setBackgroundColor(Color.parseColor("#da0384"));
                                 alertDialog.show();
                             }
                         }

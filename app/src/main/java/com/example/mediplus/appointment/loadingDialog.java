@@ -3,7 +3,6 @@ package com.example.mediplus.appointment;
 import android.app.Activity;
 import android.app.AlertDialog;
 import android.view.LayoutInflater;
-
 import com.example.mediplus.R;
 
 public class loadingDialog {

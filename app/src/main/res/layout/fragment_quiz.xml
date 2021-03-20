@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/color_white"
-    tools:context=".user.quiz.QuizFragment">
+    tools:context=".Covid.user.quiz.QuizFragment">
 
     <androidx.cardview.widget.CardView
         android:layout_width="match_parent"
@@ -22,6 +22,7 @@
             android:layout_height="wrap_content"
             android:layout_marginStart="15dp"
             android:layout_marginEnd="15dp"
+            android:layout_marginTop="30dp"
             android:orientation="vertical">
 
             <TextView
@@ -39,16 +40,11 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:gravity="center"
-                android:text="NOTE: This test must not replace specialised medical advisory "
+                android:text="WARNING: Covid Self Test in this app never replace specialised medical advisory "
                 android:textColor= "@color/deaths"
                 android:textSize="15sp"
                 android:textStyle="bold" />
 
-            <ImageView
-                android:layout_width="match_parent"
-                android:layout_height="50dp"
-                android:src="@mipmap/red_cross"
-                />
         </LinearLayout>
 
 
@@ -80,7 +76,7 @@
                 <TextView
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:text="is your current body temperature above 38.0 °C?"
+                    android:text="Do you have body temperature above 38.0°C?"
                     android:gravity="center"
                     android:textAllCaps="true"
                     android:textSize="15sp"
@@ -226,7 +222,7 @@
                 <TextView
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:text="have you been in contact with a covid-19 diagnosed patient in the last two weeks?"
+                    android:text="Any contact with a covid-19 Positive patient in the last week?"
                     android:gravity="center"
                     android:textAllCaps="true"
                     android:textSize="15sp"
@@ -273,8 +269,8 @@
         android:layout_height="wrap_content"
         android:layout_alignParentBottom="true"
         android:layout_margin="20dp"
-        android:background="@drawable/btn_rounded_blue"
-        android:text="Check Results"
+        android:background="@drawable/btn_rounded_color_primary"
+        android:text="Check Test Result"
         android:textColor="@android:color/white"
         android:textSize="18sp"
         android:padding="5dp"

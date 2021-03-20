@@ -1,57 +1,35 @@
 package com.example.mediplus.appointment.models;
 
 public class Patient implements Comparable<Patient> {
-    private String firstName;
-    private String lastName;
-    private String birthDate;
-    private String phoneNumber;
-    private String email;
-    private String cin;
-    private String maritalStatus;
 
-    public Patient() {
-    }
+    String fullName, address, email, phoneNo, password, date, gender;
 
-    public Patient(String firstName, String lastName, String birthDate, String phoneNumber, String email, String cin, String maritalStatus) {
-        this.firstName = firstName;
-        this.lastName = lastName;
-        this.birthDate = birthDate;
-        this.phoneNumber = phoneNumber;
+    public Patient() {}
+
+    public Patient(String fullName, String address, String email, String phoneNo, String password, String date, String gender) {
+        this.fullName = fullName;
+        this.address = address;
         this.email = email;
-        this.cin = cin;
-        this.maritalStatus = maritalStatus;
+        this.phoneNo = phoneNo;
+        this.password = password;
+        this.date = date;
+        this.gender = gender;
     }
 
-    public String getFirstName() {
-        return firstName;
+    public String getFullName() {
+        return fullName;
     }
 
-    public void setFirstName(String firstName) {
-        this.firstName = firstName;
+    public void setFullName(String fullName) {
+        this.fullName = fullName;
     }
 
-    public String getLastName() {
-        return lastName;
+    public String getUsername() {
+        return address;
     }
 
-    public void setLastName(String lastName) {
-        this.lastName = lastName;
-    }
-
-    public String getBirthDate() {
-        return birthDate;
-    }
-
-    public void setBirthDate(String birthDate) {
-        this.birthDate = birthDate;
-    }
-
-    public String getPhoneNumber() {
-        return phoneNumber;
-    }
-
-    public void setPhoneNumber(String phoneNumber) {
-        this.phoneNumber = phoneNumber;
+    public void setUsername(String username) {
+        this.address = address;
     }
 
     public String getEmail() {
@@ -62,26 +40,38 @@ public class Patient implements Comparable<Patient> {
         this.email = email;
     }
 
-    public String getCin() {
-        return cin;
+    public String getPhoneNo() {
+        return phoneNo;
     }
 
-    public void setCin(String cin) {
-        this.cin = cin;
+    public void setPhoneNo(String phoneNo) {
+        this.phoneNo = phoneNo;
     }
 
-    public String getMaritalStatus() {
-        return maritalStatus;
+    public String getPassword() {
+        return password;
     }
 
-    public void setMaritalStatus(String maritalStatus) {
-        this.maritalStatus = maritalStatus;
+    public void setPassword(String password) {
+        this.password = password;
     }
 
-    public String getFullName()
-    {
-        return firstName+" "+lastName;
+    public String getDate() {
+        return date;
     }
+
+    public void setDate(String date) {
+        this.date = date;
+    }
+
+    public String getGender() {
+        return gender;
+    }
+
+    public void setGender(String gender) {
+        this.gender = gender;
+    }
+
 
     @Override
     public int compareTo(Patient o) {

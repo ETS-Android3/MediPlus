@@ -9,8 +9,9 @@ import android.widget.BaseAdapter;
 import android.widget.TextView;
 
 import androidx.annotation.RequiresApi;
-import com.example.mediplus.appointment.models.Hospitalisation;
 import com.example.mediplus.R;
+
+import com.example.mediplus.appointment.models.Hospitalisation;
 
 import java.util.ArrayList;
 import java.util.List;

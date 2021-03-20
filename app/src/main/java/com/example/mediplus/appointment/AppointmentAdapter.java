@@ -13,9 +13,9 @@ import androidx.annotation.NonNull;
 import androidx.annotation.RequiresApi;
 
 import com.bumptech.glide.Glide;
-import com.example.mediplus.Database.DoctorHelperClass;
-import com.example.mediplus.appointment.models.Appointment;
 import com.example.mediplus.R;
+import com.example.mediplus.appointment.models.Appointment;
+import com.example.mediplus.appointment.models.Doctor;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
@@ -83,7 +83,7 @@ public class AppointmentAdapter extends BaseAdapter {
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
                 for(DataSnapshot data : dataSnapshot.getChildren())
                 {
-                    DoctorHelperClass doctor = data.getValue(DoctorHelperClass.class);
+                    Doctor doctor = data.getValue(Doctor.class);
                     if(doctor.getEmail().equals(appointment.getEmailDoctor()))
                     {
                         doctorFullName.setText("Dr. "+doctor.getFullName());
@@ -100,7 +100,7 @@ public class AppointmentAdapter extends BaseAdapter {
         });
 
         StorageReference storageReference = FirebaseStorage.getInstance().getReference();
-        final StorageReference profileRef = storageReference.child("Profile pictures").child(emailDoctor+".jpg");
+        final StorageReference profileRef = storageReference.child("Profile_pictures").child(emailDoctor+".jpg");
         profileRef.getDownloadUrl().addOnSuccessListener(new OnSuccessListener<Uri>() {
             @Override
             public void onSuccess(Uri uri) {

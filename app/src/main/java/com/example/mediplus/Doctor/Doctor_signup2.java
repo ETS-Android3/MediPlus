@@ -12,6 +12,7 @@ import com.chaos.view.PinView;
 import com.example.mediplus.Database.DoctorHelperClass;
 import com.example.mediplus.Patient.Patient_login;
 import com.example.mediplus.R;
+import com.example.mediplus.appointment.models.Doctor;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.FirebaseException;
@@ -106,7 +107,7 @@ public class Doctor_signup2 extends AppCompatActivity {
         @Override
         public void onComplete (@NonNull Task < AuthResult > task) {
             if (task.isSuccessful()) {
-                DoctorHelperClass addNewUser = new DoctorHelperClass(fullName, email, phoneNo, password, speciality);
+                Doctor addNewUser = new Doctor(fullName, email, phoneNo, password, speciality);
                 FirebaseDatabase.getInstance().getReference("Doctors")
                         .child(FirebaseAuth.getInstance().getCurrentUser().getUid())
                         .setValue(addNewUser).addOnCompleteListener(new OnCompleteListener<Void>() {

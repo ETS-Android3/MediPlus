@@ -5,8 +5,8 @@ import android.os.Bundle;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.viewpager.widget.ViewPager;
 
-import com.example.mediplus.appointment.ui.main.SectionsPagerAdapterAppointments;
 import com.example.mediplus.R;
+import com.example.mediplus.appointment.ui.main.SectionsPagerAdapterAppointments;
 import com.google.android.material.tabs.TabLayout;
 
 public class AppointmentsActivity extends AppCompatActivity {

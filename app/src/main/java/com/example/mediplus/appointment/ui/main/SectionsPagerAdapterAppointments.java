@@ -13,7 +13,6 @@ import com.example.mediplus.appointment.DeclinedFragment;
 import com.example.mediplus.appointment.OnHoldFragment;
 import com.example.mediplus.R;
 
-
 public class SectionsPagerAdapterAppointments extends FragmentPagerAdapter {
 
     @StringRes

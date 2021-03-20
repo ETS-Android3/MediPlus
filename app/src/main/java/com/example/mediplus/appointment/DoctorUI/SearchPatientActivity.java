@@ -82,10 +82,11 @@ public class SearchPatientActivity extends AppCompatActivity {
                 Intent intent = new Intent(SearchPatientActivity.this, DisplayPatientInfo.class);
                 intent.putExtra("fullName",myPatients.get(position).getFullName());
                 intent.putExtra("email",myPatients.get(position).getEmail());
-                intent.putExtra("birthDate",myPatients.get(position).getBirthDate());
-                intent.putExtra("phoneNumber",myPatients.get(position).getPhoneNumber());
-                intent.putExtra("cin", myPatients.get(position).getCin());
-                intent.putExtra("maritalStatus", myPatients.get(position).getMaritalStatus());
+                intent.putExtra("phoneNo",myPatients.get(position).getPhoneNo());
+                intent.putExtra("date", myPatients.get(position).getDate());
+                intent.putExtra("address", myPatients.get(position).getUsername());
+                intent.putExtra("gender", myPatients.get(position).getGender());
+
                 startActivity(intent);
             }
         });

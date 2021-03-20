@@ -76,11 +76,10 @@ public class DisplayPatientInfo extends AppCompatActivity {
         receivedEmail = intent.getStringExtra("email");
         receivedBirthDate = intent.getStringExtra("date");
         receivedPhoneNumber = intent.getStringExtra("phoneNo");
-        receivedCin = intent.getStringExtra("password");
+       // receivedCin = intent.getStringExtra("password");
         address= intent.getStringExtra("address");
         gender= intent.getStringExtra("gender");
 
-        receivedMaritalStatus = intent.getStringExtra("maritalStatus");
 
 
         fullName.setText(receivedFullName);

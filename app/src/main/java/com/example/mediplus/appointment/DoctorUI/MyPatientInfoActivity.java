@@ -59,10 +59,9 @@ public class MyPatientInfoActivity extends AppCompatActivity {
         Intent intent = getIntent();
         receivedFullName = intent.getStringExtra("fullName");
         receivedEmail = intent.getStringExtra("email");
-        receivedBirthDate = intent.getStringExtra("birthDate");
-        receivedPhoneNumber = intent.getStringExtra("phoneNumber");
-        receivedCin = intent.getStringExtra("cin");
-        receivedMaritalStatus = intent.getStringExtra("maritalStatus");
+        receivedBirthDate = intent.getStringExtra("date");
+        receivedPhoneNumber = intent.getStringExtra("phoneNo");
+        //receivedCin = intent.getStringExtra("cin");
         relationshipId = intent.getStringExtra("relationshipId");
 
         fullName.setText(receivedFullName);

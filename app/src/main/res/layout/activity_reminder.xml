@@ -21,8 +21,7 @@
             android:layout_height="wrap_content"
             android:background="@color/white_smoke"
             android:minHeight="?attr/actionBarSize"
-            android:theme="?attr/actionBarTheme"
-            app:navigationIcon="@drawable/home_icon" />
+            android:theme="?attr/actionBarTheme" />
 
 
         <RelativeLayout

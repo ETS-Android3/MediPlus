@@ -18,10 +18,11 @@
             android:id="@+id/mySearchView"
             android:layout_width="match_parent"
             android:layout_height="40dp"
-            android:layout_marginLeft="10dp"
-            android:layout_marginTop="10dp"
+            android:background="@drawable/bg_rounded"
             android:layout_marginRight="10dp"
-            android:background="@drawable/bg_rounded" />
+            android:layout_marginLeft="10dp"
+            android:layout_marginTop="10dp" />
+
 
     </com.google.android.material.appbar.AppBarLayout>
 

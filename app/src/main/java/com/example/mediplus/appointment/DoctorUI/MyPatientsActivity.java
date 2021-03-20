@@ -96,7 +96,7 @@ public class MyPatientsActivity extends AppCompatActivity {
                 intent.putExtra("email",myPatients.get(position).getEmail());
                 intent.putExtra("phoneNo",myPatients.get(position).getPhoneNo());
                 intent.putExtra("date", myPatients.get(position).getDate());
-                intent.putExtra("address", myPatients.get(position).getUsername());
+               // intent.putExtra("address", myPatients.get(position).getUsername());
                 intent.putExtra("relationshipId", myRelationShips.get(position));
                 startActivity(intent);
             }

@@ -59,6 +59,11 @@
             android:label="@string/title_activity_first_page" />
         <activity android:name=".appointment.ScheduleAppointmentActivity" />
         <activity android:name=".appointment.DoctorUI.DoctorMenuActivity" />
+        <activity android:name=".appointment.DoctorUI.MyPatientsActivity" />
+        <activity android:name=".appointment.DoctorUI.MyPatientInfoActivity" />
+        <activity android:name=".appointment.DoctorUI.SearchPatientActivity" />
+        <activity android:name=".appointment.DoctorUI.DisplayPatientInfo" />
+        <activity android:name=".appointment.DoctorUI.MyPatientMedicalFolderActivity" />
         <activity android:name=".appointment.EditProfileActivity" />
         <activity android:name=".appointment.PatientProfileInformations" />
         <activity android:name=".appointment.DisplayDoctorInfo" />

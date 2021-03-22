@@ -71,16 +71,6 @@
             android:textSize="16sp" />
 
         <TextView
-            android:id="@+id/textView12"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:fontFamily="@font/montserrat_bold"
-            android:gravity="center"
-            android:text="14 maximum appointments per day"
-            android:layout_marginBottom="5dp"
-            android:textSize="16sp" />
-
-        <TextView
             android:id="@+id/textView13"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"

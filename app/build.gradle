@@ -123,6 +123,10 @@ dependencies {
 
     implementation 'com.github.bmarrdev:android-DecoView-charting:v0.9.3'
 
+    def lottieVersion = "3.4.0"
+    implementation "com.airbnb.android:lottie:$lottieVersion"
+
+
 
 
 }

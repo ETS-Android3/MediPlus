@@ -6,7 +6,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:background="@color/white"
     android:orientation="vertical"
-    tools:context=".doctor.MessageDoctor">
+    tools:context="Covid.doctor.MessageDoctor">
 
     <FrameLayout
         android:layout_width="match_parent"

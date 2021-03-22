@@ -2,7 +2,6 @@ package com.example.mediplus.Doctor;
 
 import android.content.Intent;
 import android.content.SharedPreferences;
-import android.graphics.Color;
 import android.os.Bundle;
 import android.text.TextUtils;
 import android.view.View;
@@ -28,20 +27,20 @@ import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
-import com.hbb20.CountryCodePicker;
-
-import cn.pedant.SweetAlert.SweetAlertDialog;
+import com.leo.simplearcloader.ArcConfiguration;
+import com.leo.simplearcloader.SimpleArcDialog;
+import com.leo.simplearcloader.SimpleArcLoader;
 
 public class Doctor_login extends AppCompatActivity {
 
     Button b2;
     TextInputLayout password,phoneNumber;
-    CountryCodePicker countryCodePicker;
     CheckBox rememberMe;
     private FirebaseAuth mAuth;
     TextInputEditText phoneNumberEditText, passEditText;
     SharedPreferences sp;
     DatabaseReference ref;
+    SimpleArcLoader simpleArcLoader;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -53,7 +52,7 @@ public class Doctor_login extends AppCompatActivity {
         b2=findViewById(R.id.doc_signup);
         password=findViewById(R.id.login_password);
         phoneNumber=findViewById(R.id.login_phone_number);
-        countryCodePicker=findViewById(R.id.login_country_code);
+        //simpleArcLoader =findViewById(R.id.loginloader);
 
         mAuth = FirebaseAuth.getInstance();
         b2.setOnClickListener(view -> {
@@ -61,11 +60,12 @@ public class Doctor_login extends AppCompatActivity {
             startActivity(intent);
             finish();
         });
+
     }
 
 
-
     public void DoctorLogIn(View view) {
+
 
         String tempLogin = phoneNumber.getEditText().getText().toString().trim();
         String tempPassword = password.getEditText().getText().toString().trim();
@@ -75,11 +75,16 @@ public class Doctor_login extends AppCompatActivity {
         ) {
             Toast.makeText(Doctor_login.this, "Login or Password are empty", Toast.LENGTH_SHORT).show();
         } else {
-            final SweetAlertDialog pDialog = new SweetAlertDialog(this, SweetAlertDialog.PROGRESS_TYPE);
-            pDialog.getProgressHelper().setBarColor(Color.parseColor("#da0384"));
-            pDialog.setTitleText("Loading");
-            pDialog.setCancelable(false);
-            pDialog.show();
+           // simpleArcLoader.start();
+           //final SweetAlertDialog pDialog = new SweetAlertDialog(this, SweetAlertDialog.PROGRESS_TYPE);
+           // pDialog.getProgressHelper().setBarColor(Color.parseColor("#da0384"));
+           // pDialog.setTitleText("Loading");
+           // pDialog.setCancelable(false);
+           // pDialog.show();
+
+            SimpleArcDialog mDialog = new SimpleArcDialog(this);
+            mDialog.setConfiguration(new ArcConfiguration(this));
+            mDialog.show();
             mAuth.signInWithEmailAndPassword(tempLogin, tempPassword).addOnCompleteListener(Doctor_login.this, new OnCompleteListener<AuthResult>() {
                 @Override
                 public void onComplete(@NonNull Task<AuthResult> task) {
@@ -90,7 +95,7 @@ public class Doctor_login extends AppCompatActivity {
                             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
                                 String email = dataSnapshot.child(FirebaseAuth.getInstance().getCurrentUser().getUid()).child("email").getValue(String.class);
                                 if (email == null) {
-                                    pDialog.hide();
+                                   // pDialog.hide();
                                     /*if (rememberMe.isChecked()) {
                                         sp.edit().putBoolean("loggedPatient", true).apply();
                                     } else
@@ -98,7 +103,7 @@ public class Doctor_login extends AppCompatActivity {
                                     Intent intent = new Intent(Doctor_login.this, PatientDash.class);
                                     Doctor_login.this.startActivity(intent);
                                 } else {
-                                    pDialog.hide();
+                                  //  pDialog.hide();
                                    /* if (rememberMe.isChecked()) {
                                         sp.edit().putBoolean("loggedDoctor", true).apply();
                                     } else
@@ -115,7 +120,7 @@ public class Doctor_login extends AppCompatActivity {
 
                     } else {
                        // errorMessage.setVisibility(View.VISIBLE);
-                        pDialog.hide();
+                       // pDialog.hide();
                     }
                 }
             });

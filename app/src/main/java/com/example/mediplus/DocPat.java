@@ -8,6 +8,7 @@ import android.widget.Button;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import com.example.mediplus.Doctor.Doctor_login;
 import com.example.mediplus.Doctor.Doctor_signup;
 import com.example.mediplus.Patient.Patient_signup;
 
@@ -40,5 +41,11 @@ public class DocPat extends AppCompatActivity {
                 finish();
             }
         });
+    }
+
+    public void bckBtn(View view) {
+        Intent intent = new Intent(getApplicationContext(), Doctor_login.class);
+        startActivity(intent);
+        finish();
     }
 }

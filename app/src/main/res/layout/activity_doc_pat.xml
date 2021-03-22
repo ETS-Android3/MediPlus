@@ -3,8 +3,32 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/teal_700"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:background="@color/white_smoke"
     tools:context="com.example.mediplus.DocPat">
+
+
+    <com.airbnb.lottie.LottieAnimationView
+        android:id="@+id/animationView"
+        android:layout_width="350dp"
+        android:layout_height="350dp"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentEnd="true"
+        android:layout_marginTop="101dp"
+        android:layout_marginEnd="32dp"
+        app:lottie_autoPlay="true"
+        app:lottie_fileName="covid.json"
+        app:lottie_loop="true" />
+
+    <ImageView
+        android:id="@+id/dp_back_button"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:padding="20dp"
+        android:layout_marginTop="10dp"
+        android:layout_marginLeft="10dp"
+        android:onClick="bckBtn"
+        android:src="@drawable/general_back_icon" />
 
     <Button
         android:id="@+id/doc_btn"
@@ -13,13 +37,10 @@
         android:layout_alignParentTop="true"
         android:layout_alignParentEnd="true"
         android:layout_alignParentBottom="true"
-        android:layout_marginTop="555dp"
-        android:layout_marginEnd="13dp"
-        android:layout_marginBottom="214dp"
-        android:shadowColor="#A8A8A8"
-        android:shadowDx="0"
-        android:shadowDy="0"
-        android:shadowRadius="5"
+        android:layout_marginTop="607dp"
+        android:layout_marginEnd="18dp"
+        android:layout_marginBottom="162dp"
+        android:background="@drawable/round_corners"
         android:text="Doctor"
         android:textAllCaps="false"
         android:textColor="#9E2323"
@@ -31,30 +52,14 @@
         android:layout_height="wrap_content"
         android:layout_alignParentTop="true"
         android:layout_alignParentBottom="true"
-        android:layout_marginStart="12dp"
-        android:layout_marginTop="555dp"
-        android:layout_marginBottom="214dp"
-        android:shadowColor="#A8A8A8"
-        android:shadowDx="0"
-        android:shadowDy="0"
-        android:shadowRadius="5"
+        android:layout_marginStart="20dp"
+        android:layout_marginTop="607dp"
+        android:layout_marginBottom="159dp"
+        android:background="@drawable/round_corners"
         android:text="Patient"
         android:textAllCaps="false"
         android:textColor="#A52828"
         android:textSize="28sp" />
-
-    <Button
-        android:id="@+id/b3"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_alignParentStart="true"
-        android:layout_alignParentEnd="true"
-        android:layout_alignParentBottom="true"
-        android:layout_marginStart="12dp"
-        android:layout_marginEnd="12dp"
-        android:layout_marginBottom="140dp"
-        android:text="EMERGENCY"
-        android:textSize="18sp" />
 
     <TextView
         android:id="@+id/textView"
@@ -62,10 +67,10 @@
         android:layout_height="wrap_content"
         android:layout_alignParentEnd="true"
         android:layout_alignParentBottom="true"
-        android:layout_marginEnd="123dp"
-        android:layout_marginBottom="523dp"
-        android:text="MediPlus"
-        android:textSize="36sp"
+        android:layout_marginEnd="147dp"
+        android:layout_marginBottom="301dp"
+        android:text="YOU ARE"
+        android:textSize="30sp"
         android:textStyle="bold" />
 
 

@@ -108,7 +108,8 @@ public class ScheduleAppointmentActivity extends AppCompatActivity implements Da
                 }
                 else
                 {
-                    int x=((int)appointments.size())/(int)num_of_patients_at_same_time;
+                    //int x=((int)appointments.size())/(int)num_of_patients_at_same_time;
+                    int x=1;
                     Log.d("debug: ","x: "+x+", app.size:"+appointments.size()+" num: "+num_of_patients_at_same_time);
                     double timeFull = (double)(x*30)/60;
                     int hour = 9 + (int)timeFull;
@@ -198,4 +199,3 @@ public class ScheduleAppointmentActivity extends AppCompatActivity implements Da
         finish();
     }
 }
-//tattiiiiiiiiii

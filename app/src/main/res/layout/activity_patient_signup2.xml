@@ -4,7 +4,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:background="@color/teal_700"
+    android:background="@color/white"
     android:padding="30dp"
     tools:context=".Patient.patient_signup2">
 
@@ -107,35 +107,11 @@
                 android:datePickerMode="spinner"
                 android:spinnersShown="true" />
 
-            <View
-                android:layout_width="match_parent"
-                android:layout_height="2dp"
-                android:layout_marginTop="20dp"
-                android:layout_marginBottom="20dp"
-                android:background="@color/black" />
 
             <RelativeLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content">
 
-            <TextView
-                android:id="@+id/bg"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Blood Group"
-                android:textColor="@color/black"
-                android:textSize="18sp" />
-
-                <Spinner
-                    android:id="@+id/spinner1"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_alignParentEnd="true"
-                    android:layout_marginStart="40dp"
-
-                    android:layout_marginEnd="10dp"
-                    android:layout_toEndOf="@+id/bg"
-                    android:popupBackground="#00ffff" />
 
             </RelativeLayout>
 

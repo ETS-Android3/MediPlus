@@ -3,7 +3,6 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:layout_marginTop="24dp"
     android:orientation="vertical"
     tools:context=".appointment.MyDoctorsActivity">
 
@@ -15,13 +14,13 @@
         android:theme="@style/AppTheme">
 
         <TextView
-            android:layout_width="187dp"
+            android:layout_width="250dp"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
             android:drawableLeft="@drawable/ic_hospital_patient"
             android:drawablePadding="5dp"
             android:fontFamily="@font/montserrat_bold"
-            android:text="My Patients"
+            android:text="MY PATIENTS"
             android:textColor="#FFF"
             android:textSize="24sp" />
 

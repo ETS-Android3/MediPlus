@@ -2,14 +2,13 @@ package com.example.mediplus.Patient;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.view.WindowManager;
 import android.widget.AdapterView;
-import android.widget.ArrayAdapter;
 import android.widget.DatePicker;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
-import android.widget.Spinner;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
@@ -17,8 +16,11 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import com.chaos.view.PinView;
 import com.example.mediplus.Database.PatientHelperclass;
+import com.example.mediplus.Doctor.Doctor_login;
 import com.example.mediplus.R;
 import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.OnFailureListener;
+import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.FirebaseException;
 import com.google.firebase.auth.AuthResult;
@@ -29,7 +31,11 @@ import com.google.firebase.auth.PhoneAuthOptions;
 import com.google.firebase.auth.PhoneAuthProvider;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.firestore.DocumentReference;
+import com.google.firebase.firestore.FirebaseFirestore;
 
+import java.util.HashMap;
+import java.util.Map;
 import java.util.concurrent.TimeUnit;
 
 public class patient_signup2 extends AppCompatActivity  implements AdapterView.OnItemSelectedListener {
@@ -42,18 +48,17 @@ public class patient_signup2 extends AppCompatActivity  implements AdapterView.O
     RadioButton selectedgender;
     DatePicker datePicker;
     private FirebaseAuth fbAuth;
+    private FirebaseAuth fAuth;
+    private FirebaseFirestore fStore;
+    private String userID;
+    private static final String TAG = "Register";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN, WindowManager.LayoutParams.FLAG_FULLSCREEN);
         setContentView(R.layout.activity_patient_signup2);
-        Spinner spinner = findViewById(R.id.spinner1);
-        ArrayAdapter<CharSequence> adapter = ArrayAdapter.createFromResource(this,
-            R.array.Bloodgroup, android.R.layout.simple_spinner_item);
-            adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-            spinner.setAdapter(adapter);
-            spinner.setOnItemSelectedListener(this);
+
 
         pinFromUser = findViewById(R.id.otp);
         group=findViewById(R.id.radio_group);
@@ -78,7 +83,7 @@ public class patient_signup2 extends AppCompatActivity  implements AdapterView.O
         sendVerificationCodeToUser(phoneNo);
 
         fbAuth = FirebaseAuth.getInstance();
-
+        fStore = fStore = FirebaseFirestore.getInstance();
 
     }
 
@@ -172,6 +177,21 @@ public class patient_signup2 extends AppCompatActivity  implements AdapterView.O
                         public void onComplete(@NonNull Task<Void> task) {
                             if (task.isSuccessful()) {
                                 Toast.makeText(patient_signup2.this, "User created successfully", Toast.LENGTH_LONG).show();
+
+                                userID = fbAuth.getUid();
+                                DocumentReference documentReference = fStore.collection("users").document(FirebaseAuth.getInstance().getUid());
+                                Map<String, Object> user = new HashMap<>();
+                                user.put("id", userID);
+                                user.put("fullName", fullName);
+                                user.put("email", email);
+                                //insert user in the database
+                                documentReference.set(user).addOnSuccessListener(new OnSuccessListener<Void>() {
+                                    @Override
+                                    public void onSuccess(Void aVoid) {
+                                        Log.d(TAG, "onSuccess: user Profile is created for" + userID);
+                                        startActivity(new Intent(getApplicationContext(), Doctor_login.class));
+                                    }
+                                });
                                 // ld.dismissDialog();
                             } else {
                                 Toast.makeText(patient_signup2.this, "User creation failed", Toast.LENGTH_LONG).show();
@@ -188,56 +208,105 @@ public class patient_signup2 extends AppCompatActivity  implements AdapterView.O
 
     }
 
-    private void updateOldUsersData() {
+
+
+
+    private void registerUser(final String email, String password, final String fullName, final String phone, final String state) {
+        fAuth.createUserWithEmailAndPassword(email, password).addOnCompleteListener(new OnCompleteListener<AuthResult>() {
+            @Override
+            public void onComplete(@NonNull Task<AuthResult> task) {
+                if (task.isSuccessful()) {
+                    //send verification link
+                    FirebaseUser fuser = fAuth.getCurrentUser();
+                    fuser.sendEmailVerification().addOnSuccessListener(new OnSuccessListener<Void>() {
+                        @Override
+                        public void onSuccess(Void aVoid) {
+                            Toast.makeText(patient_signup2.this, "Verification email has been sent", Toast.LENGTH_SHORT).show();
+                        }
+                    }).addOnFailureListener(new OnFailureListener() {
+                        @Override
+                        public void onFailure(@NonNull Exception e) {
+                            Log.d(TAG, "onFailure: Email not sent" + e.getMessage());
+                        }
+                    });
+
+                    Toast.makeText(patient_signup2.this, "User created", Toast.LENGTH_SHORT).show();
+                    // insert user in a document
+
+                    userID = fuser.getUid();
+                    DocumentReference documentReference = fStore.collection("users").document(userID);
+                    Map<String, Object> user = new HashMap<>();
+                    user.put("id", userID);
+                    user.put("fullName", fullName);
+                    user.put("email", email);
+                    user.put("phone", phone);
+                    user.put("state", state);
+                    //insert user in the database
+                    documentReference.set(user).addOnSuccessListener(new OnSuccessListener<Void>() {
+                        @Override
+                        public void onSuccess(Void aVoid) {
+                            Log.d(TAG, "onSuccess: user Profile is created for" + userID);
+                            startActivity(new Intent(getApplicationContext(), Doctor_login.class));
+                        }
+                    });
+
+                }
+
+            }
+        });
     }
 
-    private void storeNewUsersData() {
-
-        FirebaseDatabase rootNode = FirebaseDatabase.getInstance();
-        DatabaseReference reference = rootNode.getReference("Patients");
-
-        FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
-        String uid = user.getUid();
-
-        //Create helperclass reference and store data using firebase
-
-        PatientHelperclass addNewUser = new PatientHelperclass(fullName, address , email, phoneNo, password, date, gender);
-        reference.child(uid).setValue(addNewUser);
-
-        //We will also create a Session here in next videos to keep the user logged In
-
-        startActivity(new Intent(getApplicationContext(),Patient_login.class));
-        finish();
-    }
 
 
+                private void updateOldUsersData() {
+            }
 
-    @Override
-    public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
-        String text = parent.getItemAtPosition(position).toString();
-        Toast.makeText(parent.getContext(), text, Toast.LENGTH_SHORT).show();
-    }
-    @Override
-    public void onNothingSelected(AdapterView<?> parent) {
-    }
+            private void storeNewUsersData() {
 
-    public void verifyAndsign(View view) {
+                FirebaseDatabase rootNode = FirebaseDatabase.getInstance();
+                DatabaseReference reference = rootNode.getReference("Patients");
 
-        selectedgender=findViewById(group.getCheckedRadioButtonId());
-        gender=selectedgender.getText().toString();
+                FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
+                String uid = user.getUid();
 
-        int day =datePicker.getDayOfMonth();
-        int month=datePicker.getMonth();
-        int year =datePicker.getYear();
+                //Create helperclass reference and store data using firebase
 
-        date=day+"/"+month+"/"+year;
+                PatientHelperclass addNewUser = new PatientHelperclass(fullName, address, email, phoneNo, password, date, gender);
+                reference.child(uid).setValue(addNewUser);
 
-        String code = pinFromUser.getText().toString();
-        if(!code.isEmpty()){
-            verifyCode(code);
+                //We will also create a Session here in next videos to keep the user logged In
+
+                startActivity(new Intent(getApplicationContext(), Patient_login.class));
+                finish();
+            }
+
+
+            @Override
+            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+                String text = parent.getItemAtPosition(position).toString();
+                Toast.makeText(parent.getContext(), text, Toast.LENGTH_SHORT).show();
+            }
+
+            @Override
+            public void onNothingSelected(AdapterView<?> parent) {
+            }
+
+            public void verifyAndsign(View view) {
+
+                selectedgender = findViewById(group.getCheckedRadioButtonId());
+                gender = selectedgender.getText().toString();
+
+                int day = datePicker.getDayOfMonth();
+                int month = datePicker.getMonth();
+                int year = datePicker.getYear();
+
+                date = day + "/" + month + "/" + year;
+
+                String code = pinFromUser.getText().toString();
+                if (!code.isEmpty()) {
+                    verifyCode(code);
+                }
+
+
+            }
         }
-
-
-
-    }
-}

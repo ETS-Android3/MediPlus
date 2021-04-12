@@ -10,6 +10,7 @@
         android:layout_width="64dp"
         android:layout_height="64dp"
         android:layout_gravity="center"
+        android:backgroundTint="@color/black"
         android:background="@drawable/ic_assignment"
         android:layout_marginBottom="10dp" />
 

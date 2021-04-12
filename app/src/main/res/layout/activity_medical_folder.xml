@@ -4,8 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".appointment.MedicalFolderActivity"
-    android:layout_marginTop="24dp">
+    tools:context=".appointment.MedicalFolderActivity">
 
     <com.google.android.material.appbar.AppBarLayout
         android:layout_width="match_parent"
@@ -29,7 +28,7 @@
             android:id="@+id/tabs"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:background="#33aeb6"
+            android:background="@color/teal_700"
             app:tabTextColor="#FFFFFF"/>
     </com.google.android.material.appbar.AppBarLayout>
 

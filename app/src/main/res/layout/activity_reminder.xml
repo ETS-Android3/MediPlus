@@ -36,7 +36,7 @@
                 android:layout_height="wrap_content"
                 android:layout_alignParentBottom="true"
                 android:layout_margin="30dp"
-                android:background="@drawable/card_recyclerview_bg"
+                android:background="@drawable/round_corners"
                 android:elevation="8dp"
                 app:cnb_menuResource="@menu/bottom_nav_reminder"
                 app:cnb_orientationMode="horizontal"

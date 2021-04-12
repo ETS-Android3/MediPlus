@@ -168,7 +168,7 @@ public class ScheduleAppointmentActivity extends AppCompatActivity implements Da
                                 .setConfirmClickListener(new SweetAlertDialog.OnSweetClickListener() {
                                     @Override
                                     public void onClick(SweetAlertDialog sweetAlertDialog) {
-                                        Intent intent = new Intent(ScheduleAppointmentActivity.this, MenuActivity.class);
+                                        Intent intent = new Intent(ScheduleAppointmentActivity.this, AppointmentsActivity.class);
                                         startActivity(intent);
                                     }
                                 })
@@ -194,6 +194,7 @@ public class ScheduleAppointmentActivity extends AppCompatActivity implements Da
         });
 
     }
+
 
     public void cancel(View view) {
         finish();

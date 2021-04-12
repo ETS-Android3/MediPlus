@@ -4,8 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".appointment.DoctorUI.MyPatientMedicalFolderActivity"
-    android:layout_marginTop="24dp">
+    tools:context=".appointment.DoctorUI.MyPatientMedicalFolderActivity">
 
     <com.google.android.material.appbar.AppBarLayout
         android:layout_height="wrap_content"
@@ -20,7 +19,7 @@
             android:gravity="center"
             android:minHeight="?actionBarSize"
             android:padding="@dimen/appbar_padding"
-            android:text="Medical folder"
+            android:text="MEDICAL DOLDER"
             android:textSize="24sp"
             android:fontFamily="@font/montserrat_bold"
             android:textAppearance="@style/TextAppearance.Widget.AppCompat.Toolbar.Title"/>
@@ -29,7 +28,7 @@
             android:id="@+id/tabs"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:background="#33aeb6"
+            android:background="@color/teal_700"
             app:tabInlineLabel="true"
             app:tabTextColor="#FFFFFF"/>
     </com.google.android.material.appbar.AppBarLayout>

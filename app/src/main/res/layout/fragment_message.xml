@@ -5,12 +5,12 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/color_white"
-    tools:context=".user.talkto.Message">
+    tools:context=".Covid.user.talkto.Message">
 
     <com.google.android.material.appbar.AppBarLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:background="@color/colorPrimaryDark"
+        android:background="@color/teal_700"
         android:id="@+id/bar_layout">
 
         <com.google.android.material.tabs.TabLayout

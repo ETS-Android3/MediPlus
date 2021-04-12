@@ -37,9 +37,9 @@
 
     <Button
         android:id="@+id/button"
-        android:layout_width="150dp"
+        android:layout_width="250dp"
         android:layout_height="54dp"
-        android:background="#FFEB3B"
+        android:background="@drawable/round_corners"
         android:text="ADD NUMBER"
         android:textColor="@color/black"
         android:textSize="18sp"
@@ -70,6 +70,8 @@
         android:layout_height="wrap_content"
         android:text="Enter Emergency phone numbers"
         android:textColor="@color/black"
+        android:textSize="24dp"
+        android:fontFamily="@font/ubuntu_bold"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"

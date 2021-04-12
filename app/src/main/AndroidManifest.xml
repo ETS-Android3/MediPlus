@@ -67,8 +67,13 @@
         <activity android:name=".appointment.PatientProfileInformations" />
         <activity android:name=".appointment.DisplayDoctorInfo" />
         <activity android:name=".appointment.MenuActivity" />
+        <activity android:name=".appointment.DisplayPrescriptionPhoto" />
+        <activity android:name=".appointment.DoctorUI.DisplayDoctorProfileInfo" />
+        <activity android:name=".appointment.DoctorUI.DoctorEditProfileInfo" />
         <activity android:name=".appointment.DisplayItemDataActivity" />
         <activity android:name=".appointment.DoctorUI.DoctorAppointments" />
+        <activity android:name=".appointment.MedicalFolderActivity" />
+        <activity android:name=".appointment.ConsultationInfoActivity" />
         <activity android:name=".Patient.Patient_login" />
         <activity android:name=".DocPat" />
         <activity android:name=".MainActivity">

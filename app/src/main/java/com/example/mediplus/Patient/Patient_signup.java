@@ -14,6 +14,7 @@ import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import com.example.mediplus.Doctor.Doctor_login;
 import com.example.mediplus.R;
 import com.google.android.material.textfield.TextInputLayout;
 import com.hbb20.CountryCodePicker;
@@ -172,7 +173,7 @@ public class Patient_signup extends AppCompatActivity {
 
 
     public void callLoginFromSignUp(View view) {
-        startActivity(new Intent(getApplicationContext(), Patient_login.class));
+        startActivity(new Intent(getApplicationContext(), Doctor_login.class));
         finish();
     }
 

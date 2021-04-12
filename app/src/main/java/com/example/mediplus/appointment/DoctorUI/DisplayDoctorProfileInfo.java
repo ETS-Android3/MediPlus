@@ -59,7 +59,7 @@ public class DisplayDoctorProfileInfo extends AppCompatActivity {
                 speciality.setText(specialityRetrieved);
                 emailRetrieved = dataSnapshot.child(uid).child("email").getValue(String.class);
                 email.setText(emailRetrieved);
-                phoneNumberRetrieved = dataSnapshot.child(uid).child("phoneNuo").getValue(String.class);
+                phoneNumberRetrieved = dataSnapshot.child(uid).child("phoneNo").getValue(String.class);
                 phoneNumber.setText(phoneNumberRetrieved);
 
 

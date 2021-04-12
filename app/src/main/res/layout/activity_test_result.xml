@@ -16,7 +16,7 @@
             android:id="@+id/toolbar"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:background="@color/colorPrimaryDark"
+            android:background="@color/teal_700"
             android:theme="@style/Base.ThemeOverlay.AppCompat.Dark.ActionBar">
 
         </androidx.appcompat.widget.Toolbar>
@@ -45,6 +45,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="covid-19 self test"
+            android:textColor="@color/black"
             android:gravity="center"
             android:textAllCaps="true"
             android:textSize="28sp"
@@ -58,14 +59,9 @@
             android:gravity="center"
             android:text="NOTE: This test must not replace specialised medical advisory "
             android:textColor= "@color/deaths"
-            android:textSize="15sp"
+            android:textSize="18sp"
             android:textStyle="bold" />
 
-        <ImageView
-            android:layout_width="match_parent"
-            android:layout_height="50dp"
-            android:src="@mipmap/red_cross"
-            />
     </LinearLayout>
 
     </androidx.cardview.widget.CardView>
@@ -92,7 +88,7 @@
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="result analysys:"
+            android:text="result analysys"
             android:gravity="center"
             android:textAllCaps="true"
             android:textSize="25sp"
@@ -118,7 +114,7 @@
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:textColor="@color/colorPrimaryDark"
+                android:textColor="@color/teal_700"
                 android:textStyle="bold"
                 android:textSize="20sp"
                 android:gravity="center"
@@ -156,7 +152,7 @@
                 android:textSize="12sp"
                 android:gravity="center_horizontal"
                 android:layout_marginTop="10dp"
-                android:textColor="@color/colorPrimaryDark"
+                android:textColor="@color/black"
                 android:text="*This test is not meant to replace specialised medical advisory. The above probability is just an estimation based on your previous answers." />
         </LinearLayout>
 

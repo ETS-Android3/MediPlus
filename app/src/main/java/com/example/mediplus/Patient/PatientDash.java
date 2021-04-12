@@ -19,6 +19,8 @@ import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 import com.ismaeldivita.chipnavigation.ChipNavigationBar;
 
+import cn.pedant.SweetAlert.SweetAlertDialog;
+
 
 public class PatientDash extends AppCompatActivity {
 
@@ -87,7 +89,29 @@ public class PatientDash extends AppCompatActivity {
         });
     }
 
+    public void onBackPressed() {
 
+        SweetAlertDialog dialog = new SweetAlertDialog(this, SweetAlertDialog.WARNING_TYPE);
+        dialog.setConfirmText("Yes");
+        dialog.setCancelText("No");
+        dialog.setContentText("Are you sure want to close Mediplus?");
+        dialog.setTitleText("Close application");
+        dialog.setConfirmClickListener(new SweetAlertDialog.OnSweetClickListener() {
+            @Override
+            public void onClick(SweetAlertDialog sweetAlertDialog) {
+                finishAffinity();
+                System.exit(0);
+            }
+        });
+        dialog.setCancelClickListener(new SweetAlertDialog.OnSweetClickListener() {
+            @Override
+            public void onClick(SweetAlertDialog sweetAlertDialog) {
+                sweetAlertDialog.cancel();
+            }
+        });
+
+        dialog.show();
+    }
 
 
 

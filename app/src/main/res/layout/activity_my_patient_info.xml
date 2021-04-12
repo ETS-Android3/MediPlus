@@ -31,7 +31,7 @@
             android:layout_height="83dp"
             android:fontFamily="@font/montserrat_bold"
             android:gravity="center"
-            android:text='" The satisfaction of patients is our priority ! "'
+            android:text='" The satisfaction of patients is our priority"'
             android:textColor="#FFF"
             android:textSize="18sp" />
     </LinearLayout>
@@ -79,20 +79,29 @@
 
         <ImageView
             android:id="@+id/phoneCall"
-            android:layout_width="64dp"
-            android:layout_height="64dp"
+            android:layout_width="60dp"
+            android:layout_height="62dp"
             android:onClick="phoneCall"
             app:srcCompat="@drawable/phone" />
 
         <ImageView
             android:id="@+id/gmail"
-            android:layout_width="64dp"
-            android:layout_height="66dp"
+            android:layout_width="60dp"
+            android:layout_height="62dp"
             android:layout_marginLeft="18dp"
             android:layout_marginTop="2dp"
             android:layout_marginRight="15dp"
             android:onClick="Gmail"
             app:srcCompat="@drawable/gmail" />
+
+        <ImageView
+            android:id="@+id/medicalFolder"
+            android:layout_width="60dp"
+            android:layout_height="62dp"
+            android:layout_marginRight="20dp"
+            android:layout_marginTop="2dp"
+            android:onClick="displayMF"
+            app:srcCompat="@drawable/medical_folder" />
 
     </LinearLayout>
 
@@ -106,23 +115,14 @@
         android:layout_marginBottom="55dp"
         android:indeterminateTint="#9E9E9E"
         />
-    <ImageView
-        android:id="@+id/medicalFolder"
-        android:layout_width="64dp"
-        android:layout_height="66dp"
-        android:layout_marginLeft="18dp"
-        android:layout_marginBottom="20dp"
-        android:layout_marginRight="15dp"
-        android:layout_gravity="end|bottom"
-        android:onClick="displayMF"
-        app:srcCompat="@drawable/medical_folder" />
+
     <ImageView
         android:layout_width="34dp"
         android:layout_height="34dp"
         app:srcCompat="@drawable/ic_delete"
-        android:backgroundTint="#f44336"
-        android:layout_marginTop="40dp"
-        android:layout_marginRight="5dp"
+        android:backgroundTint="@color/white"
+        android:layout_marginTop="260dp"
+        android:layout_marginRight="20dp"
         android:layout_gravity="end"
         android:onClick="deletePatient"/>
 

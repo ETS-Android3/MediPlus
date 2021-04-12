@@ -2,6 +2,7 @@ package com.example.mediplus.Doctor;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.Toast;
 
@@ -14,6 +15,7 @@ import com.example.mediplus.Patient.Patient_login;
 import com.example.mediplus.R;
 import com.example.mediplus.appointment.models.Doctor;
 import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.FirebaseException;
 import com.google.firebase.auth.AuthResult;
@@ -24,7 +26,11 @@ import com.google.firebase.auth.PhoneAuthOptions;
 import com.google.firebase.auth.PhoneAuthProvider;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.firestore.DocumentReference;
+import com.google.firebase.firestore.FirebaseFirestore;
 
+import java.util.HashMap;
+import java.util.Map;
 import java.util.concurrent.TimeUnit;
 
 public class Doctor_signup2 extends AppCompatActivity {
@@ -34,6 +40,9 @@ public class Doctor_signup2 extends AppCompatActivity {
     //TextView otpDescriptionText;
     String fullName, phoneNo, email, password, whatToDO, speciality;
     private FirebaseAuth fbAuth;
+    private FirebaseFirestore fStore;
+    private String userID;
+    private static final String TAG = "Register";
 
 
     @Override
@@ -54,7 +63,7 @@ public class Doctor_signup2 extends AppCompatActivity {
         speciality = "Dentist";
 
         fbAuth = FirebaseAuth.getInstance();
-
+        fStore = fStore = FirebaseFirestore.getInstance();
 
         //otpDescriptionText.setText("Enter One Time Password Sent Onn"+phoneNo);
 
@@ -115,6 +124,21 @@ public class Doctor_signup2 extends AppCompatActivity {
                     public void onComplete(@NonNull Task<Void> task) {
                         if (task.isSuccessful()) {
                             Toast.makeText(Doctor_signup2.this, "User created successfully", Toast.LENGTH_LONG).show();
+
+                            userID = fbAuth.getUid();
+                            DocumentReference documentReference = fStore.collection("doctors").document(FirebaseAuth.getInstance().getUid());
+                            Map<String, Object> user = new HashMap<>();
+                            user.put("id", userID);
+                            user.put("fullName", fullName);
+                            user.put("email", email);
+                            //insert user in the database
+                            documentReference.set(user).addOnSuccessListener(new OnSuccessListener<Void>() {
+                                @Override
+                                public void onSuccess(Void aVoid) {
+                                    Log.d(TAG, "onSuccess: user Profile is created for" + userID);
+                                    startActivity(new Intent(getApplicationContext(), Doctor_login.class));
+                                }
+                            });
                             // ld.dismissDialog();
                         } else {
                             Toast.makeText(Doctor_signup2.this, "User creation failed", Toast.LENGTH_LONG).show();

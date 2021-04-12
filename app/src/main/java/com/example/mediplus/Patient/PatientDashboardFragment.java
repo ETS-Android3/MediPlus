@@ -12,7 +12,8 @@ import androidx.fragment.app.Fragment;
 import com.example.mediplus.Covid.FirstPage;
 import com.example.mediplus.R;
 import com.example.mediplus.appointment.AppointmentsActivity;
-import com.example.mediplus.appointment.MenuActivity;
+import com.example.mediplus.appointment.MedicalFolderActivity;
+import com.example.mediplus.appointment.SearchDoctorSpecialityActivity;
 
 
 public class PatientDashboardFragment extends Fragment {
@@ -54,7 +55,7 @@ public class PatientDashboardFragment extends Fragment {
         findDoc.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent = new Intent(getActivity(), MenuActivity.class);
+                Intent intent = new Intent(getActivity(), SearchDoctorSpecialityActivity.class);
                 startActivity(intent);
             }
         });
@@ -78,7 +79,7 @@ public class PatientDashboardFragment extends Fragment {
         cTest.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent = new Intent(getActivity(), FirstPage.class);
+                Intent intent = new Intent(getActivity(), CovidTest.class);
                 startActivity(intent);
             }
         });
@@ -115,7 +116,7 @@ public class PatientDashboardFragment extends Fragment {
         prs.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent = new Intent(getActivity(), PatientDash.class);
+                Intent intent = new Intent(getActivity(),  MedicalFolderActivity.class);
                 startActivity(intent);
             }
         });

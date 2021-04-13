@@ -21,7 +21,6 @@ public class PatientDashboardFragment extends Fragment {
    ImageView appointment,findDoc,homeService,cCare,cTest,cWorld,callBack,directory,rem1,rem2,prs,vir;
 
 
-
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {

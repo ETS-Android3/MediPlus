@@ -53,18 +53,20 @@
 
     <androidx.cardview.widget.CardView
         android:layout_width="match_parent"
-        android:layout_height="fill_parent"
-        android:layout_below="@+id/title"
+        android:layout_height="wrap_content"
         android:layout_above="@+id/btnTest"
+        android:layout_below="@+id/title"
         android:layout_marginLeft="20dp"
-        android:layout_marginRight="20dp"
         android:layout_marginTop="10dp"
-        app:cardElevation="10dp"
-        app:cardCornerRadius="5dp">
+        android:layout_marginRight="20dp"
+        android:layout_marginBottom="20dp"
+        app:cardCornerRadius="5dp"
+        app:cardElevation="10dp">
 
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:layout_marginTop="20dp"
             android:orientation="vertical">
 
             <LinearLayout
@@ -73,22 +75,24 @@
                 android:layout_marginStart="15dp"
                 android:layout_marginEnd="15dp"
                 android:orientation="vertical">
+
                 <TextView
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:text="Do you have body temperature above 38.0°C?"
+                    android:layout_marginTop="10dp"
                     android:gravity="center"
+                    android:text="Do you have body temperature above 38.0°C?"
                     android:textAllCaps="true"
                     android:textSize="15sp"
-                    android:textStyle="bold"
-                    android:layout_marginTop="10dp"/>
+                    android:textStyle="bold" />
+
                 <LinearLayout
                     android:id="@+id/LinearLayout1"
-                    android:layout_height="wrap_content"
                     android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
                     android:layout_marginLeft="10dp"
-                    android:layout_marginRight="10dp"
-                    android:layout_marginTop="5dp">
+                    android:layout_marginTop="5dp"
+                    android:layout_marginRight="10dp">
 
                     <Button
                         android:id="@+id/btnNo1"
@@ -96,20 +100,19 @@
                         android:layout_height="wrap_content"
                         android:layout_marginEnd="10dp"
                         android:layout_weight="1"
-                        android:textColor="@color/color_white"
                         android:background="@drawable/btn_rounded_color_primary"
-                        android:text="No"></Button>
+                        android:text="No"
+                        android:textColor="@color/color_white"></Button>
 
                     <Button
                         android:id="@+id/btnYes1"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:textColor="@color/color_white"
-                        android:background="@drawable/btn_rounded_color_primary"
-                        android:layout_weight="1"
                         android:layout_marginStart="10dp"
-                        android:text="Yes">
-                    </Button>
+                        android:layout_weight="1"
+                        android:background="@drawable/btn_rounded_color_primary"
+                        android:text="Yes"
+                        android:textColor="@color/color_white"></Button>
                 </LinearLayout>
             </LinearLayout>
 
@@ -120,51 +123,53 @@
                 android:layout_marginStart="15dp"
                 android:layout_marginEnd="15dp"
                 android:orientation="vertical">
+
                 <TextView
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:text="what type of caught are you experiencing?"
+                    android:layout_marginTop="5dp"
                     android:gravity="center"
+                    android:text="what type of caught are you experiencing?"
                     android:textAllCaps="true"
                     android:textSize="15sp"
-                    android:textStyle="bold"
-                    android:layout_marginTop="5dp"/>
+                    android:textStyle="bold" />
+
                 <LinearLayout
                     android:id="@+id/LinearLayout2"
-                    android:layout_height="wrap_content"
                     android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
                     android:layout_marginLeft="10dp"
-                    android:layout_marginRight="10dp"
-                    android:layout_marginTop="5dp">
+                    android:layout_marginTop="5dp"
+                    android:layout_marginRight="10dp">
+
                     <Button
                         android:id="@+id/btnNone"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:layout_weight="1"
                         android:layout_marginEnd="5dp"
-                        android:textColor="@color/color_white"
+                        android:layout_weight="1"
                         android:background="@drawable/btn_rounded_color_primary"
-                        android:text="None">
-                    </Button>
+                        android:text="None"
+                        android:textColor="@color/color_white"></Button>
+
                     <Button
                         android:id="@+id/btnDry"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
-                        android:textColor="@color/color_white"
                         android:background="@drawable/btn_rounded_color_primary"
-                        android:text="dry">
-                    </Button>
+                        android:text="dry"
+                        android:textColor="@color/color_white"></Button>
+
                     <Button
                         android:id="@+id/btnWet"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:layout_weight="1"
                         android:layout_marginStart="5dp"
-                        android:textColor="@color/color_white"
+                        android:layout_weight="1"
                         android:background="@drawable/btn_rounded_color_primary"
-                        android:text="wet">
-                    </Button>
+                        android:text="wet"
+                        android:textColor="@color/color_white"></Button>
                 </LinearLayout>
             </LinearLayout>
 
@@ -174,42 +179,44 @@
                 android:layout_marginStart="15dp"
                 android:layout_marginEnd="15dp"
                 android:orientation="vertical">
+
                 <TextView
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:text="have you recently travelled to covid-19 high-risk zones?"
+                    android:layout_marginTop="5dp"
                     android:gravity="center"
+                    android:text="have you recently travelled to covid-19 high-risk zones?"
                     android:textAllCaps="true"
                     android:textSize="15sp"
-                    android:textStyle="bold"
-                    android:layout_marginTop="5dp"/>
+                    android:textStyle="bold" />
+
                 <LinearLayout
                     android:id="@+id/LinearLayout3"
-                    android:layout_height="wrap_content"
                     android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
                     android:layout_marginLeft="10dp"
-                    android:layout_marginRight="10dp"
-                    android:layout_marginTop="5dp">
+                    android:layout_marginTop="5dp"
+                    android:layout_marginRight="10dp">
+
                     <Button
                         android:id="@+id/btnNo2"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:layout_weight="1"
                         android:layout_marginEnd="10dp"
-                        android:textColor="@color/color_white"
+                        android:layout_weight="1"
                         android:background="@drawable/btn_rounded_color_primary"
-                        android:text="No">
-                    </Button>
+                        android:text="No"
+                        android:textColor="@color/color_white"></Button>
+
                     <Button
                         android:id="@+id/btnYes2"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:layout_weight="1"
                         android:layout_marginStart="10dp"
-                        android:textColor="@color/color_white"
+                        android:layout_weight="1"
                         android:background="@drawable/btn_rounded_color_primary"
-                        android:text="Yes">
-                    </Button>
+                        android:text="Yes"
+                        android:textColor="@color/color_white"></Button>
                 </LinearLayout>
             </LinearLayout>
 
@@ -219,42 +226,44 @@
                 android:layout_marginStart="15dp"
                 android:layout_marginEnd="15dp"
                 android:orientation="vertical">
+
                 <TextView
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:text="Any contact with a covid-19 Positive patient in the last week?"
+                    android:layout_marginTop="5dp"
                     android:gravity="center"
+                    android:text="Any contact with a covid-19 Positive patient in the last week?"
                     android:textAllCaps="true"
                     android:textSize="15sp"
-                    android:textStyle="bold"
-                    android:layout_marginTop="5dp"/>
+                    android:textStyle="bold" />
+
                 <LinearLayout
                     android:id="@+id/LinearLayout4"
-                    android:layout_height="wrap_content"
                     android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
                     android:layout_marginLeft="10dp"
-                    android:layout_marginRight="10dp"
-                    android:layout_marginTop="5dp">
+                    android:layout_marginTop="5dp"
+                    android:layout_marginRight="10dp">
+
                     <Button
                         android:id="@+id/btnNo3"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:layout_weight="1"
                         android:layout_marginEnd="10dp"
-                        android:textColor="@color/color_white"
+                        android:layout_weight="1"
                         android:background="@drawable/btn_rounded_color_primary"
-                        android:text="No">
-                    </Button>
+                        android:text="No"
+                        android:textColor="@color/color_white"></Button>
+
                     <Button
                         android:id="@+id/btnYes3"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:layout_weight="1"
                         android:layout_marginStart="10dp"
-                        android:textColor="@color/color_white"
+                        android:layout_weight="1"
                         android:background="@drawable/btn_rounded_color_primary"
-                        android:text="Yes">
-                    </Button>
+                        android:text="Yes"
+                        android:textColor="@color/color_white"></Button>
                 </LinearLayout>
             </LinearLayout>
 
@@ -268,10 +277,13 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_alignParentBottom="true"
-        android:layout_margin="20dp"
-        android:background="@drawable/btn_rounded_color_primary"
+        android:layout_marginLeft="20dp"
+        android:layout_marginRight="20dp"
+        android:layout_marginBottom="90dp"
+        android:background="@drawable/round_corners"
+        android:elevation="8dp"
         android:text="Check Test Result"
-        android:textColor="@android:color/white"
+        android:textColor="@android:color/black"
         android:textSize="18sp"
         android:padding="5dp"
         />

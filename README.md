@@ -9,3 +9,8 @@ The Mediplus is an android application which is related to the health field whic
 ### Method 2
         Fork the Repo
         Clone the Repo git clone 
+        
+### Language used
+    Java
+    
+    Environment: Android Studio

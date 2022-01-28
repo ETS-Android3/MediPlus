@@ -37,10 +37,10 @@
             android:id="@+id/fullName"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:layout_gravity="center"
             android:layout_marginBottom="20dp"
             android:fontFamily="@font/montserrat_bold"
-            android:text="Aliluch Loutfi"
-            android:layout_gravity="center"
+            android:text="Demo"
             android:textSize="18sp" />
 
         <TextView

@@ -10,12 +10,14 @@
     <item
         android:id="@+id/nav_map"
         android:icon="@drawable/doctor_map"
-        android:title="@string/menu_map"/>
+        android:title="@string/menu_map"
+        android:visible="false"/>
 
     <item
         android:id="@+id/nav_signout"
         android:icon="@drawable/doctor_logout"
         app:showAsAction="never"
+        android:visible="false"
         android:orderInCategory="100"
         android:title="@string/menu_signout"/>
 </menu>

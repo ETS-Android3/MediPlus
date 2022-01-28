@@ -32,12 +32,11 @@ public class phone extends AppCompatActivity {
         but.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                String name1 = name.getText().toString();
-                String email1 = email.getText().toString();
-                String passw1 = passw.getText().toString();
                 String ph1 = phno1.getText().toString();
                 String ph2 = phno2.getText().toString();
                 String ph3 = phno3.getText().toString();
+
+
 
 
 
@@ -45,6 +44,8 @@ public class phone extends AppCompatActivity {
                 {
                     phno1.setError("Field must not be empty");
                 }
+
+                sendphno();
                 /*firebaseAuth.createUserWithEmailAndPassword(email1,passw1).addOnCompleteListener(new OnCompleteListener<AuthResult>() {
                     @Override
                     public void onComplete(@NonNull Task<AuthResult> task) {

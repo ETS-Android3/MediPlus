@@ -49,8 +49,8 @@
     <LinearLayout
         android:layout_width="wrap_content"
         android:layout_height="100dp"
-        android:layout_gravity="bottom|center"
-        android:gravity="center"
+        android:layout_gravity="bottom|right"
+       android:paddingRight="50dp"
         android:layout_marginBottom="80dp">
         <ImageView
             android:id="@+id/phoneCall"
@@ -78,6 +78,7 @@
             android:layout_height="66dp"
             android:layout_marginBottom="5dp"
             app:srcCompat="@drawable/gmap"
+            android:visibility="invisible"
             android:onClick="Locate"/>
     </LinearLayout>
 

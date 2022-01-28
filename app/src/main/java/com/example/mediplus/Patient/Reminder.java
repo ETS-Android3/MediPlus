@@ -107,11 +107,11 @@ public class Reminder extends AppCompatActivity{
         chipNavigationBar = findViewById(R.id.bottom_reminder_nav);
         drawerLayout = findViewById(R.id.drawer_layout_reminder);
        // navigationView = findViewById(R.id.nav_view_reminder);
-        toolbar = findViewById(R.id.toolbarReminder);
+       // toolbar = findViewById(R.id.toolbarReminder);
         //navigationView.bringToFront();
       // navigationView.setNavigationItemSelectedListener(this);
-        setSupportActionBar(toolbar);
-        Objects.requireNonNull(getSupportActionBar()).setDisplayShowTitleEnabled(true);
+       // setSupportActionBar(toolbar);
+        //Objects.requireNonNull(getSupportActionBar()).setDisplayShowTitleEnabled(true);
         toggle = new ActionBarDrawerToggle(this, drawerLayout, R.string.navigation_drawer_open, R.string.navigation_drawer_close);
         drawerLayout.addDrawerListener(toggle);
        // navigationView.setCheckedItem(R.id.nav_remind);
@@ -130,9 +130,6 @@ public class Reminder extends AppCompatActivity{
                     break;
                 case R.id.bottom_reminder_edit:
                     fragment = new com.example.mediplus.Patient.AddReminder();
-                    break;
-                case R.id.bottom_reminder_help:
-                    fragment = new com.example.mediplus.Patient.HelpReminder();
                     break;
             }
             getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container, fragment).commit();

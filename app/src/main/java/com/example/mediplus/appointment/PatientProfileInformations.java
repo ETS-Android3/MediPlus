@@ -10,6 +10,7 @@ import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.app.ActivityCompat;
 
+import com.example.mediplus.Patient.PatientDash;
 import com.example.mediplus.R;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.firebase.auth.FirebaseAuth;
@@ -122,8 +123,7 @@ public class PatientProfileInformations extends AppCompatActivity {
 
     @Override
     public void onBackPressed() {
-        Intent intent = new Intent(PatientProfileInformations.this, MenuActivity.class);
-        MenuActivity.setToken(1);
+        Intent intent = new Intent(PatientProfileInformations.this, PatientDash.class);
         startActivity(intent);
     }
 }

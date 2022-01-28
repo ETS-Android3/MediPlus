@@ -9,6 +9,7 @@ import android.widget.ListView;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
+import com.example.mediplus.Doctor.DoctorDashboard;
 import com.example.mediplus.R;
 import com.example.mediplus.appointment.models.Patient;
 import com.example.mediplus.appointment.models.Relationship;
@@ -106,7 +107,7 @@ public class MyPatientsActivity extends AppCompatActivity {
 
     @Override
     public void onBackPressed() {
-        Intent intent = new Intent(MyPatientsActivity.this, DoctorMenuActivity.class);
+        Intent intent = new Intent(MyPatientsActivity.this, DoctorDashboard.class);
         DoctorMenuActivity.setToken(1);
         startActivity(intent);
     }

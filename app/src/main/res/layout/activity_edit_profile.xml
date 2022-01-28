@@ -173,14 +173,15 @@
             android:layout_height="wrap_content"
             android:layout_gravity="center"
             android:layout_marginBottom="20dp"
-            android:orientation="horizontal">
+            android:orientation="horizontal"
+            android:visibility="invisible">
 
             <ImageView
                 android:id="@+id/cityView"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginRight="10dp"
                 android:layout_gravity="center_vertical"
+                android:layout_marginRight="10dp"
                 app:srcCompat="@drawable/ic_people"
                 tools:ignore="VectorDrawableCompat" />
 
@@ -202,7 +203,14 @@
             android:textColor="#33AEB6"
             android:layout_marginBottom="20dp"
             android:textAllCaps="false"
-            android:onClick="update"/>
+            android:onClick="update"
+            android:visibility="invisible"/>
+
+        <TextView
+            android:id="@+id/textView11"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="For edit : contact Support@mediplus.org  " />
 
     </LinearLayout>
 

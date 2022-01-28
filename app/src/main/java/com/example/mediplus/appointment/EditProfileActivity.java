@@ -129,7 +129,7 @@ public class EditProfileActivity extends AppCompatActivity {
     }
 
     private void uploadImage() {
-        StorageReference ref = mStorageReference.child(receivedEmail + "." + getExtension(mImageUri));
+        StorageReference ref = mStorageReference.child(receivedEmail + ".jpg");
         ref.putFile(mImageUri).addOnSuccessListener(new OnSuccessListener<UploadTask.TaskSnapshot>() {
             @Override
             public void onSuccess(UploadTask.TaskSnapshot taskSnapshot) {

@@ -2,8 +2,8 @@ package com.example.mediplus.Emergency;
 
 
 import android.Manifest;
+import android.content.Intent;
 import android.content.pm.PackageManager;
-import android.os.Build;
 import android.os.Bundle;
 import android.telephony.SmsManager;
 import android.view.View;
@@ -11,7 +11,6 @@ import android.widget.Button;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
-import androidx.annotation.RequiresApi;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.app.ActivityCompat;
 
@@ -45,7 +44,7 @@ public class EmergencyMain extends AppCompatActivity
     protected void onCreate(Bundle savedInstanceState)
     {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main);
+        setContentView(R.layout.activity_emergency_main);
         //but=(Button)findViewById(R.id.button5);
         ActivityCompat.requestPermissions(EmergencyMain.this,new String[]{Manifest.permission.SEND_SMS,Manifest.permission.READ_SMS, Manifest.permission.RECEIVE_SMS}, PackageManager.PERMISSION_GRANTED);
         message="EMERGENCY, NEED HELP!!!";
@@ -57,15 +56,12 @@ public class EmergencyMain extends AppCompatActivity
         DatabaseReference databaseReference = firebaseDatabase.getReference("users");
         databaseReference.addValueEventListener(new ValueEventListener()
         {
-            @RequiresApi(api = Build.VERSION_CODES.KITKAT)
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot)
             {
                 userphone userph = dataSnapshot.child(Objects.requireNonNull(firebaseAuth.getUid())).getValue(userphone.class) ;
-                number1 = userph.getPhno1();
-
+                number1 =  userph.getPhno1();
                 number2 = userph.getPhno2();
-
                 number3= userph.getPhno3();
 
             }
@@ -76,9 +72,8 @@ public class EmergencyMain extends AppCompatActivity
             }
         });
 
-
-        ambulance="9035108831";
-        police="7975916978";
+        ambulance="9645280546";
+        police="7356825244";
 
 
 
@@ -87,19 +82,19 @@ public class EmergencyMain extends AppCompatActivity
 
     public void send(View view)
     {
+
+
         //  String message1 = message.getText().toString();
         // String number1 = number.getText().toString();
         int i;
-        //Toast.makeText(MainActivity.this,"message"+ a,Toast.LENGTH_SHORT).show();
+        //Toast.makeText(VaccineActivity.this,"message"+ a,Toast.LENGTH_SHORT).show();
         SmsManager mysmsmanager = SmsManager.getDefault();
-
-
         mysmsmanager.sendTextMessage(number1,null,message,null,null);
         mysmsmanager.sendTextMessage(number2,null,message,null,null);
         mysmsmanager.sendTextMessage(number3,null,message,null,null);
         Toast.makeText(EmergencyMain.this,"Message sent to "+ number1 +" "+ number2 +" "+ number3,Toast.LENGTH_SHORT).show();
-        // mysmsmanager.sendTextMessage(number2,null,message,null,null);
-        //mysmsmanager.sendTextMessage(number3,null,message,null,null);
+       //  mysmsmanager.sendTextMessage(number2,null,message,null,null);
+     //   mysmsmanager.sendTextMessage(number3,null,message,null,null);
     }
 
     public void ambulance(View view)
@@ -119,5 +114,9 @@ public class EmergencyMain extends AppCompatActivity
     }
 
 
+    public void adduser(View view) {
+        startActivity(new Intent(getApplicationContext(), phone.class));
+        finish();
+    }
 }
 

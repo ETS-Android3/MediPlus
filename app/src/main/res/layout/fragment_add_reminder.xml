@@ -19,7 +19,7 @@
             android:layout_gravity="center"
             android:layout_margin="10dp"
             android:fontFamily="@font/ubuntu_bold"
-            android:text="Add a Medication"
+            android:text="Add Medicine Reminder"
             android:textSize="18sp" />
 
 
@@ -28,7 +28,7 @@
             android:layout_width="300dp"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
-            android:hint="Medication Name"
+            android:hint="Medicine Name"
             android:textColorHint="#787878"
             app:boxStrokeColor="#2595C7"
             app:endIconMode="clear_text"
@@ -53,7 +53,7 @@
             android:layout_height="wrap_content"
             android:layout_gravity="center"
             android:layout_margin="15dp"
-            android:hint="Medication Dosage"
+            android:hint="Dosage"
             android:textColorHint="#787878"
             app:boxStrokeColor="#2595C7"
             app:endIconMode="clear_text"
@@ -77,7 +77,7 @@
             android:layout_gravity="center"
             android:layout_margin="10dp"
             android:fontFamily="@font/ubuntu"
-            android:text="Type of Medication"
+            android:text="Type of Medicine"
             android:textSize="14sp" />
 
         <com.jaredrummler.materialspinner.MaterialSpinner

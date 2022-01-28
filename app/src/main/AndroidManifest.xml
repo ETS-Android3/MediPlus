@@ -7,6 +7,7 @@
     <uses-permission android:name="android.permission.WAKE_LOCK" />
     <uses-permission android:name="android.permission.INTERNET" />
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+    <uses-permission android:name="android.permission.SEND_SMS" />
     <uses-permission android:name="android.permission.RECEIVE_SMS" />
     <uses-permission android:name="android.permission.READ_SMS" />
     <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
@@ -25,7 +26,15 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.MediPlus"
         tools:node="merge">
-        <activity android:name=".Patient.CovidTest"></activity>
+        <activity android:name=".Patient.GGreen"></activity>
+        <activity android:name=".Patient.DonateActivity" />
+        <activity android:name=".Patient.HelpDesk" />
+        <activity android:name=".Patient.CovidPrevention" />
+        <activity android:name=".ChangePassword" />
+        <activity android:name=".Patient.VaccinateNow" />
+        <activity android:name=".ForgotPassword" />
+        <activity android:name=".Covid.user.talkto.ChatPatient" />
+        <activity android:name=".Patient.CovidTest" />
         <activity android:name=".Login" />
         <activity android:name=".Patient.Callback" />
         <activity android:name=".Patient.CovidCare" />
@@ -51,8 +60,19 @@
         <activity android:name=".Covid.user.statistics.DetailsCountry" />
         <activity android:name=".Covid.doctor.MessageDoctor" />
         <activity android:name=".Covid.user.talkto.Conversation" />
+        <activity android:name=".Covid.user.talkto.ChatPatient" />
         <activity android:name=".Covid.doctor.doctorchat.DoctorConversation" />
         <activity android:name=".Covid.user.news.Detailed" />
+        <activity android:name=".Patient.Remind" />
+        <activity android:name=".vaccineslottracker.VaccineActivity" />
+        <activity
+            android:name=".Hotspot.HotspotMain"
+            android:label="Hotspots in Kerala"
+            android:theme="@style/MyActionBar">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+            </intent-filter>
+        </activity>
         <activity
             android:name=".Covid.FirstPage"
             android:label="@string/title_activity_first_page" />
@@ -67,6 +87,7 @@
         <activity android:name=".appointment.PatientProfileInformations" />
         <activity android:name=".appointment.DisplayDoctorInfo" />
         <activity android:name=".appointment.MenuActivity" />
+        <activity android:name=".appointment.MyDoctorsActivity" />
         <activity android:name=".appointment.DisplayPrescriptionPhoto" />
         <activity android:name=".appointment.DoctorUI.DisplayDoctorProfileInfo" />
         <activity android:name=".appointment.DoctorUI.DoctorEditProfileInfo" />
@@ -74,6 +95,8 @@
         <activity android:name=".appointment.DoctorUI.DoctorAppointments" />
         <activity android:name=".appointment.MedicalFolderActivity" />
         <activity android:name=".appointment.ConsultationInfoActivity" />
+        <activity android:name=".Emergency.phone" />
+        <activity android:name=".Emergency.EmergencyMain" />
         <activity android:name=".Patient.Patient_login" />
         <activity android:name=".DocPat" />
         <activity android:name=".MainActivity">

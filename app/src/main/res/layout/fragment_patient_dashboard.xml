@@ -100,6 +100,37 @@
 
             </LinearLayout>
 
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
+
+                <RelativeLayout
+                    android:layout_width="80dp"
+                    android:layout_height="80dp"
+                    android:layout_margin="10dp"
+                    android:background="@drawable/card_1"
+                    android:elevation="8dp">
+
+                    <ImageView
+                        android:id="@+id/prescriptionpat"
+                        android:layout_width="50dp"
+                        android:layout_height="50dp"
+                        android:layout_centerInParent="true"
+                        android:src="@drawable/prescription" />
+
+                </RelativeLayout>
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:gravity="center_horizontal"
+                    android:text="Prescriptions"
+                    android:textAlignment="center" />
+
+            </LinearLayout>
+
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -117,7 +148,7 @@
                         android:layout_width="50dp"
                         android:layout_height="50dp"
                         android:layout_centerInParent="true"
-                        android:src="@drawable/home_service" />
+                        android:src="@drawable/vaccineimg" />
 
                 </RelativeLayout>
 
@@ -125,40 +156,12 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:gravity="center_horizontal"
-                    android:text="Home Care"
+                    android:text="Vaccine"
                     android:textAlignment="center" />
 
             </LinearLayout>
 
-            <LinearLayout
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:orientation="vertical">
 
-                <RelativeLayout
-                    android:layout_width="80dp"
-                    android:layout_height="80dp"
-                    android:layout_margin="10dp"
-                    android:background="@drawable/card_1"
-                    android:elevation="8dp">
-
-                    <ImageView
-                        android:id="@+id/covidcare"
-                        android:layout_width="50dp"
-                        android:layout_height="50dp"
-                        android:layout_centerInParent="true"
-                        android:src="@drawable/covidcare" />
-
-                </RelativeLayout>
-
-                <TextView
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:gravity="center_horizontal"
-                    android:text="Covid Care"
-                    android:textAlignment="center" />
-
-            </LinearLayout>
 
         </LinearLayout>
 
@@ -260,8 +263,9 @@
 
         </LinearLayout>
 
+
         <LinearLayout
-            android:layout_width="match_parent"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:orientation="vertical">
 
@@ -273,11 +277,11 @@
                 android:elevation="8dp">
 
                 <ImageView
-                    android:id="@+id/prescriptionpat"
+                    android:id="@+id/covidcare"
                     android:layout_width="50dp"
                     android:layout_height="50dp"
                     android:layout_centerInParent="true"
-                    android:src="@drawable/prescription" />
+                    android:src="@drawable/covidcare" />
 
             </RelativeLayout>
 
@@ -285,11 +289,10 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:gravity="center_horizontal"
-                android:text="Prescriptions"
+                android:text="Covid Care"
                 android:textAlignment="center" />
 
         </LinearLayout>
-
 
 
     </LinearLayout>
@@ -318,10 +321,10 @@
 
                     <ImageView
                         android:id="@+id/callback"
-                        android:layout_width="40dp"
-                        android:layout_height="40dp"
+                        android:layout_width="50dp"
+                        android:layout_height="50dp"
                         android:layout_centerInParent="true"
-                        android:src="@drawable/callback" />
+                        android:src="@drawable/virus1" />
 
                 </RelativeLayout>
 
@@ -329,7 +332,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:gravity="center_horizontal"
-                    android:text="@string/Callback"
+                    android:text="Hotspots"
                     android:textAlignment="center" />
 
             </LinearLayout>

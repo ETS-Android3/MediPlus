@@ -39,14 +39,6 @@
     </string-array>
 
 
-    <string-array name="Bloodgroup">
-        <item>A</item>
-        <item>B</item>
-        <item>AB</item>
-        <item>O</item>
-        <item>AB-</item>
-    </string-array>
-
     <array name="medication_types">
         <item>Pill</item>
         <item>Liquid</item>
@@ -57,7 +49,30 @@
         <item>Other</item>
     </array>
 
-    <!-- TODO: Remove or change this placeholder text -->
+
+    <array name="Schedule_types">
+        <item>Exercise</item>
+        <item>Gym</item>
+        <item>Food</item>
+        <item>Visit Doctor</item>
+        <item>Sleep</item>
+        <item>Other</item>
+    </array>
+
+    <array name="Department">
+        <item>General Physician</item>
+        <item>Cardiologist</item>
+        <item>Dermatologist</item>
+        <item>Dentist</item>
+        <item>Orthopedics</item>
+        <item>Radiologist</item>
+        <item>Psychiatrist</item>
+        <item>Psychologist</item>
+        <item>Pediatrician</item>
+        <item>Dermatologist</item>
+        <item>Other</item>
+    </array>
+
     <string name="hello_blank_fragment">Hello blank fragment</string>
     <string name="logo_name">MediPlus</string>
     <string name="homeservice">Home Service</string>
@@ -93,5 +108,19 @@
     <string name="menu_statistics">Statistics</string>
 
     <string name="action_logout">Logout</string>
+
+
+    <string name="search">Search</string>
+    <string name="district">District</string>
+    <string name="lsgd">LSGD</string>
+    <string name="wards">Wards</string>
+
+    <string name="pin_codes">Enter Pin Code</string>
+    <string name="start_tracking_button">Start Tracking</string>
+    <string name="channel_name">VaccineNotificationChannel</string>
+    <string name="channel_description">This notification channel will be used to create a notification whenever a slot is available for the given pincode</string>
+    <string name="channel_id">CHANNEL33</string>
+    <string name="service_started_message">Vaccine tracking has started! Will notify when slot is available</string>
+    <string name="pick_date">Date</string>
 
 </resources>

@@ -27,25 +27,22 @@ public class DocPat extends AppCompatActivity {
 
             @Override
             public void onClick(View view) {
-                Intent intent = new Intent(getApplicationContext(), Doctor_signup.class);
+                Intent intent = new Intent(DocPat.this, Doctor_signup.class);
                 startActivity(intent);
-                finish();
             }
         });
 
         patb.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent = new Intent(getApplicationContext(), Patient_signup.class);
+                Intent intent = new Intent(DocPat.this, Patient_signup.class);
                 startActivity(intent);
-                finish();
             }
         });
     }
 
     public void bckBtn(View view) {
-        Intent intent = new Intent(getApplicationContext(), Doctor_login.class);
+        Intent intent = new Intent(DocPat.this, Doctor_login.class);
         startActivity(intent);
-        finish();
     }
 }

@@ -1,7 +1,9 @@
 package com.example.mediplus.Doctor;
 
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.net.Uri;
 import android.os.Bundle;
 import android.text.TextUtils;
 import android.view.View;
@@ -11,9 +13,11 @@ import android.widget.CheckBox;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
+import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.example.mediplus.DocPat;
+import com.example.mediplus.ForgotPassword;
 import com.example.mediplus.Patient.PatientDash;
 import com.example.mediplus.R;
 import com.google.android.gms.tasks.OnCompleteListener;
@@ -34,7 +38,7 @@ import com.leo.simplearcloader.SimpleArcLoader;
 public class Doctor_login extends AppCompatActivity {
 
     Button b2;
-    TextInputLayout password,phoneNumber;
+    TextInputLayout password,email;
     CheckBox rememberMe;
     private FirebaseAuth mAuth;
     TextInputEditText phoneNumberEditText, passEditText;
@@ -51,7 +55,7 @@ public class Doctor_login extends AppCompatActivity {
 
         b2=findViewById(R.id.doc_signup);
         password=findViewById(R.id.login_password);
-        phoneNumber=findViewById(R.id.login_phone_number);
+        email=findViewById(R.id.login_phone_number);
         //simpleArcLoader =findViewById(R.id.loginloader);
 
         mAuth = FirebaseAuth.getInstance();
@@ -67,20 +71,21 @@ public class Doctor_login extends AppCompatActivity {
     public void DoctorLogIn(View view) {
 
 
-        String tempLogin = phoneNumber.getEditText().getText().toString().trim();
+        String tempLogin = email.getEditText().getText().toString().trim();
         String tempPassword = password.getEditText().getText().toString().trim();
-        if (
-                TextUtils.isEmpty(tempLogin)
-                        || TextUtils.isEmpty(tempPassword)
-        ) {
-            Toast.makeText(Doctor_login.this, "Login or Password are empty", Toast.LENGTH_SHORT).show();
-        } else {
-           // simpleArcLoader.start();
-           //final SweetAlertDialog pDialog = new SweetAlertDialog(this, SweetAlertDialog.PROGRESS_TYPE);
-           // pDialog.getProgressHelper().setBarColor(Color.parseColor("#da0384"));
-           // pDialog.setTitleText("Loading");
-           // pDialog.setCancelable(false);
-           // pDialog.show();
+
+
+        if (TextUtils.isEmpty(tempLogin)) {
+            email.setError("Email is Required.");
+            return;
+        }
+
+        if (TextUtils.isEmpty(tempPassword)) {
+            password.setError("Password is Required.");
+            return;
+        }
+
+
 
             SimpleArcDialog mDialog = new SimpleArcDialog(this);
             mDialog.setConfiguration(new ArcConfiguration(this));
@@ -95,7 +100,6 @@ public class Doctor_login extends AppCompatActivity {
                             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
                                 String email = dataSnapshot.child(FirebaseAuth.getInstance().getCurrentUser().getUid()).child("email").getValue(String.class);
                                 if (email == null) {
-                                   // pDialog.hide();
                                     /*if (rememberMe.isChecked()) {
                                         sp.edit().putBoolean("loggedPatient", true).apply();
                                     } else
@@ -119,13 +123,13 @@ public class Doctor_login extends AppCompatActivity {
                         });
 
                     } else {
-                       // errorMessage.setVisibility(View.VISIBLE);
-                       // pDialog.hide();
+                        Toast.makeText(Doctor_login.this, "Credentials doesn't match", Toast.LENGTH_SHORT).show();
+                        mDialog.hide();
                     }
                 }
             });
         }
-    }
+
 
 
 
@@ -206,5 +210,33 @@ public class Doctor_login extends AppCompatActivity {
 
     public void callForgetPassword(View view) {
 
+        Intent intent = new Intent(Doctor_login.this, ForgotPassword.class);
+        startActivity(intent);
+    }
+
+    public void emergencyBtn(View view) {
+
+        final AlertDialog.Builder builder = new AlertDialog.Builder(Doctor_login.this);
+        builder.setTitle("Info");
+        builder.setMessage("Do you want to call Emergency Number??");
+        builder.setPositiveButton("Yes,Fast!", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialogInterface, int i) {
+
+                String dial = "9645280546";
+                startActivity(new Intent(Intent.ACTION_CALL, Uri.parse(dial)));
+
+            }
+        });
+
+        builder.setNegativeButton("No", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialogInterface, int i) {
+                dialogInterface.dismiss();
+            }
+        });
+
+        AlertDialog dialog = builder.create();
+        dialog.show();
     }
 }

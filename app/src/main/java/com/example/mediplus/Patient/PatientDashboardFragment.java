@@ -10,9 +10,12 @@ import android.widget.ImageView;
 import androidx.fragment.app.Fragment;
 
 import com.example.mediplus.Covid.FirstPage;
+import com.example.mediplus.Covid.user.talkto.ChatPatient;
+import com.example.mediplus.Hotspot.HotspotMain;
 import com.example.mediplus.R;
 import com.example.mediplus.appointment.AppointmentsActivity;
 import com.example.mediplus.appointment.MedicalFolderActivity;
+import com.example.mediplus.appointment.MyDoctorsActivity;
 import com.example.mediplus.appointment.SearchDoctorSpecialityActivity;
 
 
@@ -62,7 +65,7 @@ public class PatientDashboardFragment extends Fragment {
        homeService.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent = new Intent(getActivity(),HomeService.class);
+                Intent intent = new Intent(getActivity(), VaccinateNow.class);
                 startActivity(intent);
             }
         });
@@ -70,7 +73,7 @@ public class PatientDashboardFragment extends Fragment {
         cCare.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent = new Intent(getActivity(), CovidCare.class);
+                Intent intent = new Intent(getActivity(), CovidPrevention.class);
                 startActivity(intent);
             }
         });
@@ -91,7 +94,7 @@ public class PatientDashboardFragment extends Fragment {
         callBack.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent = new Intent(getActivity(), Callback.class);
+                Intent intent = new Intent(getActivity(), HotspotMain.class);
                 startActivity(intent);
             }
         });
@@ -107,7 +110,7 @@ public class PatientDashboardFragment extends Fragment {
         rem2.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent = new Intent(getActivity(), Reminder.class);
+                Intent intent = new Intent(getActivity(), Remind.class);
                 startActivity(intent);
             }
         });
@@ -123,12 +126,19 @@ public class PatientDashboardFragment extends Fragment {
         vir.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent = new Intent(getActivity(), PatientDash.class);
+                Intent intent = new Intent(getActivity(), ChatPatient.class);
                 startActivity(intent);
             }
         });
 
 
+        directory.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(getActivity(), Directory.class);
+                startActivity(intent);
+            }
+        });
 
         return v;
 

@@ -10,6 +10,7 @@ import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.app.ActivityCompat;
 
+import com.example.mediplus.Doctor.DoctorDashboard;
 import com.example.mediplus.R;
 import com.example.mediplus.appointment.RevealAnimation;
 import com.google.android.gms.tasks.OnSuccessListener;
@@ -114,7 +115,7 @@ public class DisplayDoctorProfileInfo extends AppCompatActivity {
 
     @Override
     public void onBackPressed() {
-        Intent intent = new Intent(DisplayDoctorProfileInfo.this, DoctorMenuActivity.class);
+        Intent intent = new Intent(DisplayDoctorProfileInfo.this, DoctorDashboard.class);
         startActivity(intent);
     }
 }

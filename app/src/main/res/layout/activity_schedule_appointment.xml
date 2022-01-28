@@ -8,9 +8,10 @@
 
 
     <LinearLayout
+        android:id="@+id/layout1"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:background="@drawable/border_bottom_roundedx"
+        android:background="@color/teal_700"
         android:orientation="vertical">
 
         <TextView
@@ -37,7 +38,7 @@
             android:layout_height="wrap_content"
             android:fontFamily="@font/montserrat_bold"
             android:gravity="center"
-            android:text="Monday-Friday"
+            android:text="Monday-Saturday"
             android:textSize="16sp" />
 
         <TextView
@@ -48,26 +49,6 @@
             android:gravity="center"
             android:text="9:00 - 4:00"
             android:textColor="#FFF"
-            android:textSize="16sp" />
-
-        <TextView
-            android:id="@+id/textView10"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:fontFamily="@font/montserrat_bold"
-            android:gravity="center"
-            android:text="Sunday"
-            android:textSize="16sp" />
-
-        <TextView
-            android:id="@+id/textView11"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:fontFamily="@font/montserrat_bold"
-            android:gravity="center"
-            android:text="Closed"
-            android:textColor="#FFF"
-            android:layout_marginBottom="5dp"
             android:textSize="16sp" />
 
         <TextView
@@ -83,20 +64,28 @@
 
     </LinearLayout>
 
-    <LinearLayout
-        android:layout_width="211dp"
+    <ScrollView
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:layout_marginTop="230dp"
+        android:layout_marginBottom="100dp">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="100dp"
         android:layout_gravity="center"
-        android:layout_marginTop="150dp"
         android:orientation="vertical">
 
         <Button
-            android:id="@+id/pickDayButton"
+            android:id="@+id/okMutton"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Pick a day"
-            android:background="@drawable/custombutton"
-            android:textColor="#FFF"
+            android:text="Pick a date"
+            android:background="@drawable/card_1"
+            android:textColor="@color/teal_700"
+            android:layout_margin="40dp"
             android:fontFamily="@font/montserrat_bold"
             android:layout_marginBottom="10dp"
             android:onClick="chooseDay"/>
@@ -109,7 +98,7 @@
             android:gravity="center"
             android:textColor="#33aeb6"
             android:fontFamily="@font/montserrat_bold"
-            android:textSize="16sp"
+            android:textSize="20sp"
             android:layout_marginBottom="10dp"
             android:visibility="gone"/>
         <TextView
@@ -120,43 +109,69 @@
             android:gravity="center"
             android:textColor="#33aeb6"
             android:fontFamily="@font/montserrat_bold"
-            android:textSize="16sp"
+            android:textSize="20sp"
             android:layout_marginBottom="10dp"
             android:visibility="gone"/>
 
+
         <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:orientation="horizontal">
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+          android:layout_margin="10dp">
+
 
             <Button
-                android:id="@+id/button2"
-                android:layout_width="wrap_content"
+                android:id="@+id/confirm"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:text="Confirm"
-                android:backgroundTint="#28A745"
-                android:textColor="#FFF"
-                android:textAllCaps="false"
                 android:layout_marginRight="5dp"
+                android:layout_weight="1"
+                android:backgroundTint="#28A745"
                 android:drawableLeft="@drawable/ic_check"
-                android:onClick="confirm"/>
+                android:onClick="confirm"
+                android:text="Confirm"
+                android:textAllCaps="false"
+                android:textColor="#FFF"
+                android:visibility="gone"/>
 
             <Button
-                android:id="@+id/button3"
-                android:layout_width="wrap_content"
+                android:id="@+id/cancel"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_weight="1"
                 android:layout_marginLeft="5dp"
+                android:layout_weight="1"
                 android:backgroundTint="#f44336"
-                android:textAllCaps="false"
-                android:text="Cancel"
                 android:drawableLeft="@drawable/ic_close"
+                android:onClick="cancel"
+                android:text="Cancel"
+                android:textAllCaps="false"
                 android:textColor="#FFF"
-                android:onClick="cancel"/>
+                android:visibility="gone"/>
+
         </LinearLayout>
+
+        <TimePicker
+            android:id="@+id/add_time_picker"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" />
+
+        <Button
+            android:id="@+id/proceedButton"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Proceed"
+            android:background="@drawable/card_1"
+            android:textColor="@color/teal_700"
+            android:layout_margin="40dp"
+            android:fontFamily="@font/montserrat_bold"
+            android:layout_marginBottom="10dp"
+            android:elevation="8dp"
+            android:onClick="proceed"/>
+
+
 
     </LinearLayout>
 
-
+    </ScrollView>
 </FrameLayout>

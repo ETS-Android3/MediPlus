@@ -1,21 +1,19 @@
 package com.example.mediplus.Doctor;
 
-import androidx.appcompat.app.AppCompatActivity;
-
-import android.app.ActivityOptions;
 import android.content.Intent;
-import android.os.Build;
 import android.os.Bundle;
-import android.util.Pair;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import androidx.appcompat.app.AppCompatActivity;
+
 import com.example.mediplus.R;
 import com.google.android.material.textfield.TextInputLayout;
 import com.hbb20.CountryCodePicker;
+import com.jaredrummler.materialspinner.MaterialSpinner;
 
 public class Doctor_signup extends AppCompatActivity {
 
@@ -24,11 +22,17 @@ public class Doctor_signup extends AppCompatActivity {
     TextView titleText;
     TextInputLayout fullName,phoneNumber,hos_code,email,password;
     CountryCodePicker countryCodePicker;
+    MaterialSpinner speciality;
+    String[] speciality_list;
+
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_doctor_signup);
+
+        speciality_list = getResources().getStringArray(R.array.Department);
 
         fullName=findViewById(R.id.dfullname);
         hos_code=findViewById(R.id.dcode);
@@ -36,6 +40,10 @@ public class Doctor_signup extends AppCompatActivity {
         password=findViewById(R.id.dpassword);
         phoneNumber=findViewById(R.id.dphone_number);
         countryCodePicker=findViewById(R.id.dcountry_code_picker);
+        speciality = findViewById(R.id.add_speciality);
+
+        speciality.setItems(speciality_list);
+
     }
 
 
@@ -49,6 +57,7 @@ public class Doctor_signup extends AppCompatActivity {
         String _email = email.getEditText().getText().toString().trim();
         String _fullName = fullName.getEditText().getText().toString().trim();
         String _code = hos_code.getEditText().getText().toString().trim();
+        String _speciality= speciality_list[speciality.getSelectedIndex()];
 
         String _getUserEnteredPhoneNumber = phoneNumber.getEditText().getText().toString().trim();
         if (_getUserEnteredPhoneNumber.charAt(0) == '0') {
@@ -64,6 +73,7 @@ public class Doctor_signup extends AppCompatActivity {
             intent.putExtra("email", _email);
             intent.putExtra("password", _password);
             intent.putExtra("phoneNo", _phoneNo);
+            intent.putExtra("speciality", _speciality);
             intent.putExtra("whatToDO", "createNewUser");
 
             startActivity(intent);

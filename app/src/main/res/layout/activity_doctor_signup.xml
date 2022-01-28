@@ -135,6 +135,13 @@
 
             </com.google.android.material.textfield.TextInputLayout>
 
+            <com.jaredrummler.materialspinner.MaterialSpinner
+                android:id="@+id/add_speciality"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                app:boxStrokeColor="@color/black"
+                app:boxStrokeWidthFocused="2dp"/>
+
             <com.google.android.material.textfield.TextInputLayout
                 android:id="@+id/demail"
                 style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
@@ -148,7 +155,7 @@
                 app:endIconTint="@color/black"
                 app:hintTextColor="@color/black"
                 app:startIconDrawable="@drawable/mail_icon"
-                app:startIconTint="@color/black">>
+                app:startIconTint="@color/black">
 
                 <com.google.android.material.textfield.TextInputEditText
                     android:layout_width="match_parent"

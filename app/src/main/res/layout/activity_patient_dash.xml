@@ -27,10 +27,11 @@
             <ImageView
                 android:layout_alignParentRight="true"
                 android:layout_centerVertical="true"
-                android:layout_height="40dp"
-                android:layout_width="40dp"
-                android:padding="5dp"
-                android:src="@drawable/medical_service" />
+                android:layout_height="50dp"
+                android:layout_width="50dp"
+                android:padding="1dp"
+                android:onClick="EmergenyButton"
+                android:src="@drawable/app_logo" />
 
             <TextView
                 android:id="@+id/app_name2"

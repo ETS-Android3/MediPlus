@@ -1,14 +1,16 @@
 package com.example.mediplus.Patient;
 
+import android.content.Intent;
 import android.os.Bundle;
+import android.view.View;
 import android.view.WindowManager;
-import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.Fragment;
 
 import com.example.mediplus.Covid.user.news.News;
+import com.example.mediplus.Emergency.EmergencyMain;
 import com.example.mediplus.R;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
@@ -69,7 +71,7 @@ public class PatientDash extends AppCompatActivity {
                 patientFullName = dataSnapshot.child(uid).child("fullName").getValue(String.class);
                 phoneno = dataSnapshot.child(uid).child("phoneNo").getValue(String.class);
 
-                Toast.makeText(PatientDash.this, patientFullName, Toast.LENGTH_LONG).show();
+               // Toast.makeText(PatientDash.this, patientFullName, Toast.LENGTH_LONG).show();
 
               /*  StorageReference storageReference = FirebaseStorage.getInstance().getReference();
                 StorageReference profileRef = storageReference.child("Profile pictures").child(FirebaseAuth.getInstance().getCurrentUser().getEmail() + ".jpg");
@@ -138,5 +140,9 @@ public class PatientDash extends AppCompatActivity {
 
     }
 
+    public void EmergenyButton(View view) {
+        startActivity(new Intent(getApplicationContext(), EmergencyMain.class));
+        finish();
+    }
 }
 

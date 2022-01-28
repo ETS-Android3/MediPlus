@@ -15,7 +15,7 @@
         android:id="@+id/show_message"
         android:textSize="18sp"
         android:padding="8dp"
-        android:background="@drawable/background_left"/>
+        android:background="@color/white_smoke"/>
 
 
 </RelativeLayout>

@@ -8,28 +8,33 @@
     android:orientation="vertical"
     android:background="@color/white">
 
+
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:padding="20dp"
-        android:background="@color/teal_700">
+        android:padding="10dp"
+        android:background="@drawable/card_1"
+        android:elevation="8dp">
 
-        <ImageView
-            android:layout_centerVertical="true"
-            android:layout_height="40dp"
-            android:layout_width="40dp"
-            android:src="@drawable/menu_icon" />
 
         <ImageView
             android:layout_alignParentRight="true"
             android:layout_centerVertical="true"
-            android:layout_height="40dp"
-            android:layout_width="40dp"
-            android:padding="5dp"
-            android:src="@drawable/medical_service" />
+            android:layout_height="50dp"
+            android:layout_width="50dp"
+            android:padding="1dp"
+            android:src="@drawable/app_logo" />
+
+        <TextView
+            android:id="@+id/app_name2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/muli_black"
+            android:text="@string/logo_name"
+            android:textColor="@color/black"
+            android:textSize="28sp" />
 
     </RelativeLayout>
-
     <LinearLayout
         android:layout_height="wrap_content"
         android:layout_width="match_parent"
@@ -54,10 +59,10 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_alignParentEnd="true"
-            android:layout_marginEnd="161dp"
+            android:layout_marginEnd="159dp"
             android:fontFamily="sans-serif-medium"
             android:padding="5dp"
-            android:text="Top Services "
+            android:text=" Services "
 
             android:textColor="@color/black"
             android:textSize="18sp" />
@@ -123,7 +128,7 @@
                         android:layout_height="50dp"
                         android:layout_centerInParent="true"
                         android:onClick="appointmentDoc"
-                        android:src="@drawable/appointment" />
+                        android:src="@drawable/appointment1" />
 
                 </RelativeLayout>
 
@@ -152,15 +157,17 @@
                         android:layout_width="50dp"
                         android:layout_height="50dp"
                         android:layout_centerInParent="true"
-                        android:src="@drawable/home_service" />
+                        android:src="@drawable/chatimg"
+                        android:onClick="Chats"/>
 
                 </RelativeLayout>
 
                 <TextView
+                    android:id="@+id/chats"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:gravity="center_horizontal"
-                    android:text="Home Care"
+                    android:text="Chats"
                     android:textAlignment="center" />
 
             </LinearLayout>
@@ -181,7 +188,8 @@
                         android:layout_width="50dp"
                         android:layout_height="50dp"
                         android:layout_centerInParent="true"
-                        android:src="@drawable/directory" />
+                        android:src="@drawable/directory"
+                        android:onClick="directory"/>
 
                 </RelativeLayout>
 
@@ -276,22 +284,7 @@
                 android:layout_height="80dp"
                 android:layout_margin="10dp"
                 android:background="@drawable/card_1"
-                android:elevation="8dp">
-
-                <ImageView
-                    android:layout_width="50dp"
-                    android:layout_height="50dp"
-                    android:layout_centerInParent="true"
-                    android:src="@drawable/home_service" />
-
-            </RelativeLayout>
-
-            <TextView
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:gravity="center_horizontal"
-                android:text="Home Care"
-                android:textAlignment="center" />
+                android:elevation="8dp"/>
 
         </LinearLayout>
 
@@ -311,7 +304,8 @@
                     android:layout_width="50dp"
                     android:layout_height="50dp"
                     android:layout_centerInParent="true"
-                    android:src="@drawable/directory" />
+                    android:src="@drawable/logout"
+                    android:onClick="logoutDoc"/>
 
             </RelativeLayout>
 
@@ -319,7 +313,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:gravity="center_horizontal"
-                android:text="Directory"
+                android:text="Logout"
                 android:textAlignment="center" />
 
         </LinearLayout>

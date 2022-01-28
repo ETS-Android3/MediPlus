@@ -30,7 +30,7 @@
             android:gravity="center"
             android:text='" The satisfaction of patients is our priority ! "'
             android:textColor="#FFF"
-            android:textSize="18sp" />
+            android:textSize="17sp" />
     </LinearLayout>
 
     <de.hdodenhof.circleimageview.CircleImageView
@@ -55,7 +55,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:textSize="28sp"
-            android:text="Aliluch Loutfi"
+            android:text="Demo"
             android:fontFamily="@font/montserrat_bold"
             android:layout_marginBottom="10dp"/>
         <TextView
@@ -115,9 +115,8 @@
         android:src="@drawable/ic_plus_sign"
         android:backgroundTint="@color/teal_700"
         android:onClick="addPatient"
-        app:borderWidth="0dp"
+        app:borderWidth="0dp" />
 
-    />
 
 
 </FrameLayout>

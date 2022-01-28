@@ -6,12 +6,16 @@ import android.os.Bundle;
 import android.text.TextUtils;
 import android.util.Log;
 import android.view.View;
+import android.widget.Button;
 import android.widget.DatePicker;
 import android.widget.TextView;
+import android.widget.TimePicker;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.DialogFragment;
+
+import com.example.mediplus.Patient.PatientDash;
 import com.example.mediplus.R;
 import com.example.mediplus.appointment.models.Appointment;
 import com.google.android.gms.tasks.OnFailureListener;
@@ -40,7 +44,10 @@ public class ScheduleAppointmentActivity extends AppCompatActivity implements Da
     List <Appointment> appointments;
     String emailPatient, emailDoctor;
     String timeOfAppointment;
+    TimePicker timepicker;
     public int num_of_patients_at_same_time=3;
+    Button b1,b2;
+    String currentDateString;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -48,6 +55,9 @@ public class ScheduleAppointmentActivity extends AppCompatActivity implements Da
         setContentView(R.layout.activity_schedule_appointment);
         day = findViewById(R.id.date);
         time = findViewById(R.id.time);
+        timepicker = findViewById(R.id.add_time_picker);
+        b1= findViewById(R.id.confirm);
+        b2=findViewById(R.id.cancel);
         intent = getIntent();
         emailDoctor = intent.getStringExtra("email");
         appointments = new ArrayList<>();
@@ -76,7 +86,75 @@ public class ScheduleAppointmentActivity extends AppCompatActivity implements Da
             System.out.println(number - (int)number);
             return;
         }
+
         final String currentDateString = DateFormat.getDateInstance(DateFormat.SHORT).format(c.getTime());
+
+        day.setText(currentDateString);
+        day.setVisibility(View.VISIBLE);
+
+
+    }
+
+    public void confirm(View view) {
+        if(TextUtils.isEmpty(day.getText()) && TextUtils.isEmpty(time.getText()))
+        {
+            new SweetAlertDialog(ScheduleAppointmentActivity.this)
+                    .setTitleText("Scheduling appointment")
+                    .setContentText("Please pick a day !")
+                    .show();
+            return;
+        }
+        user = FirebaseAuth.getInstance().getCurrentUser();
+        databaseReference = FirebaseDatabase.getInstance().getReference("Patients");
+        databaseReference.addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                emailPatient = dataSnapshot.child(user.getUid()).child("email").getValue(String.class);
+                Appointment appointment = new Appointment(day.getText().toString(),time.getText().toString(), emailDoctor, emailPatient);
+                DatabaseReference reference = FirebaseDatabase.getInstance().getReference("Appointments");
+                reference.push().setValue(appointment).addOnSuccessListener(new OnSuccessListener<Void>() {
+                    @Override
+                    public void onSuccess(Void aVoid) {
+                        new SweetAlertDialog(ScheduleAppointmentActivity.this, SweetAlertDialog.SUCCESS_TYPE)
+                                .setTitleText("Congratulations")
+                                .setContentText("Your appointment is registered successfully")
+                                .setConfirmClickListener(new SweetAlertDialog.OnSweetClickListener() {
+                                    @Override
+                                    public void onClick(SweetAlertDialog sweetAlertDialog) {
+                                        Intent intent = new Intent(ScheduleAppointmentActivity.this, PatientDash.class);
+                                        startActivity(intent);
+                                    }
+                                })
+                                .show();
+
+                    }
+                }).addOnFailureListener(new OnFailureListener() {
+                    @Override
+                    public void onFailure(@NonNull Exception e) {
+                        new SweetAlertDialog(ScheduleAppointmentActivity.this, SweetAlertDialog.ERROR_TYPE)
+                                .setTitleText("Oops...")
+                                .setContentText("Something went wrong!")
+                                .show();
+                    }
+                });
+
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError databaseError) {
+
+            }
+        });
+
+    }
+
+
+    public void cancel(View view) {
+        finish();
+    }
+
+    public void proceed(View view) {
+
         DatabaseReference reference = FirebaseDatabase.getInstance().getReference("Appointments");
         reference.addValueEventListener(new ValueEventListener() {
             @Override
@@ -112,27 +190,25 @@ public class ScheduleAppointmentActivity extends AppCompatActivity implements Da
                     int x=1;
                     Log.d("debug: ","x: "+x+", app.size:"+appointments.size()+" num: "+num_of_patients_at_same_time);
                     double timeFull = (double)(x*30)/60;
-                    int hour = 9 + (int)timeFull;
-                    double minutes = timeFull - (int)timeFull;
+                    int hour =timepicker.getHour();
+                    double minutes =timepicker.getMinute();
                     Log.d("debug","timeFull: "+timeFull);
                     Log.d("debug","hour: "+hour);
                     Log.d("debug","minutes: "+minutes);
-                    if(minutes >= 0.5) {
-                        timeOfAppointment = hour+":30";
-                    }
-                    else
-                    {
-                        timeOfAppointment = hour+":00";
-                    }
+
+                    timeOfAppointment = hour+":"+minutes;
                 }
                 new SweetAlertDialog(ScheduleAppointmentActivity.this)
                         .setTitleText("Scheduling appointment")
                         .setContentText("If you confirm below, your appointment will be scheduled the "+currentDateString+" at "+timeOfAppointment+" !")
-                        .show();
-                day.setText(currentDateString);
-                day.setVisibility(View.VISIBLE);
+                        .hide();
+
                 time.setText(timeOfAppointment);
                 time.setVisibility(View.VISIBLE);
+                timepicker.setVisibility(View.INVISIBLE);
+                b1.setVisibility(View.VISIBLE);
+                b2.setVisibility(View.VISIBLE);
+
             }
 
             @Override
@@ -140,63 +216,5 @@ public class ScheduleAppointmentActivity extends AppCompatActivity implements Da
                 System.out.println("The read failed: " + databaseError.getCode());
             }
         });
-    }
-
-    public void confirm(View view) {
-        if(TextUtils.isEmpty(day.getText()) && TextUtils.isEmpty(time.getText()))
-        {
-            new SweetAlertDialog(ScheduleAppointmentActivity.this)
-                    .setTitleText("Scheduling appointment")
-                    .setContentText("Please pick a day !")
-                    .show();
-            return;
-        }
-        user = FirebaseAuth.getInstance().getCurrentUser();
-        databaseReference = FirebaseDatabase.getInstance().getReference("Patients");
-        databaseReference.addValueEventListener(new ValueEventListener() {
-            @Override
-            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-                emailPatient = dataSnapshot.child(user.getUid()).child("email").getValue(String.class);
-                Appointment appointment = new Appointment(day.getText().toString(),time.getText().toString(), emailDoctor, emailPatient);
-                DatabaseReference reference = FirebaseDatabase.getInstance().getReference("Appointments");
-                reference.push().setValue(appointment).addOnSuccessListener(new OnSuccessListener<Void>() {
-                    @Override
-                    public void onSuccess(Void aVoid) {
-                        new SweetAlertDialog(ScheduleAppointmentActivity.this, SweetAlertDialog.SUCCESS_TYPE)
-                                .setTitleText("Congratulations")
-                                .setContentText("Your appointment is registered successfully")
-                                .setConfirmClickListener(new SweetAlertDialog.OnSweetClickListener() {
-                                    @Override
-                                    public void onClick(SweetAlertDialog sweetAlertDialog) {
-                                        Intent intent = new Intent(ScheduleAppointmentActivity.this, AppointmentsActivity.class);
-                                        startActivity(intent);
-                                    }
-                                })
-                                .show();
-
-                    }
-                }).addOnFailureListener(new OnFailureListener() {
-                    @Override
-                    public void onFailure(@NonNull Exception e) {
-                        new SweetAlertDialog(ScheduleAppointmentActivity.this, SweetAlertDialog.ERROR_TYPE)
-                                .setTitleText("Oops...")
-                                .setContentText("Something went wrong!")
-                                .show();
-                    }
-                });
-
-            }
-
-            @Override
-            public void onCancelled(@NonNull DatabaseError databaseError) {
-
-            }
-        });
-
-    }
-
-
-    public void cancel(View view) {
-        finish();
     }
 }

@@ -54,7 +54,7 @@
             android:layout_height="wrap_content"
             android:layout_weight="1"
             android:text="Confirm"
-            android:backgroundTint="#28A745"
+            android:backgroundTint="@color/teal_700"
             android:textColor="#FFF"
             android:textAllCaps="false"
             android:layout_marginRight="5dp"

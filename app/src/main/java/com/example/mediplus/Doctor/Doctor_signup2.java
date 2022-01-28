@@ -60,7 +60,7 @@ public class Doctor_signup2 extends AppCompatActivity {
         password = getIntent().getStringExtra("password");
         phoneNo = getIntent().getStringExtra("phoneNo");
         whatToDO = getIntent().getStringExtra("whatToDO");
-        speciality = "Dentist";
+        speciality = getIntent().getStringExtra("speciality");
 
         fbAuth = FirebaseAuth.getInstance();
         fStore = fStore = FirebaseFirestore.getInstance();

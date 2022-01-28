@@ -20,15 +20,16 @@
                 android:paddingStart="16dp">
 
                 <TextView
+                    android:id="@+id/donate"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_gravity="center"
                     android:drawablePadding="8dp"
-                    android:drawableStart="@drawable/ic_account"
+                    android:drawableStart="@drawable/donation"
                     android:gravity="center_vertical"
                     android:paddingBottom="8dp"
                     android:paddingTop="8dp"
-                    android:text="Emergency"
+                    android:text="Donate"
                     android:textColor="#000000"
                     android:textSize="18sp" />
 
@@ -38,15 +39,16 @@
                     android:background="#9E9E9E" />
 
                 <TextView
+                    android:id="@+id/gogreen"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_gravity="center"
                     android:drawablePadding="8dp"
-                    android:drawableStart="@drawable/ic_key"
+                    android:drawableStart="@drawable/gogreen1"
                     android:gravity="center_vertical"
                     android:paddingBottom="8dp"
                     android:paddingTop="8dp"
-                    android:text="Appointments"
+                    android:text="Go Green"
                     android:textColor="#000000"
                     android:textSize="18sp" />
 
@@ -56,11 +58,12 @@
                     android:background="#9E9E9E" />
 
                 <TextView
+                    android:id="@+id/vaccine"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_gravity="center"
                     android:drawablePadding="8dp"
-                    android:drawableStart="@drawable/ic_logout"
+                    android:drawableStart="@drawable/vaccine"
                     android:gravity="center_vertical"
                     android:paddingBottom="8dp"
                     android:paddingTop="8dp"
@@ -73,7 +76,7 @@
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:background="@color/white"
+                android:background="@color/white_smoke"
                 android:paddingBottom="8dp"
                 android:paddingEnd="16dp"
                 android:paddingStart="16dp"
@@ -150,12 +153,12 @@
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:background="@color/white"
+                android:background="@color/white_smoke"
                 android:paddingBottom="8dp"
                 android:paddingEnd="16dp"
                 android:paddingStart="16dp"
                 android:paddingTop="8dp"
-                android:text="App"
+                android:text="Playstore Service"
                 android:fontFamily="@font/montserrat_bold"
                 android:textColor="#212121"
                 android:textSize="24sp"
@@ -218,7 +221,7 @@
                     android:gravity="center_vertical"
                     android:paddingBottom="8dp"
                     android:paddingTop="8dp"
-                    android:text="Share MedKlick"
+                    android:text="Share Mediplus"
                     android:textColor="#000000"
                     android:textSize="18sp" />
 

@@ -76,8 +76,8 @@ public class HomeReminder extends Fragment {
             protected void onBindViewHolder(@NotNull com.example.mediplus.Patient.HomeReminder.ReminderViewHolder holder, int position, @NotNull com.example.mediplus.Patient.ReminderItem model) {
                 String repeat = model.getRepeat();
 
-                holder.medication_name.setText("Medication Name: "+model.getName());
-                holder.type.setText("Medication Type: "+model.getType());
+                holder.medication_name.setText("Medicine Name: "+model.getName());
+                holder.type.setText("Medicine Type: "+model.getType());
                 holder.dosage.setText("Dosage: "+model.getDosage());
                 holder.repeat.setText("Days: "+repeat.substring(1, repeat.length()-1));
                 holder.reminder_time.setText("Time: "+ String.format("%d:%02d", model.getRemindHour(), model.getRemindMinute()));

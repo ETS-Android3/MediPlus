@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+    <item
+        android:id="@+id/bottom_schedule_home"
+        android:title="Home"
+        android:icon="@drawable/ic_outline_home_24"
+        app:cnb_backgroundColor="@color/colorPrimary"/>
+    <item
+        android:id="@+id/bottom_schedule_add"
+        android:title="Add"
+        android:icon="@drawable/ic_outline_edit_24"
+        app:cnb_backgroundColor="@color/colorPrimary"/>
+</menu>

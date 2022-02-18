@@ -6,11 +6,25 @@ The Mediplus is an android application which is related to the health field whic
 ### Method 1 (Recommended)
         Download the APK from releases
         Install on a Android Device (Version 5.0 or above)
+        
 ### Method 2
         Fork the Repo
         Clone the Repo git clone 
         
+### Other operations       
+        connect firebase
+        set Authentication.
+           In this iam using a combination of two authentication as single method for auth.
+           for more details, refer login codes
+        set google map api.
+        Set NewsApi
+        Update dependancy
+        
+        
 ### Language used
     Java
+    XML,Json
     
-    Environment: Android Studio
+    IDE: Android Studio
+    
+    Backend: Firebase

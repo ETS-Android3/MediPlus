@@ -18,7 +18,7 @@ The Mediplus is an android application which is related to the health field whic
            for more details, refer login codes
         set google map api.
         Set NewsApi
-        Update dependancy
+        Update dependancies
         
         
 ### Language used
@@ -29,4 +29,4 @@ The Mediplus is an android application which is related to the health field whic
     
     Backend: Firebase
     
-    Api: Google map Api, News Api, Covid hotspot kerala Api
+    Api: Google map Api, News Api, Covid hotspot kerala Api, Vaccine finder api, covid Stat Api
